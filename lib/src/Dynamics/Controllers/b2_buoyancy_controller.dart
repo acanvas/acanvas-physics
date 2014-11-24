@@ -69,7 +69,7 @@
 		if( useWorldGravity){
 			gravity = GetWorld().GetGravity().Copy();
 		}
-		for(b2ControllerEdge i=m_bodyList;i;i=i.nextBody){
+		for(b2ControllerEdge i=m_bodyList;i != null;i=i.nextBody){
 			b2Body body = i.body;
 			if(body.IsAwake() == false){
 				//Buoyancy force is just a function of position,
@@ -80,7 +80,7 @@
 			b2Vec2 massc = new b2Vec2();
 			double area = 0.0;
 			double mass = 0.0;
-			for(b2Fixture fixture=body.GetFixtureList();fixture;fixture=fixture.GetNext()){
+			for(b2Fixture fixture=body.GetFixtureList();fixture != null;fixture=fixture.GetNext()){
 				b2Vec2 sc = new b2Vec2();
 				double sarea = fixture.GetShape().ComputeSubmergedArea(normal, offset, body.GetTransform(), sc);
 				area += sarea;

@@ -18,14 +18,8 @@
 
  part of stagexl_box2d;
 	
-	
-	
-	
-	//TODO_BORIS: Remove
-	use namespace b2internal;
-	
 	 class TestStack extends Test{
-	 TestStack(){
+	 TestStack(Stopwatch w) : super(w) {
 			
 			// Set Text field
 			Main.m_aboutText.text = "Stacked Boxes";
@@ -63,21 +57,21 @@
 				b.CreateFixture(fd);
 			}
 			// Create ramp
-			List vxs = [new b2Vec2(0, 0),
-				new b2Vec2(0, -100 / m_physScale),
-				new b2Vec2(200 / m_physScale, 0)];
-			sd.SetAsList(vxs, vxs.length);
-			fd.density = 0;
+			List vxs = [new b2Vec2(0.0, 0.0),
+				new b2Vec2(0.0, -100 / m_physScale),
+				new b2Vec2(200 / m_physScale, 0.0)];
+			sd.SetAsVector(vxs, vxs.length);
+			fd.density = 0.0;
 			bd.type = b2Body.b2_staticBody;
 			bd.userData = "ramp";
-			bd.position.Set(0, 360 / m_physScale);
+			bd.position.Set(0.0, 360 / m_physScale);
 			b = m_world.CreateBody(bd);
 			b.CreateFixture(fd);
 			
 			// Create ball
 			b2CircleShape cd = new b2CircleShape();
 			cd.m_radius = 40/m_physScale;
-			fd.density = 2;
+			fd.density = 2.0;
 			fd.restitution = 0.2;
 			fd.friction = 0.5;
 			fd.shape = cd;

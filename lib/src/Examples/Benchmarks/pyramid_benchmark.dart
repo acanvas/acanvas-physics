@@ -25,23 +25,15 @@
 			return "Pyramid";
 		}
 		
-		  XML Details()
-		{
-			return 	<benchmarkParameters>
-						<version>$Rev: 86 $</version>
-						<size>{size}</size>
-					</benchmarkParameters>;	
-		}
-		
 		  void Init(b2World world)
 		{
-			world.SetGravity(new b2Vec2(0, 10));
+			world.SetGravity(new b2Vec2(0.0, 10.0));
 			
 			b2BodyDef bodyDef = new b2BodyDef();
 			b2BodyDef groundDef = new b2BodyDef();
-			groundDef.position.Set(5, 11);
+			groundDef.position.Set(5.0, 11.0);
 			b2Body body = world.CreateBody(groundDef);
-			b2PolygonShape ground = b2PolygonShape.AsBox(20, .5);
+			b2PolygonShape ground = b2PolygonShape.AsBox(20.0, .5);
 			body.CreateFixture2(ground);
 			
 			bodyDef.type = b2Body.b2_dynamicBody;
@@ -55,7 +47,7 @@
 						groundDef.position.y -(size - row) * 1.1);
 					body = world.CreateBody(bodyDef);
 					b2FixtureDef fd = new b2FixtureDef();
-					fd.density = 1;
+					fd.density = 1.0;
 					fd.shape = box;
 					body.CreateFixture(fd);
 				}

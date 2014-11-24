@@ -268,7 +268,7 @@
 		m_sweep.a0 = m_sweep.a = angle;
 		
 		IBroadPhase broadPhase = m_world.m_contactManager.m_broadPhase;
-		for (f = m_fixtureList; f; f = f.m_next)
+		for (f = m_fixtureList; f != null; f = f.m_next)
 		{
 			f.Synchronize(broadPhase, m_xf, m_xf);
 		}

@@ -25,7 +25,7 @@
         return null;
       }
       
-      b2Vec2 f, fd:b2Vec2, fdd:b2Vec2, fddd:b2Vec2, fdd_per_2:b2Vec2, fddd_per_2:b2Vec2, fddd_per_6:b2Vec2;
+      b2Vec2 f, fd, fdd, fddd, fdd_per_2, fddd_per_2, fddd_per_6;
       f = new b2Vec2(); fd = new b2Vec2(); fdd = new b2Vec2(); fddd = new b2Vec2();
       fdd_per_2 = new b2Vec2(); fddd_per_2 = new b2Vec2(); fddd_per_6 = new b2Vec2();
       
@@ -58,7 +58,7 @@
       fddd_per_6.x = (1.0 / 3) * fddd_per_2.x;
       fddd_per_6.y = (1.0 / 3) * fddd_per_2.y;
       
-      List ret = new List(resolution);
+      List ret = new List(resolution.toInt());
       
       if( ret == null || ret == false) {
         return null;

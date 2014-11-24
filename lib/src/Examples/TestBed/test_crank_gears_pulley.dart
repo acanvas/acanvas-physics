@@ -24,7 +24,7 @@
 	
 	
 	 class TestCrankGearsPulley extends Test{
-	 TestCrankGearsPulley(){
+	 TestCrankGearsPulley(Stopwatch w) : super(w) {
 			
 			// Set Text field
 			Main.m_aboutText.text = "Joints";
@@ -61,12 +61,12 @@
 				rjd.motorSpeed = 1.0 * -PI;
 				rjd.maxMotorTorque = 5000.0;
 				rjd.enableMotor = true;
-				m_joint1 = m_world.CreateJoint(as as rjd) b2RevoluteJoint;
+				m_joint1 = m_world.CreateJoint(rjd) as b2RevoluteJoint;
 				
 				prevBody = body;
 				
 				// Define follower.
-				sd = new b2PolygonShape;
+				sd = new b2PolygonShape();
 				sd.SetAsBox(7.5 / m_physScale, 60.0 / m_physScale);
 				fixtureDef.shape = sd;
 				bd.position.Set(100.0/m_physScale, (360.0-195.0)/m_physScale);
@@ -96,10 +96,10 @@
 				pjd.maxMotorForce = 500.0;
 				pjd.enableMotor = true;
 				
-				m_joint2 = m_world.CreateJoint(as as pjd) b2PrismaticJoint;
+				m_joint2 = m_world.CreateJoint(pjd) as b2PrismaticJoint;
 				
 				// Create a payload
-				sd = new b2PolygonShape()
+				sd = new b2PolygonShape();
 				sd.SetAsBox(22.5 / m_physScale, 22.5 / m_physScale);
 				fixtureDef.shape = sd;
 				fixtureDef.density = 2.0;
@@ -153,7 +153,7 @@
 				body3.CreateFixture(fixtureDef);
 				
 				b2PrismaticJointDef jd3 = new b2PrismaticJointDef();
-				jd3.Initialize(ground, body3, bd3.position, new b2Vec2(0,1));
+				jd3.Initialize(ground, body3, bd3.position, new b2Vec2(0.0,1.0));
 				jd3.lowerTranslation = -25.0 / m_physScale;
 				jd3.upperTranslation = 100.0 / m_physScale;
 				jd3.enableLimit = true;
@@ -207,7 +207,7 @@
 				pulleyDef.maxLengthB = 150 / m_physScale;
 				
 				//m_joint1 = m_world.CreateJoint(as as pulleyDef) b2PulleyJoint;
-				m_world.CreateJoint(as as pulleyDef) b2PulleyJoint;
+				m_world.CreateJoint(pulleyDef) as b2PulleyJoint;
 				
 				
 				// Add a circle to weigh down the pulley
@@ -239,12 +239,12 @@
 				b2LineJointDef ljd = new b2LineJointDef();
 				ljd.Initialize(ground, body, body.GetPosition(), new b2Vec2(0.4, 0.6));
 				
-				ljd.lowerTranslation = -1;
-				ljd.upperTranslation = 1;
+				ljd.lowerTranslation = -1.0;
+				ljd.upperTranslation = 1.0;
 				ljd.enableLimit = true;
 				
-				ljd.maxMotorForce = 1;
-				ljd.motorSpeed = 0;
+				ljd.maxMotorForce = 1.0;
+				ljd.motorSpeed = 0.0;
 				ljd.enableMotor = true;
 				
 				m_world.CreateJoint(ljd);
@@ -257,7 +257,7 @@
 				b2FrictionJointDef fjd = new b2FrictionJointDef();
 				fjd.Initialize(circleBody, m_world.GetGroundBody(), circleBody.GetPosition());
 				fjd.collideConnected = true;
-				fjd.maxForce = 200;
+				fjd.maxForce = 200.0;
 				m_world.CreateJoint(fjd);
 			}
 			

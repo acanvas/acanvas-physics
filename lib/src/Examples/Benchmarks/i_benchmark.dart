@@ -24,7 +24,7 @@
 		/// Return any further details, as XML with root element
 		/// benchmarkParameters
 		/// This should include a version tag with the revision details.
-		 XML Details();
+		 //XML Details();
 		/// Initialize the world
 		 void Init(b2World world);
 		/// This is run every tick

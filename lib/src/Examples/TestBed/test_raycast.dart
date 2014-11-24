@@ -26,11 +26,11 @@
 	 class TestRaycast extends Test{
 		
 		 b2Body laser;
-	 TestRaycast(){
+	 TestRaycast(Stopwatch w) : super(w) {
 			// Set Text field
 			Main.m_aboutText.text = "Raycast";
 			
-			m_world.SetGravity(new b2Vec2(0,0));
+			m_world.SetGravity(new b2Vec2(0.0,0.0));
 			
 			b2Body ground = m_world.GetGroundBody();
 			
@@ -38,7 +38,7 @@
 			box.SetAsBox(30 / m_physScale, 4 / m_physScale);
 			b2FixtureDef fd = new b2FixtureDef();
 			fd.shape = box;
-			fd.density = 4;
+			fd.density = 4.0;
 			fd.friction = 0.4;
 			fd.restitution = 0.3;
 			fd.userData="laser";
@@ -53,7 +53,7 @@
 			
 			b2CircleShape circle = new b2CircleShape(30 / m_physScale);
 			fd.shape = circle;
-			fd.density = 4;
+			fd.density = 4.0;
 			fd.friction = 0.4;
 			fd.restitution = 0.3;
 			fd.userData="circle";
@@ -71,11 +71,11 @@
 		 void Update(){
 			super.Update();
 			
-			b2Vec2 p1 = laser.GetWorldPoint(new b2Vec2(30.1 / m_physScale, 0));
-			b2Vec2 p2 = laser.GetWorldPoint(new b2Vec2(130.1 / m_physScale, 0));
+			b2Vec2 p1 = laser.GetWorldPoint(new b2Vec2(30.1 / m_physScale, 0.0));
+			b2Vec2 p2 = laser.GetWorldPoint(new b2Vec2(130.1 / m_physScale, 0.0));
 			
 			b2Fixture f = m_world.RayCastOne(p1, p2);
-			double lambda = 1;
+			double lambda = 1.0;
 			if( f != null)
 			{
 				b2RayCastInput input = new b2RayCastInput(p1, p2);
@@ -83,10 +83,12 @@
 				f.RayCast(output, input);
 				lambda = output.fraction;
 			}
-			m_sprite.graphics.lineStyle(1,0xff0000,1);
+			m_sprite.graphics.beginPath();
 			m_sprite.graphics.moveTo(p1.x * m_physScale, p1.y * m_physScale);
 			m_sprite.graphics.lineTo( 	(p2.x * lambda + (1 - lambda) * p1.x) * m_physScale,
 										(p2.y * lambda + (1 - lambda) * p1.y) * m_physScale);
+			m_sprite.graphics.closePath();
+			m_sprite.graphics.strokeColor(0xffff0000,1);
 
 		}
 	}

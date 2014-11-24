@@ -114,14 +114,13 @@ part 'src/Dynamics/Joints/b2_weld_joint_def.dart';
 
 //examples
 /*
+ */
 part 'src/Examples/benchmark.dart';
 part 'src/Examples/Benchmarks/i_benchmark.dart';
 part 'src/Examples/Benchmarks/lottery_benchmark.dart';
 part 'src/Examples/Benchmarks/null_benchmark.dart';
 part 'src/Examples/Benchmarks/pyramid_benchmark.dart';
 part 'src/Examples/Benchmarks/ragdoll_benchmark.dart';
-part 'src/Examples/hello_world.dart';
- */
 part 'src/Examples/General/fps_counter.dart';
 part 'src/Examples/General/frate_limiter.dart';
 part 'src/Examples/General/input.dart';
@@ -129,17 +128,13 @@ part 'src/Examples/main.dart';
 part 'src/Examples/TestBed/test.dart';
 part 'src/Examples/TestBed/test_ragdoll.dart';
 part 'src/Examples/TestBed/test_one_sided_platform.dart';
-/*
 part 'src/Examples/TestBed/b2_bezier.dart';
-part 'src/Examples/TestBed/b2_svg.dart';
 part 'src/Examples/TestBed/test_breakable.dart';
 part 'src/Examples/TestBed/test_bridge.dart';
 part 'src/Examples/TestBed/test_buoyancy.dart';
 part 'src/Examples/TestBed/test_ccd.dart';
 part 'src/Examples/TestBed/test_compound.dart';
 part 'src/Examples/TestBed/test_crank_gears_pulley.dart';
-part 'src/Examples/TestBed/test_edges.dart';
 part 'src/Examples/TestBed/test_raycast.dart';
 part 'src/Examples/TestBed/test_stack.dart';
 part 'src/Examples/TestBed/test_theo_jansen.dart';
-*/

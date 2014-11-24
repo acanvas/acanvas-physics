@@ -169,11 +169,13 @@
 	 void DrawPolygon(List vertices,int vertexCount,b2Color color){
 		
 		m_sprite.graphics.moveTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
+		m_sprite.graphics.beginPath();
 		for (int i = 1; i < vertexCount; i++){
 				m_sprite.graphics.lineTo(vertices[i].x * m_drawScale, vertices[i].y * m_drawScale);
 		}
 		m_sprite.graphics.lineTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
-    m_sprite.graphics.strokeColor(((m_alpha * 256).round() << 24) + color.color, m_lineThickness);
+		m_sprite.graphics.closePath();
+    m_sprite.graphics.strokeColor(((m_alpha * 255).round() << 24) | color.color, m_lineThickness);
 		
 	}
 
@@ -183,12 +185,14 @@
 	 void DrawSolidPolygon(List<b2Vec2> vertices,int vertexCount,b2Color color){
 		
 		m_sprite.graphics.moveTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
-		m_sprite.graphics.fillColor(((m_fillAlpha * 256).round() << 24) + color.color);
+		m_sprite.graphics.beginPath();
 		for (int i = 1; i < vertexCount; i++){
 				m_sprite.graphics.lineTo(vertices[i].x * m_drawScale, vertices[i].y * m_drawScale);
 		}
 		m_sprite.graphics.lineTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
-    m_sprite.graphics.strokeColor(((m_alpha * 256).round() << 24) + color.color, m_lineThickness);
+		m_sprite.graphics.closePath();
+    m_sprite.graphics.strokeColor(((m_alpha * 255).round() << 24) | color.color, m_lineThickness);
+		m_sprite.graphics.fillColor(((m_fillAlpha * 255).round() << 24) | color.color);
 		//m_sprite.graphics.endFill() //not supported in StageXL;
 		
 	}
@@ -198,7 +202,7 @@
 	*/
 	 void DrawCircle(b2Vec2 center,double radius,b2Color color){
 		m_sprite.graphics.circle(center.x * m_drawScale, center.y * m_drawScale, radius * m_drawScale);
-		m_sprite.graphics.strokeColor(((m_alpha * 256).round() << 24) + color.color, m_lineThickness);
+		m_sprite.graphics.strokeColor(((m_alpha * 255).round() << 24) | color.color, m_lineThickness);
 		
 	}
 	
@@ -207,13 +211,12 @@
 	*/
 	 void DrawSolidCircle(b2Vec2 center,double radius,b2Vec2 axis,b2Color color){
 		
-		m_sprite.graphics.moveTo(0,0);
 		m_sprite.graphics.circle(center.x * m_drawScale, center.y * m_drawScale, radius * m_drawScale);
-		m_sprite.graphics.fillColor(((m_fillAlpha * 256).round() << 24) + color.color);
-		//m_sprite.graphics.endFill() //not supported in StageXL;
+		m_sprite.graphics.fillColor(((m_fillAlpha * 255).round() << 24) | color.color);
+		
 		m_sprite.graphics.moveTo(center.x * m_drawScale, center.y * m_drawScale);
 		m_sprite.graphics.lineTo((center.x + axis.x*radius) * m_drawScale, (center.y + axis.y*radius) * m_drawScale);
-   m_sprite.graphics.strokeColor(((m_alpha * 256).round() << 24) + color.color, m_lineThickness);
+   m_sprite.graphics.strokeColor(((m_alpha * 255).round() << 24) | color.color, m_lineThickness);
 		
 	}
 
@@ -225,7 +228,7 @@
 		
 		m_sprite.graphics.moveTo(p1.x * m_drawScale, p1.y * m_drawScale);
 		m_sprite.graphics.lineTo(p2.x * m_drawScale, p2.y * m_drawScale);
-	   m_sprite.graphics.strokeColor(((m_alpha * 256).round() << 24) + color.color, m_lineThickness);
+	   m_sprite.graphics.strokeColor(((m_alpha * 255).round() << 24) | color.color, m_lineThickness);
 		
 	}
 
@@ -237,11 +240,11 @@
 		
 		m_sprite.graphics.moveTo(xf.position.x * m_drawScale, xf.position.y * m_drawScale);
 		m_sprite.graphics.lineTo((xf.position.x + m_xformScale*xf.R.col1.x) * m_drawScale, (xf.position.y + m_xformScale*xf.R.col1.y) * m_drawScale);
-	   m_sprite.graphics.strokeColor(((m_alpha * 256).round() << 24) + 0xff0000, m_lineThickness);
+	   m_sprite.graphics.strokeColor(((m_alpha * 255).round() << 24) | 0xff0000, m_lineThickness);
 		
 		m_sprite.graphics.moveTo(xf.position.x * m_drawScale, xf.position.y * m_drawScale);
 		m_sprite.graphics.lineTo((xf.position.x + m_xformScale*xf.R.col2.x) * m_drawScale, (xf.position.y + m_xformScale*xf.R.col2.y) * m_drawScale);
-	   m_sprite.graphics.strokeColor(((m_alpha * 256).round() << 24) + 0x00ff00, m_lineThickness);
+	   m_sprite.graphics.strokeColor(((m_alpha * 255).round() << 24) | 0x00ff00, m_lineThickness);
 		
 	}
 	

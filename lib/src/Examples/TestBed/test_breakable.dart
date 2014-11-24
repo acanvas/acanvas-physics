@@ -18,18 +18,27 @@
 
  part of stagexl_box2d;
 	
-	
-	
-	
-	
-	
 	 class TestBreakable extends Test{
-	 TestBreakable(){
+//===============
+  // Member Data 
+  //===============
+  
+   b2Body m_body1;
+   b2Vec2 m_velocity = new b2Vec2();
+   double m_angularVelocity;
+   b2PolygonShape m_shape1 = new b2PolygonShape();
+   b2PolygonShape m_shape2 = new b2PolygonShape();
+   b2Fixture m_piece1;
+   b2Fixture m_piece2;
+   bool m_broke;
+   bool m_break;
+	 
+	   TestBreakable(Stopwatch w) : super(w) {
 			
 			// Set Text field
 			Main.m_aboutText.text = "Breakable";
 			
-			m_world.SetContactListener(new ContactListener(this));
+			m_world.SetContactListener(new BreakableContactListener(this));
 			
 			b2Body ground = m_world.GetGroundBody();
 			
@@ -59,7 +68,7 @@
 			m_body1.SetAngularVelocity(m_angularVelocity);
 			
 			// Split body into two pieces
-			m_body1.Split(function(fixture:b2Fixture):bool {
+			m_body1.Split((b2Fixture fixture) {
 				return fixture != m_piece1;
 			});
 		}
@@ -83,28 +92,14 @@
 			}
 		}
 		
-		//===============
-		// Member Data 
-		//===============
 		
-		 b2Body m_body1;
-		 b2Vec2 m_velocity = new b2Vec2();
-		 double m_angularVelocity;
-		 b2PolygonShape m_shape1 = new b2PolygonShape();
-		 b2PolygonShape m_shape2 = new b2PolygonShape();;
-		 b2Fixture m_piece1;
-		 b2Fixture m_piece2;
-		 bool m_broke;
-		 bool m_break;
 	}
-	
-}
 
 
-class ContactListener extends b2ContactListener
+class BreakableContactListener extends b2ContactListener
 {
 	 TestBreakable test;
-	 ContactListener(TestBreakable test)
+	 BreakableContactListener(TestBreakable test)
 	{
 		this.test = test;
 	}
@@ -131,4 +126,5 @@ class ContactListener extends b2ContactListener
 		{
 			test.m_break = true;
 		}
+	}
 	}

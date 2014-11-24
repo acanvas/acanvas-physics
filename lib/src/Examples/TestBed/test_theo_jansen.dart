@@ -18,14 +18,8 @@
 
  part of stagexl_box2d;
 	
-	
-	
-	// Input
-	
-	
-	
 	 class TestTheoJansen extends Test{
-	 TestTheoJansen(){
+	 TestTheoJansen(Stopwatch w) : super(w) {
 			
 			// Set Text field
 			Main.m_aboutText.text = "Theo Jansen Walker";
@@ -96,7 +90,7 @@
 				jd.motorSpeed = m_motorSpeed;
 				jd.maxMotorTorque = 400.0;
 				jd.enableMotor = m_motorOn;
-				m_motorJoint = m_world.CreateJoint(as as jd) b2RevoluteJoint;
+				m_motorJoint = m_world.CreateJoint(jd) as b2RevoluteJoint;
 			}
 			
 			b2Vec2 wheelAnchor;
@@ -143,8 +137,8 @@
 			
 			if (s > 0.0)
 			{
-				sd1.SetAsList([p3, p2, p1]);
-				sd2.SetAsList([
+				sd1.SetAsVector([p3, p2, p1]);
+				sd2.SetAsVector([
 					b2Math.SubtractVV(p6, p4),
 					b2Math.SubtractVV(p5, p4),
 					new b2Vec2()
@@ -152,8 +146,8 @@
 			}
 			else
 			{
-				sd1.SetAsList([p2, p3, p1]);
-				sd2.SetAsList([
+				sd1.SetAsVector([p2, p3, p1]);
+				sd2.SetAsVector([
 					b2Math.SubtractVV(p5, p4),
 					b2Math.SubtractVV(p6, p4),
 					new b2Vec2()

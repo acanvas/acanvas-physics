@@ -22,7 +22,7 @@
 	
 	
 	 class TestCompound extends Test{
-	 TestCompound(){
+	 TestCompound(Stopwatch w) : super(w) {
 			
 			// Set Text field
 			Main.m_aboutText.text = "Compound Shapes";
@@ -82,7 +82,7 @@
 				xf1.position = b2Math.MulMV(xf1.R, new b2Vec2(1.0, 0.0));
 				
 				b2PolygonShape sd1 = new b2PolygonShape();
-				sd1.SetAsList([
+				sd1.SetAsVector([
 					b2Math.MulX(xf1, new b2Vec2(-30.0/m_physScale, 0.0)),
 					b2Math.MulX(xf1, new b2Vec2(30.0/m_physScale, 0.0)),
 					b2Math.MulX(xf1, new b2Vec2(0.0, 15.0 / m_physScale)),
@@ -93,7 +93,7 @@
 				xf2.position = b2Math.MulMV(xf2.R, new b2Vec2(-30.0/m_physScale, 0.0));
 				
 				b2PolygonShape sd2 = new b2PolygonShape();
-				sd2.SetAsList([
+				sd2.SetAsVector([
 					b2Math.MulX(xf2, new b2Vec2(-30.0/m_physScale, 0.0)),
 					b2Math.MulX(xf2, new b2Vec2(30.0/m_physScale, 0.0)),
 					b2Math.MulX(xf2, new b2Vec2(0.0, 15.0 / m_physScale)),

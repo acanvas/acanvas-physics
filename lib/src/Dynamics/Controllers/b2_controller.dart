@@ -95,7 +95,7 @@
 	b2Controller m_prev;
 	
 	 b2ControllerEdge m_bodyList;
-	 int m_bodyCount;
+	 int m_bodyCount = 0;
 	
 	b2World m_world;
 }

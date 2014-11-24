@@ -19,19 +19,12 @@
 
 	 class RagdollBenchmark implements IBenchmark
 	{
-		 double angularVelocity = 1;
+		 double angularVelocity = 1.0;
 		  String Name()
 		{
 			return "Ragdoll";
 		}
 		
-		  XML Details()
-		{
-			return 	<benchmarkParameters>
-						<version>$Rev: 71 $</version>
-						<angularVelocity>{angularVelocity}</angularVelocity>
-					</benchmarkParameters>;	
-		}
 		
 		  void MakeRagdoll(b2World world,b2Vec2 pos)
 		{
@@ -39,13 +32,11 @@
 			double startX = pos.x * m_physScale;
 			double startY = pos.y * m_physScale;
 			b2World m_world = world;
-			{
 				b2CircleShape circ; 
 				b2PolygonShape box;
 				b2BodyDef bd = new b2BodyDef();
 				b2RevoluteJointDef jd = new b2RevoluteJointDef();
 				b2FixtureDef fixtureDef = new b2FixtureDef();
-			}
 			{
 				// BODIES
 				// Set these to dynamic bodies
@@ -235,27 +226,27 @@
 		
 		  void Init(b2World world)
 		{
-			world.SetGravity(new b2Vec2(0, 10));
+			world.SetGravity(new b2Vec2(0.0, 10.0));
 			
 			b2BodyDef groundDef = new b2BodyDef();
 			groundDef.type = b2Body.b2_kinematicBody;
 			groundDef.angularVelocity = angularVelocity;
-			groundDef.position.Set(5, 5);
+			groundDef.position.Set(5.0, 5.0);
 			b2PolygonShape ground = new b2PolygonShape();
 			b2Body body;
 			body = world.CreateBody(groundDef);
-			ground.SetAsOrientedBox(.5, 5, new b2Vec2(-4.5, 0));
+			ground.SetAsOrientedBox(.5, 5.0, new b2Vec2(-4.5, 0.0));
 			body.CreateFixture2(ground);
-			ground.SetAsOrientedBox(5, .5, new b2Vec2(0, -4.5));
+			ground.SetAsOrientedBox(5.0, .5, new b2Vec2(0.0, -4.5));
 			body.CreateFixture2(ground);
-			ground.SetAsOrientedBox(5, .5, new b2Vec2(0, 4.5));
+			ground.SetAsOrientedBox(5.0, .5, new b2Vec2(0.0, 4.5));
 			body.CreateFixture2(ground);
-			ground.SetAsOrientedBox(.5, 5, new b2Vec2(4.5, 0));
+			ground.SetAsOrientedBox(.5, 5.0, new b2Vec2(4.5, 0.0));
 			body.CreateFixture2(ground);
 			
-			MakeRagdoll(world, new b2Vec2(3, 2));
-			MakeRagdoll(world, new b2Vec2(5, 5));
-			MakeRagdoll(world, new b2Vec2(7, 2));
+			MakeRagdoll(world, new b2Vec2(3.0, 2.0));
+			MakeRagdoll(world, new b2Vec2(5.0, 5.0));
+			MakeRagdoll(world, new b2Vec2(7.0, 2.0));
 			
 		}
 		

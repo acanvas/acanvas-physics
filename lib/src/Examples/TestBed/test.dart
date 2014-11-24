@@ -74,7 +74,7 @@ class Test {
     b2Body wallB;
 
     // Left
-    wallBd.position.Set(-95 / m_physScale, 360 / m_physScale / 2);
+    wallBd.position.Set(-95.0 / m_physScale, 360 / m_physScale / 2);
     wall.SetAsBox(100 / m_physScale, 400 / m_physScale / 2);
     wallB = m_world.CreateBody(wallBd);
     wallB.CreateFixture2(wall);

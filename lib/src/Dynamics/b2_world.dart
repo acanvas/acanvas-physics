@@ -647,7 +647,7 @@ class b2World {
     }
 
     if ((flags & b2DebugDraw.e_centerOfMassBit) > 0) {
-      for (b = m_bodyList; b; b = b.m_next) {
+      for (b = m_bodyList; b != null; b = b.m_next) {
         xf = s_xf;
         xf.R = b.m_xf.R;
         xf.position = b.GetWorldCenter();

@@ -24,13 +24,6 @@
 			return "Null";
 		}
 		
-		  XML Details()
-		{
-			return 	<benchmarkParameters>
-					<version>$Rev: 53 $</version>
-				</benchmarkParameters>;	
-		}
-		
 		  void Init(b2World world)
 		{
 		}

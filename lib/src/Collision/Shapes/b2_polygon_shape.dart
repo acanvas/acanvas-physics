@@ -58,7 +58,7 @@
 	 * Copy vertices. This assumes the vertices define a convex polygon.
 	 * It is assumed that the exterior is the the right of each edge.
 	 */
-	  void SetAsArray(List vertices,[double vertexCount=0])
+	  void SetAsArray(List vertices,[int vertexCount=0])
 	{
 		List<b2Vec2> v = new List<b2Vec2>();
 		for(b2Vec2 tVec in vertices)
@@ -68,7 +68,7 @@
 		SetAsVector(v, vertexCount);
 	}
 	
-	 static  b2PolygonShape AsArray(List vertices,double vertexCount)
+	 static  b2PolygonShape AsArray(List vertices,int vertexCount)
 	{
 		b2PolygonShape polygonShape = new b2PolygonShape();
 		polygonShape.SetAsVector(vertices, vertexCount);
@@ -79,7 +79,7 @@
 	 * Copy vertices. This assumes the vertices define a convex polygon.
 	 * It is assumed that the exterior is the the right of each edge.
 	 */
-	 void SetAsVector(List<b2Vec2> vertices, [double vertexCount = 0])
+	 void SetAsVector(List<b2Vec2> vertices, [int vertexCount = 0])
 	{
 		if (vertexCount == 0)
 			vertexCount = vertices.length;
@@ -137,7 +137,7 @@
 		m_centroid = ComputeCentroid(m_vertices, m_vertexCount);
 	}
 	
-	 static b2PolygonShape AsVector(List<b2Vec2> vertices, double vertexCount)
+	 static b2PolygonShape AsVector(List<b2Vec2> vertices, int vertexCount)
 	{
 		b2PolygonShape polygonShape = new b2PolygonShape();
 		polygonShape.SetAsVector(vertices, vertexCount);
@@ -545,7 +545,7 @@
 		int i;
 		for (i = 0; i < m_vertexCount;++i)
 		{
-			depths[i] = b2Math.Dot(normalL, m_vertices[i]) - offsetL;
+			depths.add(b2Math.Dot(normalL, m_vertices[i]) - offsetL);
 			bool isSubmerged = depths[i] < -double.MIN_POSITIVE;
 			if (i > 0)
 			{
@@ -575,14 +575,14 @@
 			{
 				// Completely submerged
 				b2MassData md = new b2MassData();
-				ComputeMass(md, 1);
+				ComputeMass(md, 1.0);
 				c.SetV(b2Math.MulX(xf, md.center));
 				return md.mass;
 			}
 			else
 			{
 				//Completely dry
-				return 0;
+				return 0.0;
 			}
 			break;
 			case 1:
@@ -607,7 +607,7 @@
 										m_vertices[outoIndex].y * (1 - outoLamdda) + m_vertices[outoIndex2].y * outoLamdda);
 										
 		// Initialize accumulator
-		double area = 0;
+		double area = 0.0;
 		b2Vec2 center = new b2Vec2();
 		b2Vec2 p2 = m_vertices[intoIndex2];
 		b2Vec2 p3;

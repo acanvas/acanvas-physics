@@ -27,28 +27,32 @@
 		
 		 List m_bodies = new List();
 		 b2Controller m_controller;
-	 TestBuoyancy(){
+	 TestBuoyancy(Stopwatch w) : super(w) {
 			b2BuoyancyController bc = new b2BuoyancyController();
 			m_controller = bc;
 			
-			bc.normal.Set(0,-1);
+			bc.normal.Set(0.0,-1.0);
 			bc.offset = -200 / m_physScale;
 			bc.density = 2.0;
-			bc.linearDrag = 5;
-			bc.angularDrag = 2;
+			bc.linearDrag = 5.0;
+			bc.angularDrag = 2.0;
 			
 			b2Body ground = m_world.GetGroundBody();
 			int i;
 			b2Vec2 anchor = new b2Vec2();
 			b2Body body;
 			b2FixtureDef fd;
+
+			b2BodyDef bodyDef;
+			b2PolygonShape boxDef;
+			b2CircleShape circDef;
 			
 			// Spawn in a bunch of crap
 			for (i = 0; i < 5; i++){
-				b2BodyDef bodyDef = new b2BodyDef();
+				bodyDef = new b2BodyDef();
 				bodyDef.type = b2Body.b2_dynamicBody;
 				//bodyDef.isBullet = true;
-				b2PolygonShape boxDef = new b2PolygonShape();
+				boxDef = new b2PolygonShape();
 				fd = new b2FixtureDef();
 				fd.shape = boxDef;
 				fd.density = 1.0;
@@ -67,7 +71,7 @@
 				b2BodyDef bodyDefC = new b2BodyDef();
 				bodyDefC.type = b2Body.b2_dynamicBody;
 				//bodyDefC.isBullet = true;
-				b2CircleShape circDef= new b2CircleShape((new Random().nextDouble() * 5 + 10) / m_physScale);
+				circDef = new b2CircleShape((new Random().nextDouble() * 5 + 10) / m_physScale);
 				fd = new b2FixtureDef();
 				fd.shape = circDef;
 				fd.density = 1.0;
@@ -86,7 +90,7 @@
 				//bodyDefP.isBullet = true;
 				b2PolygonShape polyDef = new b2PolygonShape();
 				if (new Random().nextDouble() > 0.66) {
-					polyDef.SetAsList([
+					polyDef.SetAsVector([
 						new b2Vec2((-10 -new Random().nextDouble()*10) / m_physScale, ( 10 +new Random().nextDouble()*10) / m_physScale),
 						new b2Vec2(( -5 -new Random().nextDouble()*10) / m_physScale, (-10 -new Random().nextDouble()*10) / m_physScale),
 						new b2Vec2((  5 +new Random().nextDouble()*10) / m_physScale, (-10 -new Random().nextDouble()*10) / m_physScale),
@@ -96,19 +100,22 @@
 				else if (new Random().nextDouble() > 0.5) 
 				{
 					List array = [];
-					array[0] = new b2Vec2(0, (10 +new Random().nextDouble()*10) / m_physScale);
-					array[2] = new b2Vec2((-5 -new Random().nextDouble()*10) / m_physScale, (-10 -new Random().nextDouble()*10) / m_physScale);
-					array[3] = new b2Vec2(( 5 +new Random().nextDouble()*10) / m_physScale, (-10 -new Random().nextDouble()*10) / m_physScale);
-					array[1] = new b2Vec2((array[0].x + array[2].x), (array[0].y + array[2].y));
-					array[1].Multiply(new Random().nextDouble()/2+0.8);
-					array[4] = new b2Vec2((array[3].x + array[0].x), (array[3].y + array[0].y));
-					array[4].Multiply(new Random().nextDouble() / 2 + 0.8);
-					polyDef.SetAsList(array);
+					b2Vec2 a0 = new b2Vec2(0.0, (10 +new Random().nextDouble()*10) / m_physScale);
+					array.add( a0);
+					b2Vec2 a2 = new b2Vec2((-5 -new Random().nextDouble()*10) / m_physScale, (-10 -new Random().nextDouble()*10) / m_physScale);
+					b2Vec2 a3 = new b2Vec2(( 5 +new Random().nextDouble()*10) / m_physScale, (-10 -new Random().nextDouble()*10) / m_physScale);
+
+					b2Vec2 a1 = new b2Vec2((a0.x + a2.x), (a0.y + a2.y));
+					a1.Multiply(new Random().nextDouble()/2+0.8);
+					
+					b2Vec2 a4 = new b2Vec2((a3.x + a0.x), (a3.y + a0.y));
+					a4.Multiply(new Random().nextDouble() / 2 + 0.8);
+					polyDef.SetAsVector([a0, a1, a2, a3, a4]);
 				}
 				else 
 				{
-					polyDef.SetAsList([
-						new b2Vec2(0, (10 +new Random().nextDouble()*10) / m_physScale),
+					polyDef.SetAsVector([
+						new b2Vec2(0.0, (10 +new Random().nextDouble()*10) / m_physScale),
 						new b2Vec2((-5 -new Random().nextDouble()*10) / m_physScale, (-10 -new Random().nextDouble()*10) / m_physScale),
 						new b2Vec2(( 5 +new Random().nextDouble() * 10) / m_physScale, ( -10 -new Random().nextDouble() * 10) / m_physScale)
 					]);
@@ -131,7 +138,7 @@
 			fd.shape = boxDef;
 			fd.density = 3.0;
 			bodyDef.position.Set(50 / m_physScale, 300 / m_physScale);
-			bodyDef.angle = 0;
+			bodyDef.angle = 0.0;
 			body = m_world.CreateBody(bodyDef);
 			body.CreateFixture(fd);
 			m_bodies.add(body);
@@ -141,14 +148,14 @@
 			circDef = new b2CircleShape(7 / m_physScale);
 			fd = new b2FixtureDef();
 			fd.shape = circDef;
-			fd.density =2;
-			circDef.b2internal::m_p.Set(30 / m_physScale, 0 / m_physScale);
+			fd.density =2.0;
+			circDef.m_p.Set(30 / m_physScale, 0 / m_physScale);
 			body.CreateFixture(fd);
-			circDef.b2internal::m_p.Set(-30 / m_physScale, 0 / m_physScale);
+			circDef.m_p.Set(-30 / m_physScale, 0 / m_physScale);
 			body.CreateFixture(fd);
-			circDef.b2internal::m_p.Set(0 / m_physScale, 30 / m_physScale);
+			circDef.m_p.Set(0 / m_physScale, 30 / m_physScale);
 			body.CreateFixture(fd);
-			circDef.b2internal::m_p.Set(0 / m_physScale, -30 / m_physScale);
+			circDef.m_p.Set(0 / m_physScale, -30 / m_physScale);
 			body.CreateFixture(fd);
 			
 			fd = new b2FixtureDef();
@@ -181,17 +188,18 @@
 			
 			super.Update();
 			//Draw water line
-			m_sprite.graphics.lineStyle(1,0x0000ff,1);
 			m_sprite.graphics.moveTo(5,200);
 			m_sprite.graphics.lineTo(635,200);
+			m_sprite.graphics.strokeColor(0xff0000ff,1);
 			//It's not water without transparency...
-			m_sprite.graphics.lineStyle();
-			m_sprite.graphics.fillColor(0x0000ff,0.2);
+			m_sprite.graphics.beginPath();
 			m_sprite.graphics.moveTo(5,200);
 			m_sprite.graphics.lineTo(635,200);
 			m_sprite.graphics.lineTo(635,355);
 			m_sprite.graphics.lineTo(5,355);
-			m_//sprite.graphics.endFill() //not supported in StageXL;
+			m_sprite.graphics.closePath();
+			m_sprite.graphics.fillColor(0x440000ff);
+			//m_sprite.graphics.endFill() //not supported in StageXL;
 
 		}
 	}

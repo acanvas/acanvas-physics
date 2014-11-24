@@ -42,20 +42,20 @@ part of stagexl_box2d;
 		
 		// Private variables //////////////////
 		 b2World world;
-		 XML result;
-		 double timeStep = 1.0 / frequency;
+		 double timeStep;
 		 int totalRuns = 10;
 		 int runCount;
 		 List<double> data = new List<double>();
 	 Benchmark()
 		{
+			 timeStep = 1.0 / frequency;
 			// Gather the specifics of the test
+				/*
 			bool isDebug = Capabilities.isDebugger;
-			String revision = "$Rev: 92 $ $Date: 2009-12-26 17:08:24 +0000 (Sat, 26 Dec 2009) $"
+			String revision = r'$Rev: 92 $ $Date: 2009-12-26 17:08:24 +0000 (Sat, 26 Dec 2009) $';
 			String version = b2Settings.VERSION;
 			String playerVersion = Capabilities.version;
 			String os = Capabilities.os;
-			
 			result = 
 				<benchmark>
 					<setup>
@@ -78,7 +78,7 @@ part of stagexl_box2d;
 					</parameters>
 					{test.Details()}
 				</benchmark>;
-			
+			*/
 			this.addEventListener(Event.ENTER_FRAME, RunTest);
 		
 			if( preview )
@@ -94,7 +94,7 @@ part of stagexl_box2d;
 			world = new b2World(new b2Vec2(), doSleep);
 			world.SetWarmStarting(warmStarting);
 			world.SetContinuousPhysics(continuousPhysics);
-			this[broadphase + "Broadphase"]();
+			DynamicTreeBroadphase();
 			test.Init(world);
 		}
 		
@@ -104,9 +104,9 @@ part of stagexl_box2d;
 			{
 				if( preview == null || preview == false)
 					InitWorld();
-				data.add(DoRun());
+				data.add(DoRun().toDouble());
 				runCount++;
-				if (DisplayScene as preview)();
+				if (preview)DisplayScene();
 			}else {
 				removeEventListener(Event.ENTER_FRAME, RunTest);
 				SummarizeResults();
@@ -117,8 +117,8 @@ part of stagexl_box2d;
 		  void SummarizeResults()
 		{
 			int n = data.length;
-			double sum = 0;
-			double sum2 = 0;
+			double sum = 0.0;
+			double sum2 = 0.0;
 			double t;
 			for(t in data)
 			{
@@ -126,7 +126,8 @@ part of stagexl_box2d;
 				sum2 += t * t;
 			}
 			double average = sum / n;
-			double sd = Math.sqrt(sum2 / n - average * average);
+			double sd = sqrt(sum2 / n - average * average);
+			/*
 			XML results = <results>
 				<average>{average}</average>
 				<sd>{sd}</sd>
@@ -137,6 +138,7 @@ part of stagexl_box2d;
 				results.appendChild(<run>{t}</run>);
 			}
 			result.appendChild(results);
+			 */
 		}
 		
 		  int DoRun()
@@ -174,10 +176,10 @@ part of stagexl_box2d;
 			addChild(tf);
 			tf.width = stage.stageWidth;
 			tf.height = stage.stageHeight;
-			tf.text = result;
+			//tf.text = result;
 			
 			// Copy to clipboard
-			System.setClipboard(result);
+			//System.setClipboard(result);
 		}
 		
 		  void DynamicTreeBroadphase()
@@ -188,10 +190,10 @@ part of stagexl_box2d;
 		  void SAPBroadphase()
 		{
 			b2AABB aabb  = new b2AABB();
-			aabb.lowerBound.x = -100000;
-			aabb.lowerBound.y = -100000;
-			aabb.upperBound.x = 100000;
-			aabb.upperBound.y = 100000;
+			aabb.lowerBound.x = -100000.0;
+			aabb.lowerBound.y = -100000.0;
+			aabb.upperBound.x = 100000.0;
+			aabb.upperBound.y = 100000.0;
 			world.SetBroadPhase(new b2BroadPhase(aabb));
 		}
 		

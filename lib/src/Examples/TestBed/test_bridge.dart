@@ -24,7 +24,7 @@
 	
 	
 	 class TestBridge extends Test{
-	 TestBridge(){
+	 TestBridge(Stopwatch w) : super(w) {
 			
 			// Set Text field
 			Main.m_aboutText.text = "Bridge";
@@ -34,10 +34,11 @@
 			b2Vec2 anchor = new b2Vec2();
 			b2Body body;
 			
+			b2FixtureDef fixtureDef;
 			// Bridge
 			{
 				b2PolygonShape sd = new b2PolygonShape();
-				b2FixtureDef fixtureDef = new b2FixtureDef();
+				fixtureDef = new b2FixtureDef();
 				sd.SetAsBox(24 / m_physScale, 5 / m_physScale);
 				fixtureDef.shape = sd;
 				fixtureDef.density = 20.0;
@@ -83,7 +84,7 @@
 				b2BodyDef bodyDef = new b2BodyDef();
 				bodyDef.type = b2Body.b2_dynamicBody;
 				b2PolygonShape boxShape = new b2PolygonShape();
-				fixtureDef.shape = boxShape
+				fixtureDef.shape = boxShape;
 				fixtureDef.density = 1.0;
 				// Override the default friction.
 				fixtureDef.friction = 0.3;
@@ -99,7 +100,7 @@
 				b2BodyDef bodyDefC = new b2BodyDef();
 				bodyDefC.type = b2Body.b2_dynamicBody;
 				b2CircleShape circShape = new b2CircleShape((new Random().nextDouble() * 5 + 10) / m_physScale);
-				fixtureDef.shape = circShape
+				fixtureDef.shape = circShape;
 				fixtureDef.density = 1.0;
 				// Override the default friction.
 				fixtureDef.friction = 0.3;
@@ -121,7 +122,7 @@
 					vertexCount = 4;
 					for ( j = 0; j < vertexCount; ++j )
 					{
-						vertices[j] = new b2Vec2();
+						vertices.add( new b2Vec2());
 					}
 					vertices[0].Set((-10 -new Random().nextDouble()*10) / m_physScale, ( 10 +new Random().nextDouble()*10) / m_physScale);
 					vertices[1].Set(( -5 -new Random().nextDouble()*10) / m_physScale, (-10 -new Random().nextDouble()*10) / m_physScale);
@@ -132,9 +133,9 @@
 					vertexCount = 5;
 					for ( j = 0; j < vertexCount; ++j )
 					{
-						vertices[j] = new b2Vec2();
+						vertices.add(new b2Vec2());
 					}
-					vertices[0].Set(0, (10 +new Random().nextDouble()*10) / m_physScale);
+					vertices[0].Set(0.0, (10 +new Random().nextDouble()*10) / m_physScale);
 					vertices[2].Set((-5 -new Random().nextDouble()*10) / m_physScale, (-10 -new Random().nextDouble()*10) / m_physScale);
 					vertices[3].Set(( 5 +new Random().nextDouble()*10) / m_physScale, (-10 -new Random().nextDouble()*10) / m_physScale);
 					vertices[1].Set((vertices[0].x + vertices[2].x), (vertices[0].y + vertices[2].y));
@@ -146,13 +147,13 @@
 					vertexCount = 3;
 					for ( j = 0; j < vertexCount; ++j )
 					{
-						vertices[j] = new b2Vec2();
+						vertices.add(new b2Vec2());
 					}
-					vertices[0].Set(0, (10 +new Random().nextDouble()*10) / m_physScale);
+					vertices[0].Set(0.0, (10 +new Random().nextDouble()*10) / m_physScale);
 					vertices[1].Set((-5 -new Random().nextDouble()*10) / m_physScale, (-10 -new Random().nextDouble()*10) / m_physScale);
 					vertices[2].Set(( 5 +new Random().nextDouble()*10) / m_physScale, (-10 -new Random().nextDouble()*10) / m_physScale);
 				}
-				polyShape.SetAsList( vertices, vertexCount );
+				polyShape.SetAsVector( vertices, vertexCount );
 				fixtureDef.shape = polyShape;
 				fixtureDef.density = 1.0;
 				fixtureDef.friction = 0.3;

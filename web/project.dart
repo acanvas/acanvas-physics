@@ -10,6 +10,7 @@ void main() {
 
   stage.scaleMode = StageScaleMode.NO_SCALE;
   stage.align = StageAlign.TOP_LEFT;
+  stage.focus = stage;
 
   RenderLoop renderLoop = new RenderLoop();
   renderLoop.addStage(stage);

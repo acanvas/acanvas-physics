@@ -19,38 +19,30 @@
 
 	 class LotteryBenchmark implements IBenchmark
 	{
-		 double angularVelocity = 1;
+		 double angularVelocity = 1.0;
 		  String Name()
 		{
 			return "Lottery";
 		}
 		
-		  XML Details()
-		{
-			return 	<benchmarkParameters>
-						<version>$Rev: 71 $</version>
-						<angularVelocity>{angularVelocity}</angularVelocity>
-					</benchmarkParameters>;	
-		}
-		
 		  void Init(b2World world)
 		{
-			world.SetGravity(new b2Vec2(0, 10));
+			world.SetGravity(new b2Vec2(0.0, 10.0));
 			
 			b2BodyDef groundDef = new b2BodyDef();
 			groundDef.type = b2Body.b2_kinematicBody;
 			groundDef.angularVelocity = angularVelocity;
-			groundDef.position.Set(5, 5);
+			groundDef.position.Set(5.0, 5.0);
 			b2PolygonShape ground = new b2PolygonShape();
 			b2Body body;
 			body = world.CreateBody(groundDef);
-			ground.SetAsOrientedBox(.5, 5, new b2Vec2(-4.5, 0));
+			ground.SetAsOrientedBox(.5, 5.0, new b2Vec2(-4.5, 0.0));
 			body.CreateFixture2(ground);
-			ground.SetAsOrientedBox(5, .5, new b2Vec2(0, -4.5));
+			ground.SetAsOrientedBox(5.0, .5, new b2Vec2(0.0, -4.5));
 			body.CreateFixture2(ground);
-			ground.SetAsOrientedBox(5, .5, new b2Vec2(0, 4.5));
+			ground.SetAsOrientedBox(5.0, .5, new b2Vec2(0.0, 4.5));
 			body.CreateFixture2(ground);
-			ground.SetAsOrientedBox(.5, 5, new b2Vec2(4.5, 0));
+			ground.SetAsOrientedBox(.5, 5.0, new b2Vec2(4.5, 0.0));
 			body.CreateFixture2(ground);
 			
 			b2BodyDef bodyDef = new b2BodyDef();
@@ -60,10 +52,10 @@
 			{
 				for (int j = 0; j < 5; j++)
 				{
-					bodyDef.position.Set(i + 1, j + 1);
+					bodyDef.position.Set(i + 1.0, j + 1.0);
 					bodyDef.userData = i * 5 + j + 1;
 					body = world.CreateBody(bodyDef);
-					body.CreateFixture2(circle, 1);
+					body.CreateFixture2(circle, 1.0);
 				}
 			}
 			
@@ -76,10 +68,9 @@
 			
 		}
 	}
-}
 
 
-internal class LotteryContactFilter extends b2ContactFilter
+class LotteryContactFilter extends b2ContactFilter
 {
 	@override 
 		  bool ShouldCollide(b2Fixture fixtureA,b2Fixture fixtureB) 
@@ -95,7 +86,7 @@ internal class LotteryContactFilter extends b2ContactFilter
 	}
 }
 
-internal class LotteryContactListener extends b2ContactListener
+class LotteryContactListener extends b2ContactListener
 {
 	@override 
 		  void PreSolve(b2Contact contact,b2Manifold oldManifold) 
@@ -106,3 +97,4 @@ internal class LotteryContactListener extends b2ContactListener
 		if(udA && udB && ((udA - udB) % 2 == 0))
 			contact.SetEnabled(false);
 	}
+}

@@ -5,3 +5,6 @@ dependencies:
   stagexl: 
    git : https://github.com/bp74/StageXL
   logging: any
+transformers:
+- $dart2js:
+    minify: true

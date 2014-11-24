@@ -24,7 +24,7 @@
 	
 	
 	 class TestCCD extends Test{
-	 TestCCD(){
+	 TestCCD(Stopwatch w) : super(w) {
 			
 			// Set Text field
 			Main.m_aboutText.text = "Continuous Collision Detection";

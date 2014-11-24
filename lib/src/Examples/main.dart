@@ -96,36 +96,45 @@ class Main extends MovieClip {
     else if (Input.isKeyPressed(82)) { // R
       m_currTest = null;
     }
-    /*
-			List tests = [
-				TestRagdoll,			// Ragdoll
-				TestCompound,			// Compound Shapes
-				TestCrankGearsPulley,	// Crank/Gears/Pulley
-				TestBridge,				// Bridge
-				TestStack,				// Stack
-				TestCCD,				// CCD
-				TestTheoJansen,			// Theo Jansen
-			//	TestEdges,				// Edges & Raycast
-				TestBuoyancy,			// Buoyancy
-				TestOneSidedPlatform,	// One Sided Platform
-				TestBreakable,			// Breakable
-				TestRaycast,			// Raycast
-			null
-			];
-			tests.length -= 1;
-			
-            int testCount = tests.length;
-			m_currId = (m_currId + testCount) % testCount;
-			
-			*/
-
-
 
 			// if null, set new test
 			if (m_currTest == null){
+	      m_currId = (m_currId + 11) % 11;
 				switch(m_currId) {
-					default:
-						//m_currTest = new  tests[m_currId]();
+				  case 0:
+					  m_currTest = new TestRagdoll(watch);
+					  break;
+				  case 1:
+					  m_currTest = new TestCompound(watch);
+					  break;
+				  case 2:
+					  m_currTest = new TestCrankGearsPulley(watch);
+					  break;
+				  case 3:
+					  m_currTest = new TestBridge(watch);
+					  break;
+				  case 4:
+					  m_currTest = new TestStack(watch);
+					  break;
+				  case 5:
+					  m_currTest = new TestCCD(watch);
+					  break;
+				  case 6:
+					  m_currTest = new TestTheoJansen(watch);
+					  break;
+				  case 7:
+					  m_currTest = new TestBuoyancy(watch);
+					  break;
+				  case 8:
+					  m_currTest = new TestOneSidedPlatform(watch);
+					  break;
+				  case 9:
+					  m_currTest = new TestBreakable(watch);
+					  break;
+				  case 10:
+					  m_currTest = new TestRaycast(watch);
+					  break;
+				  default:
 					  m_currTest = new TestRagdoll(watch);
 				}
 			}
