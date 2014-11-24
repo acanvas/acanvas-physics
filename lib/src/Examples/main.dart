@@ -71,7 +71,7 @@ class Main extends MovieClip {
     m_aboutText.x = 334;
     m_aboutText.y = 71;
     m_aboutText.width = 300;
-    m_aboutText.height = 30;
+    m_aboutText.height = 60;
     addChild(m_aboutText);
 
     // Thanks to everyone who contacted me about this fix

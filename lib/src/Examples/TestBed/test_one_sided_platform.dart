@@ -47,7 +47,6 @@ class TestOneSidedPlatform extends Test {
     b2Body body;
 
     // Platform
-    /*
     {
       bd = new b2BodyDef();
       bd.position.Set(10.0, 10.0);
@@ -59,7 +58,7 @@ class TestOneSidedPlatform extends Test {
       m_bottom = bd.position.y + 0.5;
       m_top = bd.position.y - 0.5;
 
-    }*/
+    }
 
     // Actor
     {
