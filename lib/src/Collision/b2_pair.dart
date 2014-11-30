@@ -49,7 +49,7 @@
 	 b2Proxy proxy1;
 	 b2Proxy proxy2;
 	 b2Pair next;
-	 int status;
+	 int status = 0;
 	
 	// STATIC
 	static  int b2_nullProxy = b2Settings.USHRT_MAX;

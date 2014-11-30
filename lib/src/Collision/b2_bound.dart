@@ -38,9 +38,9 @@
 		b.stabbingCount = tempStabbingCount;
 	}
 
-	 int value;
+	 int value = 0;
 	 b2Proxy proxy;
-	 int stabbingCount;
+	 int stabbingCount = 0;
 }
 	
 	

@@ -386,7 +386,7 @@
 	b2Vec2 m_coreV1 = new b2Vec2();
 	b2Vec2 m_coreV2 = new b2Vec2();
 	
-	double m_length;
+	double m_length = 0.0;
 	
 	b2Vec2 m_normal = new b2Vec2();
 	

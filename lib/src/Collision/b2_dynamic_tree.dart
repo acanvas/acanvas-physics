@@ -37,9 +37,9 @@ class b2DynamicTree {
   b2DynamicTreeNode m_freeList;
 
   /** This is used for incrementally traverse the tree for rebalancing */
-  int m_path;
+  int m_path = 0;
 
-  int m_insertionCount;
+  int m_insertionCount = 0;
 
   
   b2DynamicTree() {
@@ -187,7 +187,7 @@ class b2DynamicTree {
       if (node.aabb.TestOverlap(aabb)) {
         if (node.IsLeaf()) {
           bool proceed = callback(node);
-          if (proceed == null || proceed == false) return;
+          if (proceed == false) return;
         } else {
           // No stack limit, so no assert
           if (stack.length - 1 <= count) {
@@ -234,8 +234,8 @@ class b2DynamicTree {
 
     // Build a bounding box for the segment
     b2AABB segmentAABB = new b2AABB();
-    double tX;
-    double tY;
+    double tX = 0.0;
+    double tY = 0.0;
     {
       tX = p1.x + maxFraction * (p2.x - p1.x);
       tY = p1.y + maxFraction * (p2.y - p1.y);
@@ -322,7 +322,7 @@ class b2DynamicTree {
 
     // Ignore length pool expansion and relocation found in the C++
     // As we are using heap allocation
-    return new b2DynamicTreeNode()..key = _nodeCounter++;
+    return new b2DynamicTreeNode();//..key = _nodeCounter++;
   }
 
   void FreeNode(b2DynamicTreeNode node) {

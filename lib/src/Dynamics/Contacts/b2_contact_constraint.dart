@@ -43,11 +43,11 @@
 	 b2Mat22 K = new b2Mat22();
 	 b2Body bodyA;
 	 b2Body bodyB;
-	 int type;//b2Manifold::Type
-	 double radius;
-	 double friction;
-	 double restitution;
-	 int pointCount;
+	 int type = 0;//b2Manifold::Type
+	 double radius = 0.0;
+	 double friction = 0.0;
+	 double restitution = 0.0;
+	 int pointCount = 0;
 	 b2Manifold manifold;
 }
 

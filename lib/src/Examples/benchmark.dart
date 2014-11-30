@@ -42,9 +42,9 @@ part of stagexl_box2d;
 		
 		// Private variables //////////////////
 		 b2World world;
-		 double timeStep;
+		 double timeStep = 0.0;
 		 int totalRuns = 10;
-		 int runCount;
+		 int runCount = 0;
 		 List<double> data = new List<double>();
 	 Benchmark()
 		{
@@ -102,7 +102,7 @@ part of stagexl_box2d;
 		{
 			if (runCount < totalRuns)
 			{
-				if( preview == null || preview == false)
+				if(preview == false)
 					InitWorld();
 				data.add(DoRun().toDouble());
 				runCount++;
@@ -119,7 +119,7 @@ part of stagexl_box2d;
 			int n = data.length;
 			double sum = 0.0;
 			double sum2 = 0.0;
-			double t;
+			double t = 0.0;
 			for(t in data)
 			{
 				sum += t;

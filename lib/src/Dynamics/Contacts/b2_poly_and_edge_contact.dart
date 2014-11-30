@@ -58,10 +58,10 @@
 		b2Mat22 tMat;
 		b2Vec2 tVec1;
 		b2Vec2 tVec2;
-		double tX;
-		double tY;
-		b2ManifoldPoint tPoint;
-		double ratio;
+		double tX = 0.0;
+		double tY = 0.0;
+		b2ManifoldPoint tPoint = 0;
+		double ratio = 0.0;
 		
 		//b2Vec2 v1 = b2Mul(xf2, edge->GetVertex1());
 		tMat = xf2.R;
@@ -96,10 +96,10 @@
 		double nLocalX = (nX * tMat.col1.x + nY * tMat.col1.y );
 		double nLocalY = (nX * tMat.col2.x + nY * tMat.col2.y );
 		
-		double separation1;
+		double separation1 = 0.0;
 		int separationIndex1 = -1; // which normal on the poly found the shallowest depth?
 		double separationMax1 = -double.MAX_VALUE; // the shallowest depth of edge in poly
-		double separation2;
+		double separation2 = 0.0;
 		int separationIndex2 = -1; // which normal on the poly found the shallowest depth?
 		double separationMax2 = -double.MAX_VALUE; // the shallowest depth of edge in poly
 		double separationMax = -double.MAX_VALUE; // the shallowest depth of edge in poly
@@ -280,7 +280,7 @@
 		
 		tVec1 = vertices[enterEndIndex];
 		double dirProj1 = tX * (tVec1.x - v1LocalX) + tY * (tVec1.y - v1LocalY);
-		double dirProj2;
+		double dirProj2 = 0.0;
 		
 		// The contact resolution is more robust if the two manifold points are 
 		// adjacent to each other on the polygon. So pick the first two poly

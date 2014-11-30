@@ -86,7 +86,7 @@ _m_points = p;
   b2Vec2 m_localPlaneNormal;
   /** Usage depends on manifold type */
   b2Vec2 m_localPoint;
-  int m_type;
+  int m_type = 0;
   /** The doubleber of manifold points */
 
   //edouble Type

@@ -292,8 +292,8 @@
 	 b2PrismaticJoint(b2PrismaticJointDef def): super(def) {
 		
 		b2Mat22 tMat;
-		double tX;
-		double tY;
+		double tX = 0.0;
+		double tY = 0.0;
 		
 		m_localAnchor1.SetV(def.localAnchorA);
 		m_localAnchor2.SetV(def.localAnchorB);
@@ -327,7 +327,7 @@
 		b2Body bB = m_bodyB;
 		
 		b2Mat22 tMat;
-		double tX;
+		double tX = 0.0;
 		
 		m_localCenterA.SetV(bA.GetLocalCenter());
 		m_localCenterB.SetV(bB.GetLocalCenter());
@@ -480,10 +480,10 @@
 		b2Vec2 v2 = bB.m_linearVelocity;
 		double w2 = bB.m_angularVelocity;
 		
-		double PX;
-		double PY;
-		double L1;
-		double L2;
+		double PX = 0.0;
+		double PY = 0.0;
+		double L1 = 0.0;
+		double L2 = 0.0;
 		
 		// Solve linear motor constraint
 		if (m_enableMotor && m_limitState != b2Joint.e_equalLimits)
@@ -594,8 +594,8 @@
 		//B2_NOT_USED(baumgarte);
 		
 		
-		double limitC;
-		double oldLimitImpulse;
+		double limitC = 0.0;
+		double oldLimitImpulse = 0.0;
 		
 		b2Body bA = m_bodyA;
 		b2Body bB = m_bodyB;
@@ -607,12 +607,12 @@
 		double a2 = bB.m_sweep.a;
 		
 		b2Mat22 tMat;
-		double tX;
+		double tX = 0.0;
 		
-		double m1;
-		double m2;
-		double i1;
-		double i2;
+		double m1 = 0.0;
+		double m2 = 0.0;
+		double i1 = 0.0;
+		double i2 = 0.0;
 		
 		// Solve linear limit constraint
 		double linearError = 0.0;
@@ -756,28 +756,28 @@
 	b2Vec2 m_localAnchor2 = new b2Vec2();
 	b2Vec2 m_localXAxis1 = new b2Vec2();
 	 b2Vec2 m_localYAxis1 = new b2Vec2();
-	 double m_refAngle;
+	 double m_refAngle = 0.0;
 
 	 b2Vec2 m_axis = new b2Vec2();
 	 b2Vec2 m_perp = new b2Vec2();
-	 double m_s1;
-	 double m_s2;
-	 double m_a1;
-	 double m_a2;
+	 double m_s1 = 0.0;
+	 double m_s2 = 0.0;
+	 double m_a1 = 0.0;
+	 double m_a2 = 0.0;
 	
 	 b2Mat33 m_K = new b2Mat33();
 	 b2Vec3 m_impulse = new b2Vec3();
 
-	 double m_motorMass;			// effective mass for motor/limit translational constraint.
-	 double m_motorImpulse;
+	 double m_motorMass = 0.0;			// effective mass for motor/limit translational constraint.
+	 double m_motorImpulse = 0.0;
 
-	 double m_lowerTranslation;
-	 double m_upperTranslation;
-	 double m_maxMotorForce;
-	 double m_motorSpeed;
+	 double m_lowerTranslation = 0.0;
+	 double m_upperTranslation = 0.0;
+	 double m_maxMotorForce = 0.0;
+	 double m_motorSpeed = 0.0;
 	
 	 bool m_enableLimit;
 	 bool m_enableMotor;
-	 int m_limitState;
+	 int m_limitState = 0;
 }
 

@@ -250,7 +250,7 @@
 	
 	
 	
-	 int m_drawFlags;
+	 int m_drawFlags = 0;
 	Sprite m_sprite;
 	 double m_drawScale = 1.0;
 	

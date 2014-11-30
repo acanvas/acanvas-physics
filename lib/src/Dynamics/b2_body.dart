@@ -69,7 +69,7 @@
 			b2EdgeChainDef edgeDef = def as b2EdgeChainDef;
 			b2Vec2 v1;
 			b2Vec2 v2;
-			int i;
+			int i = 0;
 			
 			if (edgeDef.isALoop) {
 				v1 = edgeDef.vertices[edgeDef.vertexCount-1];
@@ -967,7 +967,7 @@
 	 */
 	  void SetFixedRotation(bool fixed)
 	{
-		if( fixed != null || fixed == true)
+		if( fixed == true)
 		{
 			m_flags |= e_fixedRotationFlag;
 		}
@@ -1287,30 +1287,30 @@
 		SynchronizeTransform();
 	}
 
-	int m_flags;
-	int m_type;
+	int m_flags = 0;
+	int m_type = 0;
 	
-	int m_islandIndex;
+	int m_islandIndex = 0;
 
 	b2Transform m_xf = new b2Transform();		// the body origin transform
 
 	b2Sweep m_sweep = new b2Sweep();	// the swept motion for CCD
 
 	b2Vec2 m_linearVelocity = new b2Vec2();
-	double m_angularVelocity;
+	double m_angularVelocity = 0.0;
 
 	b2Vec2 m_force = new b2Vec2();
-	double m_torque;
+	double m_torque = 0.0;
 
 	b2World m_world;
 	b2Body m_prev;
 	b2Body m_next;
 
 	b2Fixture m_fixtureList;
-	int m_fixtureCount;
+	int m_fixtureCount = 0;
 	
 	b2ControllerEdge m_controllerList;
-	int m_controllerCount;
+	int m_controllerCount = 0;
 
 	b2JointEdge m_jointList;
 	b2ContactEdge m_contactList;
@@ -1318,12 +1318,12 @@
 	double m_mass, m_invMass;
 	double m_I, m_invI;
 	
-	double m_inertiaScale;
+	double m_inertiaScale = 0.0;
 
-	double m_linearDamping;
-	double m_angularDamping;
+	double m_linearDamping = 0.0;
+	double m_angularDamping = 0.0;
 
-	double m_sleepTime;
+	double m_sleepTime = 0.0;
 
 	 dynamic m_userData;
 	

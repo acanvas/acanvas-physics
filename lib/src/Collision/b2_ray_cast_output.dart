@@ -29,6 +29,6 @@
 		/**
 		 * The fraction between p1 and p2 that the collision occurs at
 		 */
-		 double fraction;
+		 double fraction = 0.0;
 	}
 	

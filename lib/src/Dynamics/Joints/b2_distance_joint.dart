@@ -113,8 +113,8 @@
 	 b2DistanceJoint(b2DistanceJointDef def): super(def) {
 		
 		b2Mat22 tMat;
-		double tX;
-		double tY;
+		double tX = 0.0;
+		double tY = 0.0;
 		m_localAnchor1.SetV(def.localAnchorA);
 		m_localAnchor2.SetV(def.localAnchorB);
 		
@@ -130,7 +130,7 @@
 		 void InitVelocityConstraints(b2TimeStep step){
 		
 		b2Mat22 tMat;
-		double tX;
+		double tX = 0.0;
 		
 		b2Body bA = m_bodyA;
 		b2Body bB = m_bodyB;
@@ -347,12 +347,12 @@
 	 b2Vec2 m_localAnchor1 = new b2Vec2();
 	 b2Vec2 m_localAnchor2 = new b2Vec2();
 	 b2Vec2 m_u = new b2Vec2();
-	 double m_frequencyHz;
-	 double m_dampingRatio;
-	 double m_gamma;
-	 double m_bias;
-	 double m_impulse;
-	 double m_mass;	// effective mass for the constraint.
-	 double m_length;
+	 double m_frequencyHz = 0.0;
+	 double m_dampingRatio = 0.0;
+	 double m_gamma = 0.0;
+	 double m_bias = 0.0;
+	 double m_impulse = 0.0;
+	 double m_mass = 0.0;	// effective mass for the constraint.
+	 double m_length = 0.0;
 }
 

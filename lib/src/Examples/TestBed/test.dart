@@ -30,10 +30,10 @@ class Test {
   double m_timeStep = 1.0 / 30.0;
   double m_physScale = 30.0;
   // world mouse position
-  static double mouseXWorldPhys;
-  static double mouseYWorldPhys;
-  static double mouseXWorld;
-  static double mouseYWorld;
+  static double mouseXWorldPhys = 0.0;
+  static double mouseYWorldPhys = 0.0;
+  static double mouseXWorld = 0.0;
+  static double mouseYWorld = 0.0;
   // Sprite to draw in to
   Sprite m_sprite;
   Stopwatch watch;
@@ -71,6 +71,7 @@ class Test {
     // Create border of boxes
     b2PolygonShape wall = new b2PolygonShape();
     b2BodyDef wallBd = new b2BodyDef();
+    wallBd.type = b2Body.b2_staticBody;
     b2Body wallB;
 
     // Left

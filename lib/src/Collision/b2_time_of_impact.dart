@@ -166,7 +166,7 @@
 				for (;; )
 				{
 					// Use a mis of the secand rule and bisection
-					double x;
+					double x = 0.0;
 					if ((rootIterCount & 1) > 0)
 					{
 						// Secant rule to improve convergence

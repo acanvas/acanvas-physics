@@ -34,7 +34,7 @@
 		_referenceEdge = value;
 		_m_id._key = (_m_id._key & 0xffffff00) | (_referenceEdge & 0x000000ff);
 	}
-	int _referenceEdge;
+	int _referenceEdge = 0;
 	
 	/**
 	* The edge most anti-parallel to the reference edge.
@@ -46,7 +46,7 @@
 		_incidentEdge = value;
 		_m_id._key = (_m_id._key & 0xffff00ff) | ((_incidentEdge << 8) & 0x0000ff00);
 	}
-	int _incidentEdge;
+	int _incidentEdge = 0;
 	
 	/**
 	* The vertex (0 or 1) on the incident edge that was clipped.
@@ -58,7 +58,7 @@
 		_incidentVertex = value;
 		_m_id._key = (_m_id._key & 0xff00ffff) | ((_incidentVertex << 16) & 0x00ff0000);
 	}
-	int _incidentVertex;
+	int _incidentVertex = 0;
 	
 	/**
 	* A value of 1 indicates that the reference edge is on shape2.
@@ -70,7 +70,7 @@
 		_flip = value;
 		_m_id._key = (_m_id._key & 0x00ffffff) | ((_flip << 24) & 0xff000000);
 	}
-	int _flip;
+	int _flip = 0;
 	
 	
 	b2ContactID _m_id;

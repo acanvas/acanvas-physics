@@ -86,7 +86,7 @@
 				area += sarea;
 				areac.x += sarea * sc.x;
 				areac.y += sarea * sc.y;
-				double shapeDensity;
+				double shapeDensity = 0.0;
 				if( useDensity ) {
 					//TODO: Figure out what to do now density is gone
 					shapeDensity = 1.0;

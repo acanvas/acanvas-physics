@@ -30,7 +30,7 @@
 			Main.m_aboutText.text = "Bridge";
 			
 			b2Body ground = m_world.GetGroundBody();
-			int i;
+			int i = 0;
 			b2Vec2 anchor = new b2Vec2();
 			b2Body body;
 			
@@ -111,13 +111,13 @@
 				body.CreateFixture(fixtureDef);
 				
 			}
-			int j;
+			int j = 0;
 			for (i = 0; i < 15; i++){
 				b2BodyDef bodyDefP = new b2BodyDef();
 				bodyDefP.type = b2Body.b2_dynamicBody;
 				b2PolygonShape polyShape = new b2PolygonShape();
 				List vertices = new List();
-				int vertexCount;
+				int vertexCount = 0;
 				if (new Random().nextDouble() > 0.66){
 					vertexCount = 4;
 					for ( j = 0; j < vertexCount; ++j )

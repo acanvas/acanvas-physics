@@ -21,6 +21,6 @@
 	 */
 	 class b2DistanceOutput 
 	{
-	/** Closest point on shapea */	 b2Vec2 pointA = new b2Vec2();	/** Closest point on shapeb */	 b2Vec2 pointB = new b2Vec2();		 double distance;
-	/** double of gjk iterations used */	 int iterations;	}
+	/** Closest point on shapea */	 b2Vec2 pointA = new b2Vec2();	/** Closest point on shapeb */	 b2Vec2 pointB = new b2Vec2();		 double distance = 0.0;
+	/** double of gjk iterations used */	 int iterations = 0;	}
 	

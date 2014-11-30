@@ -78,7 +78,7 @@
 	/**
 	* The bodyB angle minus bodyA angle in the reference state (radians).
 	*/
-	 double referenceAngle;
+	 double referenceAngle = 0.0;
 
 	/**
 	* A flag to enable joint limits.
@@ -88,12 +88,12 @@
 	/**
 	* The lower angle for the joint limit (radians).
 	*/
-	 double lowerAngle;
+	 double lowerAngle = 0.0;
 
 	/**
 	* The upper angle for the joint limit (radians).
 	*/
-	 double upperAngle;
+	 double upperAngle = 0.0;
 
 	/**
 	* A flag to enable the joint motor.
@@ -103,13 +103,13 @@
 	/**
 	* The desired motor speed. Usually in radians per second.
 	*/
-	 double motorSpeed;
+	 double motorSpeed = 0.0;
 
 	/**
 	* The maximum motor torque used to achieve the desired motor speed.
 	* Usually in N-m.
 	*/
-	 double maxMotorTorque;
+	 double maxMotorTorque = 0.0;
 	
 }
 

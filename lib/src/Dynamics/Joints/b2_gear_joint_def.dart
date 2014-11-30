@@ -52,6 +52,6 @@
 	* The gear ratio.
 	* @see b2GearJoint for explanation.
 	*/
-	 double ratio;
+	 double ratio = 0.0;
 }
 

@@ -38,7 +38,7 @@
 			bc.angularDrag = 2.0;
 			
 			b2Body ground = m_world.GetGroundBody();
-			int i;
+			int i = 0;
 			b2Vec2 anchor = new b2Vec2();
 			b2Body body;
 			b2FixtureDef fd;

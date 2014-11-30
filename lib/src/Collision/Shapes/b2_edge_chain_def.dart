@@ -41,7 +41,7 @@
 	 List vertices;
 	
 	/** The doubleber of vertices in the chain. */
-	 int vertexCount;
+	 int vertexCount = 0;
 	
 	/** Whether to create an extra edge between the first and last vertices. */
 	 bool isALoop;

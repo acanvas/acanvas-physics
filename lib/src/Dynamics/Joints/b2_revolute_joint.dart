@@ -203,7 +203,7 @@
 		b2Body bB = m_bodyB;
 		
 		b2Mat22 tMat;
-		double tX;
+		double tX = 0.0;
 		
 		if (m_enableMotor || m_enableLimit)
 		{
@@ -336,13 +336,13 @@
 		b2Body bB = m_bodyB;
 		
 		b2Mat22 tMat;
-		double tX;
+		double tX = 0.0;
 		
-		double newImpulse;
-		double r1X;
-		double r1Y;
-		double r2X;
-		double r2Y;
+		double newImpulse = 0.0;
+		double r1X = 0.0;
+		double r1Y = 0.0;
+		double r2X = 0.0;
+		double r2Y = 0.0;
 		
 		b2Vec2 v1 = bA.m_linearVelocity;
 		double w1 = bA.m_angularVelocity;
@@ -485,8 +485,8 @@
 		
 		// TODO_ERIN block solve with limit
 		
-		double oldLimitImpulse;
-		double C;
+		double oldLimitImpulse = 0.0;
+		double C = 0.0;
 		
 		b2Mat22 tMat;
 		
@@ -496,10 +496,10 @@
 		double angularError = 0.0;
 		double positionError = 0.0;
 		
-		double tX;
+		double tX = 0.0;
 		
-		double impulseX;
-		double impulseY;
+		double impulseX = 0.0;
+		double impulseY = 0.0;
 		
 		// Solve angular limit constraint.
 		if (m_enableLimit && m_limitState != b2Joint.e_inactiveLimit)
@@ -636,18 +636,18 @@
 	b2Vec2 m_localAnchor1 = new b2Vec2(); // relative
 	b2Vec2 m_localAnchor2 = new b2Vec2();
 	 b2Vec3 m_impulse = new b2Vec3();
-	 double m_motorImpulse;
+	 double m_motorImpulse = 0.0;
 
 	 b2Mat33 m_mass = new b2Mat33();		// effective mass for point-to-point constraint.
-	 double m_motorMass;	// effective mass for motor/limit angular constraint.
+	 double m_motorMass = 0.0;	// effective mass for motor/limit angular constraint.
 	 bool m_enableMotor;
-	 double m_maxMotorTorque;
-	 double m_motorSpeed;
+	 double m_maxMotorTorque = 0.0;
+	 double m_motorSpeed = 0.0;
 
 	 bool m_enableLimit;
-	 double m_referenceAngle;
-	 double m_lowerAngle;
-	 double m_upperAngle;
-	 int m_limitState;
+	 double m_referenceAngle = 0.0;
+	 double m_lowerAngle = 0.0;
+	 double m_upperAngle = 0.0;
+	 int m_limitState = 0;
 }
 

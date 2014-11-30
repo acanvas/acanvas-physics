@@ -56,11 +56,11 @@
 		manifold.m_pointCount = 0;
 		b2Mat22 tMat;
 		b2Vec2 tVec;
-		double dX;
-		double dY;
-		double tX;
-		double tY;
-		b2ManifoldPoint tPoint;
+		double dX = 0.0;
+		double dY = 0.0;
+		double tX = 0.0;
+		double tY = 0.0;
+		b2ManifoldPoint tPoint = 0;
 		
 		//b2Vec2 c = b2Mul(xf2, circle->GetLocalPosition());
 		tMat = xf2.R;
@@ -79,7 +79,7 @@
 		b2Vec2 v1 = edge.m_v1;
 		b2Vec2 v2 = edge.m_v2;
 		double radius = circle.m_radius;
-		double separation;
+		double separation = 0.0;
 		
 		double dirDist = (cLocalX - v1.x) * edge.m_direction.x +
 		                      (cLocalY - v1.y) * edge.m_direction.y;

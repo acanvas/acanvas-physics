@@ -31,10 +31,10 @@ class TestOneSidedPlatform extends Test {
   static int e_above = 1;
   static int e_below = 2;
 
-  double m_radius;
-  double m_top;
-  double m_bottom;
-  int m_state;
+  double m_radius = 0.0;
+  double m_top = 0.0;
+  double m_bottom = 0.0;
+  int m_state = 0;
   b2Fixture m_platform;
   b2Fixture m_character;
 

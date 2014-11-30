@@ -61,6 +61,6 @@
 	/**
 	 * The body2 angle minus body1 angle in the reference state (radians).
 	 */
-	 double referenceAngle;
+	 double referenceAngle = 0.0;
 }
 

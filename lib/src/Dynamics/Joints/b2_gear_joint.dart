@@ -112,8 +112,8 @@
 		m_revolute2 = null;
 		m_prismatic2 = null;
 		
-		double coordinate1;
-		double coordinate2;
+		double coordinate1 = 0.0;
+		double coordinate2 = 0.0;
 		
 		m_ground1 = def.joint1.GetBodyA();
 		m_bodyA = def.joint1.GetBodyB();
@@ -165,14 +165,14 @@
 		b2Body bB = m_bodyB;
 		
 		// temp vars
-		double ugX;
-		double ugY;
-		double rX;
-		double rY;
+		double ugX = 0.0;
+		double ugY = 0.0;
+		double rX = 0.0;
+		double rY = 0.0;
 		b2Mat22 tMat;
 		b2Vec2 tVec;
-		double crug;
-		double tX;
+		double crug = 0.0;
+		double tX = 0.0;
 		
 		double K = 0.0;
 		m_J.SetZero();
@@ -286,8 +286,8 @@
 		b2Body bA = m_bodyA;
 		b2Body bB = m_bodyB;
 		
-		double coordinate1;
-		double coordinate2;
+		double coordinate1 = 0.0;
+		double coordinate2 = 0.0;
 		if (m_revolute1 != null)
 		{
 			coordinate1 = m_revolute1.GetJointAngle();
@@ -343,14 +343,14 @@
 
 	 b2Jacobian m_J = new b2Jacobian();
 
-	 double m_constant;
-	 double m_ratio;
+	 double m_constant = 0.0;
+	 double m_ratio = 0.0;
 
 	// Effective mass
-	 double m_mass;
+	 double m_mass = 0.0;
 
 	// Impulse for accumulation/warm starting.
-	 double m_impulse;
+	 double m_impulse = 0.0;
 }
 
 

@@ -25,25 +25,45 @@
 			Main.m_aboutText.text = "Stacked Boxes";
 			
 			// Add bodies
-			b2FixtureDef fd = new b2FixtureDef();
+			/*
 			b2PolygonShape sd = new b2PolygonShape();
 			b2BodyDef bd = new b2BodyDef();
 			bd.type = b2Body.b2_dynamicBody;
 			//bd.isBullet = true;
 			b2Body b;
+
+			b2FixtureDef fd = new b2FixtureDef();
 			fd.density = 1.0;
 			fd.friction = 0.5;
 			fd.restitution = 0.1;
 			fd.shape = sd;
-			int i;
+			 * 
+			 */
+			
+			int i = 0;
 			// Create 3 stacks
 			for (i = 0; i < 10; i++){
-				sd.SetAsBox((10) / m_physScale, (10) / m_physScale);
+			  b2PolygonShape sd = new b2PolygonShape();
+			  sd.SetAsBox((10.0) / m_physScale, (10.0) / m_physScale);
 				//bd.position.Set((640/2+100+new Random().nextDouble()*0.02 - 0.01) / m_physScale, (360-5-i*25) / m_physScale);
-				bd.position.Set((640/2+100) / m_physScale, (360-5-i*25) / m_physScale);
-				b = m_world.CreateBody(bd);
-				b.CreateFixture(fd);
+				b2BodyDef bd = new b2BodyDef();
+				bd.allowSleep = false;
+				bd.bullet = true;
+         bd.type = b2Body.b2_dynamicBody;
+         bd.position.Set((640/2+100) / m_physScale, (360-5-i*25) / m_physScale);
+         
+         b2FixtureDef fd = new b2FixtureDef();
+               fd.density = 1.0;
+               fd.friction = 0.5;
+               fd.restitution = 0.1;
+               fd.shape = sd;
+               
+        				b2Body b = m_world.CreateBody(bd);
+				b.CreateFixture2(sd, 22.0);
 			}
+			
+			return;
+			
 			for (i = 0; i < 10; i++){
 				sd.SetAsBox((10) / m_physScale, (10) / m_physScale);
 				bd.position.Set((640/2-0+new Random().nextDouble()*0.02 - 0.01) / m_physScale, (360-5-i*25) / m_physScale);

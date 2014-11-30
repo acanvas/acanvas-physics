@@ -36,11 +36,11 @@
 	/** Points from shape1 to shape2 */
 	 b2Vec2 normal = new b2Vec2();
 	/** The separation is negative when shapes are touching */
-	 double separation;
+	 double separation = 0.0;
 	/** The combined friction coefficient */
-	 double friction;
+	 double friction = 0.0;
 	/** The combined restitution coefficient */
-	 double restitution;
+	 double restitution = 0.0;
 	/** The contact id identifies the features in contact */
 	 b2ContactID id = new b2ContactID();
 }

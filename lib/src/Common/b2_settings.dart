@@ -181,7 +181,7 @@
     */
 	static   void b2Assert(bool a)
 	{
-		if( a == null || a == false){
+		if( a == false){
 			//b2Vec2 nullVec;
 			//nullVec.x++;
 			print( "Assertion Failed" );

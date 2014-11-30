@@ -244,7 +244,7 @@
 	// This returns true if the position errors are within tolerance.
 	bool SolvePositionConstraints(double baumgarte) { return false; }
 
-	int m_type;
+	int m_type = 0;
 	b2Joint m_prev;
 	b2Joint m_next;
 	b2JointEdge m_edgeA = new b2JointEdge();
@@ -260,10 +260,10 @@
 	// Cache here per time step to reduce cache misses.
 	b2Vec2 m_localCenterA = new b2Vec2();
 	b2Vec2 m_localCenterB = new b2Vec2();
-	double m_invMassA;
-	double m_invMassB;
-	double m_invIA;
-	double m_invIB;
+	double m_invMassA = 0.0;
+	double m_invMassB = 0.0;
+	double m_invIA = 0.0;
+	double m_invIB = 0.0;
 	
 	// EdoubleS
 	

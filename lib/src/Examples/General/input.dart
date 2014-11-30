@@ -27,7 +27,7 @@
      static  List keyArr;
      
      static  List keyBuffer;
-     static  int bufferSize;
+     static  int bufferSize = 0;
      
      // last key pressed
      static  int lastKey = 0;
@@ -36,7 +36,6 @@
      // mouse states
      static  bool mouseDown = false;
      static  bool mouseReleased = false;
-     static  bool mousePressed = false;
      static  bool mouseOver = false;
      static  double mouseX = 0.0;
      static  double mouseY = 0.0;
@@ -100,21 +99,6 @@
 		//===============
 		static   void update(){
 			
-			// array of used keys
-			/*List kArr = new List(
-				Globals.keyP1Up,
-				Globals.keyP1Down,
-				Globals.keyP1Left,
-				Globals.keyP1Right,
-				Globals.keyP1Attack1,
-				Globals.keyP1Attack2,
-				Globals.keyP1Jump,
-				Globals.keyP1Defend,
-				Globals.keyResetGame,
-				Globals.keyInvertBg,
-				Globals.keyChangeBg,
-				Globals.keyPauseGame);*/
-				
 			// update used keys
 			for (int i = 0; i < keyArr.length; i++){
 				if (keyState[keyArr[i]] != 0){
@@ -129,7 +113,6 @@
 			
 			// end mouse release
 			mouseReleased = false;
-			mousePressed = false;
 			mouseOver = false;
 			
 		}
@@ -140,7 +123,6 @@
 		// mousePress listener
 		//===============
 		  void mousePress(MouseEvent e){
-			mousePressed = true;
 			mouseDown = true;
 			mouseDragX = 0.0;
 			mouseDragY = 0.0;
@@ -177,7 +159,6 @@
 			if (mouseDown != e.buttonDown){
 				mouseDown = e.buttonDown;
 				mouseReleased = !e.buttonDown;
-				mousePressed = e.buttonDown;
 				mouseDragX = 0.0;
 				mouseDragY = 0.0;
 			}

@@ -28,7 +28,7 @@
 			return child1 == null;
 		}
 		
-		 int key;
+		 int key = 0;
 		 dynamic userData;
 		 b2AABB aabb = new b2AABB();
 		 b2DynamicTreeNode parent;

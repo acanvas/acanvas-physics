@@ -195,9 +195,9 @@
 		double sNext = EdgeSeparation(poly1, xf1, nextEdge, poly2, xf2);
 		
 		// Find the best edge and the search direction.
-		int bestEdge;
-		double bestSeparation;
-		int increment;
+		int bestEdge = 0;
+		double bestSeparation = 0.0;
+		int increment = 0;
 		if (sPrev > s && sPrev > sNext)
 		{
 			increment = -1;
@@ -367,8 +367,8 @@
 		b2PolygonShape poly2;	// incident poly
 		b2Transform xf1;
 		b2Transform xf2;
-		int edge1;		// reference edge
-		int flip;
+		int edge1 = 0;		// reference edge
+		int flip = 0;
 		const double k_relativeTol = 0.98;
 		const double k_absoluteTol = 0.001;
 		b2Mat22 tMat;
@@ -449,7 +449,7 @@
 		// Clip incident edge against extruded edge1 side edges.
 		List<ClipVertex> clipPoints1 = s_clipPoints1;
 		List<ClipVertex> clipPoints2 = s_clipPoints2;
-		int np;
+		int np = 0;
 
 		// Clip to box side 1
 		//np = ClipSegmentToLine(clipPoints1, incidentEdge, -tangent, sideOffset1);
@@ -533,10 +533,10 @@
 		manifold.m_pointCount = 0;
 		b2ManifoldPoint tPoint;
 		
-		double dX;
-		double dY;
-		double positionX;
-		double positionY;
+		double dX = 0.0;
+		double dY = 0.0;
+		double positionX = 0.0;
+		double positionY = 0.0;
 		
 		b2Vec2 tVec;
 		b2Mat22 tMat;
@@ -555,7 +555,7 @@
 		double cLocalX = (dX * tMat.col1.x + dY * tMat.col1.y);
 		double cLocalY = (dX * tMat.col2.x + dY * tMat.col2.y);
 		
-		double dist;
+		double dist = 0.0;
 		
 		// Find the min separating edge.
 		int normalIndex = 0;

@@ -34,9 +34,9 @@
 	/** Points from shape1 to shape2 */
 	 b2Vec2 normal = new b2Vec2();
 	/** The normal impulse applied to body2 */
-	 double normalImpulse;
+	 double normalImpulse = 0.0;
 	/** The tangent impulse applied to body2 */
-	 double tangentImpulse;
+	 double tangentImpulse = 0.0;
 	/** The contact id identifies the features in contact */
 	 b2ContactID id = new b2ContactID();
 }

@@ -28,9 +28,9 @@
  class b2Jacobian
 {
 	 b2Vec2 linearA = new b2Vec2();
-	 double angularA;
+	 double angularA = 0.0;
 	 b2Vec2 linearB = new b2Vec2();
-	 double angularB;
+	 double angularB = 0.0;
 
 	  void SetZero(){
 		linearA.SetZero(); angularA = 0.0;

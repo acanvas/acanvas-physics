@@ -24,8 +24,8 @@
 	 class b2SimplexCache 
 	{
 	/** Length or area */	
-	 double metric;		
-	 int count;
+	 double metric = 0.0;		
+	 int count = 0;
 	/** Vertices on shape a */	
 	 List<int> indexA = new List<int>(3);	
 	/** Vertices on shape b */	

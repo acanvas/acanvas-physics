@@ -50,7 +50,7 @@ Bullet (http:/www.bulletphysics.com).
 //:
 	 b2BroadPhase(b2AABB worldAABB){
 		//b2Settings.b2Assert(worldAABB.IsValid());
-		int i;
+		int i = 0;
 		
 		m_pairManager.Initialize(this);
 		
@@ -81,10 +81,10 @@ Bullet (http:/www.bulletphysics.com).
 	// is the doubleber of proxies that are out of range.
 	  bool InRange(b2AABB aabb){
 		//b2Vec2 d = b2Max(aabb.lowerBound - m_worldAABB.upperBound, m_worldAABB.lowerBound - aabb.upperBound);
-		double dX;
-		double dY;
-		double d2X;
-		double d2Y;
+		double dX = 0.0;
+		double dY = 0.0;
+		double d2X = 0.0;
+		double d2Y = 0.0;
 		
 		dX = aabb.lowerBound.x;
 		dY = aabb.lowerBound.y;
@@ -104,10 +104,10 @@ Bullet (http:/www.bulletphysics.com).
 
 	// Create and destroy proxies. These call Flush first.
 	  dynamic CreateProxy(b2AABB aabb,dynamic userData){
-		int index;
+		int index = 0;
 		b2Proxy proxy;
-		int i;
-		int j;
+		int i = 0;
+		int j = 0;
 		
 		//b2Settings.b2Assert(m_proxyCount < b2_maxProxies);
 		//b2Settings.b2Assert(m_freeProxy != b2Pair.b2_nullProxy);
@@ -145,8 +145,8 @@ Bullet (http:/www.bulletphysics.com).
 		for (int axis = 0; axis < 2; ++axis)
 		{
 			List<b2Bound> bounds = m_bounds[axis];
-			int lowerIndex;
-			int upperIndex;
+			int lowerIndex = 0;
+			int upperIndex = 0;
 			List<int> lowerIndexOut = new List<int>();
 			lowerIndexOut.add(lowerIndex);
 			List<int> upperIndexOut = new List<int>();
@@ -307,14 +307,14 @@ Bullet (http:/www.bulletphysics.com).
 		b2Proxy proxy = proxy_ as b2Proxy;
 		
 		List<int> as3arr;
-		int as3int;
+		int as3int = 0;
 		
-		int axis;
-		int index;
+		int axis = 0;
+		int index = 0;
 		b2Bound bound;
 		b2Bound prevBound;
 		b2Bound nextBound;
-		int nextProxyId;
+		int nextProxyId = 0;
 		b2Proxy nextProxy;
 		
 		if (proxy == null)
@@ -372,7 +372,7 @@ Bullet (http:/www.bulletphysics.com).
 			if (deltaLower < 0)
 			{
 				index = lowerIndex;
-				while (index > 0 && lowerValue < (bounds[(index-1).toInt()] as b2Bound).value)
+				while (index > 0 && lowerValue < (bounds[(index-1)]).value)
 				{
 					bound = bounds[index];
 					prevBound = bounds[(index - 1).toInt()];
@@ -427,10 +427,10 @@ Bullet (http:/www.bulletphysics.com).
 			if (deltaUpper > 0)
 			{
 				index = upperIndex;
-				while (index < boundCount-1 && (bounds[(index+1).toInt()] as b2Bound).value <= upperValue)
+				while (index < boundCount-1 && (bounds[(index+1)]).value <= upperValue)
 				{
 					bound = bounds[ index ];
-					nextBound = bounds[(index + 1).toInt() ];
+					nextBound = bounds[(index + 1) ];
 					nextProxy = nextBound.proxy;
 					
 					nextBound.stabbingCount++;
@@ -485,7 +485,7 @@ Bullet (http:/www.bulletphysics.com).
 			if (deltaLower > 0)
 			{
 				index = lowerIndex;
-				while (index < boundCount-1 && (bounds[(index+1).toInt()] as b2Bound).value <= lowerValue)
+				while (index < boundCount-1 && (bounds[(index+1)]).value <= lowerValue)
 				{
 					bound = bounds[ index ];
 					nextBound = bounds[(index + 1).toInt() ];
@@ -540,7 +540,7 @@ Bullet (http:/www.bulletphysics.com).
 			if (deltaUpper < 0)
 			{
 				index = upperIndex;
-				while (index > 0 && upperValue < (bounds[(index-1).toInt()] as b2Bound).value)
+				while (index > 0 && upperValue < (bounds[(index-1)]).value)
 				{
 					bound = bounds[index];
 					prevBound = bounds[(index - 1).toInt()];
@@ -649,8 +649,8 @@ Bullet (http:/www.bulletphysics.com).
 		List<double> upperValues = new List<double>();
 		ComputeBounds(lowerValues, upperValues, aabb);
 		
-		int lowerIndex;
-		int upperIndex;
+		int lowerIndex = 0;
+		int upperIndex = 0;
 		List<int> lowerIndexOut = new List<int>();
 		lowerIndexOut.add(lowerIndex);
 		List<int> upperIndexOut = new List<int>();
@@ -750,15 +750,15 @@ Bullet (http:/www.bulletphysics.com).
 		
 		List startIndices = new List();
 		
-		int xIndex;
-		int yIndex;
+		int xIndex = 0;
+		int yIndex = 0;
 		
 		b2Proxy proxy;
 		
 		
 		//First deal with all the proxies that contain segment.p1
-		int lowerIndex;
-		int upperIndex;
+		int lowerIndex = 0;
+		int upperIndex = 0;
 		List<int> lowerIndexOut = new List<int>(); 
 		lowerIndexOut.add(lowerIndex);
 		List<int> upperIndexOut = new List<int>();
@@ -985,7 +985,7 @@ Bullet (http:/www.bulletphysics.com).
 			int s = bound.stabbingCount;
 			
 			// Find the s overlaps.
-			while (s != null)
+			while (s != 0)
 			{
 				//b2Settings.b2Assert(i >= 0);
 				bound = bounds[i];
@@ -1044,12 +1044,12 @@ Bullet (http:/www.bulletphysics.com).
 
 	 List m_querySortKeys = new List();
 	 List m_queryResults = new List();
-	 int m_queryResultCount;
+	 int m_queryResultCount = 0;
 
 	b2AABB m_worldAABB;
 	b2Vec2 m_quantizationFactor = new b2Vec2();
-	int m_proxyCount;
-	 int m_timeStamp;
+	int m_proxyCount = 0;
+	 int m_timeStamp = 0;
 
 	static  bool s_validate = false;
 	

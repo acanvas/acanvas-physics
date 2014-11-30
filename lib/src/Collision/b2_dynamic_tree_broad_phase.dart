@@ -174,7 +174,7 @@
 	  void UnBufferMove(b2DynamicTreeNode proxy)
 	{
 		int i = m_moveBuffer.indexOf(proxy);
-		m_moveBuffer.removeAt(i);
+		if(i!=-1) m_moveBuffer.removeAt(i);
 	}
 	
 	  int ComparePairs(b2DynamicTreePair pair1,b2DynamicTreePair pair2)

@@ -91,10 +91,10 @@
 	/** Center world position */
 	 b2Vec2 c = new b2Vec2();
 	/** World angle */
-	 double a0;
+	 double a0 = 0.0;
 	/** World angle */
-	 double a;
+	 double a = 0.0;
 	/** Time interval = [t0,1], where t0 is in [0,1] */
-	 double t0;
+	 double t0 = 0.0;
 }
 

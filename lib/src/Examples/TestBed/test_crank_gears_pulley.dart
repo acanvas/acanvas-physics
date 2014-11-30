@@ -277,14 +277,14 @@
 		//===============
 		// Member Data 
 		//===============
-		 b2RevoluteJoint m_joint1;
-		 b2PrismaticJoint m_joint2;
+		 b2RevoluteJoint m_joint1 ;
+		 b2PrismaticJoint m_joint2 ;
 		
-		 b2RevoluteJoint m_gJoint1;
-		 b2RevoluteJoint m_gJoint2;
-		 b2PrismaticJoint m_gJoint3;
-		 b2GearJoint m_gJoint4;
-		 b2GearJoint m_gJoint5;
+		 b2RevoluteJoint m_gJoint1 ;
+		 b2RevoluteJoint m_gJoint2 ;
+		 b2PrismaticJoint m_gJoint3 ;
+		 b2GearJoint m_gJoint4 ;
+		 b2GearJoint m_gJoint5 ;
 		
 	}
 	

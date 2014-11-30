@@ -232,14 +232,14 @@
 		//===============
 		// Member Data 
 		//===============
-		 double tScale;
+		 double tScale = 0.0;
 		
 		 b2Vec2 m_offset = new b2Vec2();
 		 b2Body m_chassis;
 		 b2Body m_wheel;
 		 b2RevoluteJoint m_motorJoint;
 		 bool m_motorOn = true;
-		 double m_motorSpeed;
+		 double m_motorSpeed = 0.0;
 		
 	}
 	

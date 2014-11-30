@@ -354,6 +354,6 @@ class b2Simplex
  b2SimplexVertex m_v2 = new b2SimplexVertex();
  b2SimplexVertex m_v3 = new b2SimplexVertex();
  List<b2SimplexVertex> m_vertices = new List<b2SimplexVertex>(3);
- int m_count;
+ int m_count = 0;
 }
 	

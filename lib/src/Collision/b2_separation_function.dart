@@ -39,16 +39,16 @@ class b2SeparationFunction
 		b2Vec2 localPointB;
 		b2Vec2 localPointB1;
 		b2Vec2 localPointB2;
-		double pointAX;
-		double pointAY;
-		double pointBX;
-		double pointBY;
-		double normalX;
-		double normalY;
+		double pointAX = 0.0;
+		double pointAY = 0.0;
+		double pointBX = 0.0;
+		double pointBY = 0.0;
+		double normalX = 0.0;
+		double normalY = 0.0;
 		b2Mat22 tMat;
 		b2Vec2 tVec;
-		double s;
-		double sgn;
+		double s = 0.0;
+		double sgn = 0.0;
 		
 		if (count == 1)
 		{
@@ -257,7 +257,7 @@ class b2SeparationFunction
 		b2Vec2 localPointB;
 		b2Vec2 pointA;
 		b2Vec2 pointB;
-		double seperation;
+		double seperation = 0.0;
 		b2Vec2 normal;
 		switch(m_type)
 		{
@@ -309,7 +309,7 @@ class b2SeparationFunction
 	
 	 b2DistanceProxy m_proxyA;
 	 b2DistanceProxy m_proxyB;
-	 int m_type;
+	 int m_type = 0;
 	 b2Vec2 m_localPoint = new b2Vec2();
 	 b2Vec2 m_axis = new b2Vec2();
 }

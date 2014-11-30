@@ -39,13 +39,13 @@ class b2PositionSolverManifold
 	{
 		b2Settings.b2Assert(cc.pointCount > 0);
 		
-		int i;
-		double clipPointX;
-		double clipPointY;
+		int i = 0;
+		double clipPointX = 0.0;
+		double clipPointY = 0.0;
 		b2Mat22 tMat;
 		b2Vec2 tVec;
-		double planePointX;
-		double planePointY;
+		double planePointX = 0.0;
+		double planePointY = 0.0;
 		
 		switch(cc.type)
 		{

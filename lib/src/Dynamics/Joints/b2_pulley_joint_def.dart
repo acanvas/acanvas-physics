@@ -97,27 +97,27 @@
 	/**
 	* The a reference length for the segment attached to bodyA.
 	*/
-	 double lengthA;
+	 double lengthA = 0.0;
 	
 	/**
 	* The maximum length of the segment attached to bodyA.
 	*/
-	 double maxLengthA;
+	 double maxLengthA = 0.0;
 	
 	/**
 	* The a reference length for the segment attached to bodyB.
 	*/
-	 double lengthB;
+	 double lengthB = 0.0;
 	
 	/**
 	* The maximum length of the segment attached to bodyB.
 	*/
-	 double maxLengthB;
+	 double maxLengthB = 0.0;
 	
 	/**
 	* The pulley ratio, used to simulate a block-and-tackle.
 	*/
-	 double ratio;
+	 double ratio = 0.0;
 	
 }
 

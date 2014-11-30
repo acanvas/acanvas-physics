@@ -89,7 +89,7 @@
 		
 		Reserve(vertexCount);
 		
-		int i;
+		int i = 0;
 		
 		// Copy vertices
 		for (i = 0; i < m_vertexCount; i++)
@@ -280,8 +280,8 @@
 		double lower = 0.0;
 		double upper = input.maxFraction;
 		
-		double tX;
-		double tY;
+		double tX = 0.0;
+		double tY = 0.0;
 		b2Mat22 tMat;
 		b2Vec2 tVec;
 		
@@ -542,7 +542,7 @@
 		int outoIndex = -1;
 		
 		bool lastSubmerged = false;
-		int i;
+		int i = 0;
 		for (i = 0; i < m_vertexCount;++i)
 		{
 			depths.add(b2Math.Dot(normalL, m_vertices[i]) - offsetL);
@@ -551,7 +551,7 @@
 			{
 				if( isSubmerged)
 				{
-					if( lastSubmerged == null || lastSubmerged == false)
+					if(lastSubmerged == false)
 					{
 						intoIndex = i - 1;
 						diveCount++;
@@ -763,7 +763,7 @@
 	List<b2Vec2> m_vertices;
 	List<b2Vec2> m_normals;
 	
-	int m_vertexCount;
+	int m_vertexCount = 0;
 	
 	
 	
@@ -841,7 +841,7 @@
 	 */
 	static  void ComputeOBB(b2OBB obb,List<b2Vec2> vs,int count)
 	{
-		int i;
+		int i = 0;
 		List<b2Vec2> p = new List<b2Vec2>(count + 1);
 		for (i = 0; i < count; ++i)
 		{

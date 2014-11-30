@@ -50,8 +50,8 @@
 		m_id.Set(m.m_id);
 	}
 	 b2Vec2 m_localPoint = new b2Vec2();
-	 double m_normalImpulse;
-	 double m_tangentImpulse;
+	 double m_normalImpulse = 0.0;
+	 double m_tangentImpulse = 0.0;
 	 b2ContactID m_id = new b2ContactID();
 }
 

@@ -121,7 +121,7 @@
 	}
 	
 	  void Commit(Function callback){
-		int i;
+		int i = 0;
 		
 		int removeCount = 0;
 		
@@ -260,10 +260,10 @@
 	 b2BroadPhase m_broadPhase;
 	List m_pairs;
 	 b2Pair m_freePair;
-	int m_pairCount;
+	int m_pairCount = 0;
 	
 	 List m_pairBuffer;
-	 int m_pairBufferCount;
+	 int m_pairBufferCount = 0;
 	
 }
 

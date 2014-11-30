@@ -102,7 +102,7 @@ class Main extends MovieClip {
 	      m_currId = (m_currId + 11) % 11;
 				switch(m_currId) {
 				  case 0:
-					  m_currTest = new TestRagdoll(watch);
+					  m_currTest = new TestStack(watch);
 					  break;
 				  case 1:
 					  m_currTest = new TestCompound(watch);
@@ -114,7 +114,7 @@ class Main extends MovieClip {
 					  m_currTest = new TestBridge(watch);
 					  break;
 				  case 4:
-					  m_currTest = new TestStack(watch);
+					  m_currTest = new TestRagdoll(watch);
 					  break;
 				  case 5:
 					  m_currTest = new TestCCD(watch);

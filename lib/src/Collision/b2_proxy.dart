@@ -27,8 +27,8 @@
 
 	 List<int> lowerBounds = new List<int>(2);
 	 List<int> upperBounds = new List<int>(2);
-	 int overlapCount;
-	 int timeStamp;
+	 int overlapCount = 0;
+	 int timeStamp = 0;
 	
 	// Maps from the other b2Proxy to their mutual b2Pair.
 	 Map pairs = new Map();

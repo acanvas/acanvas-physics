@@ -270,7 +270,7 @@
 	IBroadPhase m_broadPhase;
 	
 	b2Contact m_contactList;
-	int m_contactCount;
+	int m_contactCount = 0;
 	b2ContactFilter m_contactFilter;
 	b2ContactListener m_contactListener;
 	b2ContactFactory m_contactFactory;

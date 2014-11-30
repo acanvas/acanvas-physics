@@ -40,7 +40,7 @@
 	/**
 	* The joint type is set automatically for concrete joint types.
 	*/
-	 int type;
+	 int type = 0;
 	/**
 	* Use this to attach application specific data to your joints.
 	*/

@@ -41,6 +41,6 @@
 		/**
 		 * Truncate the ray to reach up to this fraction from p1 to p2
 		 */
-		 double maxFraction;
+		 double maxFraction = 0.0;
 	}
 	

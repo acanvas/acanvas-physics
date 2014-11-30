@@ -134,8 +134,8 @@
 	
 	//virtual ~b2Shape();
 	
-	int m_type;
-	double m_radius;
+	int m_type = 0;
+	double m_radius = 0.0;
 	
 	/**
 	* The various collision shape types supported by Box2D.

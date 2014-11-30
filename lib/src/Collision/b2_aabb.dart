@@ -82,11 +82,11 @@
 		
 		b2Vec2 normal = output.normal;
 		
-		double inv_d;
-		double t1;
-		double t2;
-		double t3;
-		double s;
+		double inv_d = 0.0;
+		double t1 = 0.0;
+		double t2 = 0.0;
+		double t3 = 0.0;
+		double s = 0.0;
 		
 		//x
 		{

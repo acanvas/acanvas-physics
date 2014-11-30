@@ -63,7 +63,7 @@
 	double distanceSqr1 = closestPoint.LengthSquared();
 	double distanceSqr2 = distanceSqr1;
 	
-	int i;
+	int i = 0;
 	b2Vec2 p;
 	
 	// Main iteration loop

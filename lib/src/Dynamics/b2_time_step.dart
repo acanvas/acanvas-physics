@@ -31,11 +31,11 @@
 		velocityIterations = step.velocityIterations;
 		warmStarting = step.warmStarting;
 	}
-	 double dt;			// time step
-	 double inv_dt;		// inverse time step (0 if dt == 0).
-	 double dtRatio;		// dt * inv_dt0
-	 int velocityIterations;
-	 int positionIterations;
+	 double dt = 0.0;			// time step
+	 double inv_dt = 0.0;		// inverse time step (0 if dt == 0).
+	 double dtRatio = 0.0;		// dt * inv_dt0
+	 int velocityIterations = 0;
+	 int positionIterations = 0;
 	 bool warmStarting;
 }
 

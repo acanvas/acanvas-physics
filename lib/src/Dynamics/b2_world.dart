@@ -558,7 +558,7 @@ class b2World {
 
     int flags = m_debugDraw.GetFlags();
 
-    int i;
+    int i = 0;
     b2Body b;
     b2Fixture f;
     b2Shape s;
@@ -607,7 +607,7 @@ class b2World {
     }
 
     if ((flags & b2DebugDraw.e_controllerBit) > 0) {
-      for (b2Controller c = m_controllerList; c; c = c.m_next) {
+      for (b2Controller c = m_controllerList; c != null; c = c.m_next) {
         c.Draw(m_debugDraw);
       }
     }
@@ -630,11 +630,11 @@ class b2World {
 
       vs = [new b2Vec2(), new b2Vec2(), new b2Vec2(), new b2Vec2()];
 
-      for (b = m_bodyList; b; b = b.GetNext()) {
+      for (b = m_bodyList; b != null; b = b.GetNext()) {
         if (b.IsActive() == false) {
           continue;
         }
-        for (f = b.GetFixtureList(); f; f = f.GetNext()) {
+        for (f = b.GetFixtureList(); f != null; f = f.GetNext()) {
           b2AABB aabb = bp.GetFatAABB(f.m_proxy);
           vs[0].Set(aabb.lowerBound.x, aabb.lowerBound.y);
           vs[1].Set(aabb.upperBound.x, aabb.lowerBound.y);
@@ -740,7 +740,7 @@ class b2World {
       dynamic userData = broadPhase.GetUserData(proxy);
       b2Fixture fixture = userData as b2Fixture;
       bool hit = fixture.RayCast(output, input);
-      if (hit ) {
+      if (hit) {
         double fraction = output.fraction;
         b2Vec2 point = new b2Vec2((1.0 - fraction) * point1.x + fraction * point2.x, (1.0 - fraction) * point1.y + fraction * point2.y);
         return callback(fixture, point, output.normal, fraction);
@@ -869,9 +869,9 @@ class b2World {
       while (stackCount > 0) {
         // Grab the next body off the stack and add it to the island.
         b = stack[--stackCount];
-        
-        if(b == null) continue;
-        
+
+        if (b == null) continue;
+
         //b2Assert(b.IsActive() == true);
         island.AddBody(b);
 
@@ -1147,15 +1147,15 @@ class b2World {
       island.Clear();
       int queueStart = 0; //start index for queue
       int queueSize = 0; //elements in queue
-      
+
       if (queue.length - 1 <= queueStart + queueSize) {
         queue.add(seed);
-                } else {
-                  queue[queueStart + queueSize] = seed;
-                }
+      } else {
+        queue[queueStart + queueSize] = seed;
+      }
 
       queueSize++;
-      
+
       seed.m_flags |= b2Body.e_islandFlag;
 
       // Perform a breadth first search (on as BFS) the contact graph.
@@ -1182,6 +1182,7 @@ class b2World {
         for (cEdge = b.m_contactList; cEdge != null; cEdge = cEdge.next) {
           // Does the TOI island still have space for contacts?
           if (island.m_contactCount == island.m_contactCapacity) {
+            print("full");
             break;
           }
 
@@ -1215,19 +1216,19 @@ class b2World {
           //b2Settings.b2Assert(queueStart + queueSize < queueCapacity);
           //queue[queueStart + queueSize] = other;
           //++queueSize;
-          
-          if (queue.length - 1 <= queueStart + queueSize) {
-                  queue.add(other);
-                          } else {
-                            queue[queueStart + queueSize] = other;
-                          }
 
-                queueSize++;
-          
+          if (queue.length - 1 <= queueStart + queueSize) {
+            queue.add(other);
+          } else {
+            queue[queueStart + queueSize] = other;
+          }
+
+          queueSize++;
+
           other.m_flags |= b2Body.e_islandFlag;
         }
 
-        for (b2JointEdge jEdge = b.m_jointList; jEdge != null ; jEdge = jEdge.next) {
+        for (b2JointEdge jEdge = b.m_jointList; jEdge != null; jEdge = jEdge.next) {
           if (island.m_jointCount == island.m_jointCapacity) continue;
 
           if (jEdge.joint.m_islandFlag == true) continue;
@@ -1250,12 +1251,12 @@ class b2World {
 
           //b2Settings.b2Assert(queueStart + queueSize < queueCapacity);
           if (queue.length - 1 <= queueStart + queueSize) {
-                 queue.add(seed);
-                         } else {
-                           queue[queueStart + queueSize] = seed;
-                         }
+            queue.add(other);
+          } else {
+            queue[queueStart + queueSize] = other;
+          }
 
-               queueSize++;
+          queueSize++;
           other.m_flags |= b2Body.e_islandFlag;
         }
       }
@@ -1270,7 +1271,7 @@ class b2World {
 
       island.SolveTOI(subStep);
 
-      int i;
+      int i = 0;
       // Post solve cleanup.
       for (i = 0; i < island.m_bodyCount; ++i) {
         // Allow bodies to participate in future TOI islands.
@@ -1375,7 +1376,7 @@ class b2World {
 
       case b2Shape.e_polygonShape:
         {
-          int i;
+          int i = 0;
           b2PolygonShape poly = (shape as b2PolygonShape);
           int vertexCount = poly.GetVertexCount();
           List<b2Vec2> localVertices = poly.GetVertices();
@@ -1415,11 +1416,11 @@ class b2World {
 
   b2Contact m_contactList;
 
-  int m_bodyCount;
-  int m_contactCount;
-  int m_jointCount;
+  int m_bodyCount = 0;
+  int m_contactCount = 0;
+  int m_jointCount = 0;
   b2Controller m_controllerList;
-  int m_controllerCount;
+  int m_controllerCount = 0;
 
   b2Vec2 m_gravity;
   bool m_allowSleep;
@@ -1430,7 +1431,7 @@ class b2World {
   b2DebugDraw m_debugDraw;
 
   // This is used to compute the time step ratio to support a variable time step.
-  double m_inv_dt0;
+  double m_inv_dt0 = 0.0;
 
   // This is for debugging the solver.
   static bool m_warmStarting;
@@ -1443,4 +1444,3 @@ class b2World {
   static final int e_locked = 0x0002;
 
 }
-

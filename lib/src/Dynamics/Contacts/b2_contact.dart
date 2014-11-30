@@ -340,7 +340,7 @@
 		return b2TimeOfImpact.TimeOfImpact(s_input);
 	}
 	
-	int m_flags;
+	int m_flags = 0;
 
 	// World pool and list pointers.
 	b2Contact m_prev;
@@ -356,7 +356,7 @@
 	b2Manifold m_manifold = new b2Manifold();
 	b2Manifold m_oldManifold = new b2Manifold();
 	
-	double m_toi;
+	double m_toi = 0.0;
 }
 
 

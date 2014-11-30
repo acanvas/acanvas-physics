@@ -55,7 +55,7 @@
 	 * @see b2Body#b2_dynamicBody
 	 * @see b2Body#b2_kinematicBody
 	 */
-	 int type;
+	 int type = 0;
 
 	/**
 	 * The world position of the body. Avoid creating bodies at the origin
@@ -66,7 +66,7 @@
 	/**
 	 * The world angle of the body in radians.
 	 */
-	 double angle;
+	 double angle = 0.0;
 	
 	/**
 	 * The linear velocity of the body's origin in world co-ordinates.
@@ -76,21 +76,21 @@
 	/**
 	 * The angular velocity of the body.
 	 */
-	 double angularVelocity;
+	 double angularVelocity = 0.0;
 
 	/**
 	 * Linear damping is use to reduce the linear velocity. The damping parameter
 	 * can be larger than 1.0f but the damping effect becomes sensitive to the
 	 * time step when the damping parameter is large.
 	 */
-	 double linearDamping;
+	 double linearDamping = 0.0;
 
 	/**
 	 * Angular damping is use to reduce the angular velocity. The damping parameter
 	 * can be larger than 1.0f but the damping effect becomes sensitive to the
 	 * time step when the damping parameter is large.
 	 */
-	 double angularDamping;
+	 double angularDamping = 0.0;
 
 	/**
 	 * Set this flag to false if this body should never fall asleep. Note that
@@ -130,7 +130,7 @@
 	 * Scales the inertia tensor.
 	 * @warning Experimental
 	 */
-	 double inertiaScale;
+	 double inertiaScale = 0.0;
 }
 
 

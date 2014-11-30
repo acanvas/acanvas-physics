@@ -73,16 +73,16 @@
 	/**
 	* The natural length between the anchor points.
 	*/
-	 double length;
+	 double length = 0.0;
 
 	/**
 	* The mass-spring-damper frequency in Hertz.
 	*/
-	 double frequencyHz;
+	 double frequencyHz = 0.0;
 
 	/**
 	* The damping ratio. 0 = no damping, 1 = critical damping.
 	*/
-	 double dampingRatio;
+	 double dampingRatio = 0.0;
 }
 

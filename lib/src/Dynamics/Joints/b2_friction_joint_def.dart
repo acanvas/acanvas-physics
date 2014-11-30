@@ -60,11 +60,11 @@
 	/**
 	 * The maximun force in N.
 	 */
-	 double maxForce;
+	 double maxForce = 0.0;
 	
 	/**
 	 * The maximun friction torque in N-m
 	 */
-	 double maxTorque;
+	 double maxTorque = 0.0;
 }
 

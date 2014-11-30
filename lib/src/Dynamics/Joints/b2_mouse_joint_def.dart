@@ -17,10 +17,6 @@
 
  part of stagexl_box2d;
 
-	
-
-
-
 
 /**
 * Mouse joint definition. This requires a world target point,
@@ -47,14 +43,14 @@
 	* to move the candidate body. Usually you will express
 	* as some multiple of the weight (multiplier * mass * gravity).
 	*/
-	 double maxForce;
+	 double maxForce = 0.0;
 	/**
 	* The response speed.
 	*/
-	 double frequencyHz;
+	 double frequencyHz = 0.0;
 	/**
 	* The damping ratio. 0 = no damping, 1 = critical damping.
 	*/
-	 double dampingRatio;
+	 double dampingRatio = 0.0;
 }
 

@@ -106,7 +106,7 @@
 	@override 
 		 void InitVelocityConstraints(b2TimeStep step) {
 		b2Mat22 tMat;
-		double tX;
+		double tX = 0.0;
 		
 		b2Body bA = m_bodyA;
 		b2Body bB= m_bodyB;
@@ -190,7 +190,7 @@
 		 void SolveVelocityConstraints(b2TimeStep step){
 		//B2_NOT_USED(step);
 		b2Mat22 tMat;
-		double tX;
+		double tX = 0.0;
 
 		b2Body bA = m_bodyA;
 		b2Body bB= m_bodyB;
@@ -220,7 +220,7 @@
 		rBY = (tMat.col1.y * rBX + tMat.col2.y * rBY);
 		rBX = tX;
 		
-		double maxImpulse;
+		double maxImpulse = 0.0;
 
 		// Solve angular friction
 		{
@@ -287,12 +287,12 @@
 	 b2Vec2 m_localAnchorB = new b2Vec2();
 	
 	 b2Mat22 m_linearMass = new b2Mat22();
-	 double m_angularMass;
+	 double m_angularMass = 0.0;
 	
 	 b2Vec2 m_linearImpulse = new b2Vec2();
-	 double m_angularImpulse;
+	 double m_angularImpulse = 0.0;
 	
-	 double m_maxForce;
-	 double m_maxTorque;
+	 double m_maxForce = 0.0;
+	 double m_maxTorque = 0.0;
 }
 

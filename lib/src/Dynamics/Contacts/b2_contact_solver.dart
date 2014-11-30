@@ -39,7 +39,7 @@
 		m_step.Set(step);
 		m_allocator = allocator;
 		
-		int i;
+		int i = 0;
 		b2Vec2 tVec;
 		b2Mat22 tMat;
 		
@@ -229,10 +229,10 @@
 			double tangentX = normalY;
 			double tangentY = -normalX;
 			
-			double tX;
+			double tX = 0.0;
 			
-			int j;
-			int tCount;
+			int j = 0;
+			int tCount = 0;
 			if (step.warmStarting)
 			{
 				tCount = c.pointCount;
@@ -270,27 +270,27 @@
 		}
 	}
 	  void SolveVelocityConstraints(){
-		int j;
+		int j = 0;
 		b2ContactConstraintPoint ccp;
-		double rAX;
-		double rAY;
-		double rBX;
-		double rBY;
-		double dvX;
-		double dvY;
-		double vn;
-		double vt;
-		double lambda;
-		double maxFriction;
-		double newImpulse;
-		double PX;
-		double PY;
-		double dX;
-		double dY;
-		double P1X;
-		double P1Y;
-		double P2X;
-		double P2Y;
+		double rAX = 0.0;
+		double rAY = 0.0;
+		double rBX = 0.0;
+		double rBY = 0.0;
+		double dvX = 0.0;
+		double dvY = 0.0;
+		double vn = 0.0;
+		double vt = 0.0;
+		double lambda = 0.0;
+		double maxFriction = 0.0;
+		double newImpulse = 0.0;
+		double PX = 0.0;
+		double PY = 0.0;
+		double dX = 0.0;
+		double dY = 0.0;
+		double P1X = 0.0;
+		double P1Y = 0.0;
+		double P2X = 0.0;
+		double P2Y = 0.0;
 		
 		b2Mat22 tMat;
 		b2Vec2 tVec;
@@ -317,7 +317,7 @@
 			double tangentY = -normalX;
 			double friction = c.friction;
 			
-			double tX;
+			double tX = 0.0;
 			
 			//b2Settings.b2Assert(c.pointCount == 1 || c.pointCount == 2);
 			// Solve the tangent constraints
@@ -914,6 +914,6 @@
 	 b2TimeStep m_step = new b2TimeStep();
 	 dynamic m_allocator;
 	List<b2ContactConstraint> m_constraints = new List<b2ContactConstraint> ();
-	 int m_constraintCount;
+	 int m_constraintCount = 0;
 }
 

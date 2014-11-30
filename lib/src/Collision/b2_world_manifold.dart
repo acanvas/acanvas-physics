@@ -45,15 +45,15 @@
 			return;
 		}
 		
-		int i;
+		int i = 0;
 		b2Vec2 tVec;
 		b2Mat22 tMat;
-		double normalX;
-		double normalY;
-		double planePointX;
-		double planePointY;
-		double clipPointX;
-		double clipPointY;
+		double normalX = 0.0;
+		double normalY = 0.0;
+		double planePointX = 0.0;
+		double planePointY = 0.0;
+		double clipPointX = 0.0;
+		double clipPointY = 0.0;
 		
 		switch(manifold.m_type)
 		{

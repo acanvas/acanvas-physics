@@ -25,7 +25,7 @@
   
    b2Body m_body1;
    b2Vec2 m_velocity = new b2Vec2();
-   double m_angularVelocity;
+   double m_angularVelocity = 0.0;
    b2PolygonShape m_shape1 = new b2PolygonShape();
    b2PolygonShape m_shape2 = new b2PolygonShape();
    b2Fixture m_piece1;

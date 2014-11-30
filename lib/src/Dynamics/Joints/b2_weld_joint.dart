@@ -79,7 +79,7 @@
 	@override 
 		 void InitVelocityConstraints(b2TimeStep step) {
 		b2Mat22 tMat;
-		double tX;
+		double tX = 0.0;
 		
 		b2Body bA = m_bodyA;
 		b2Body bB= m_bodyB;
@@ -152,7 +152,7 @@
 		 void SolveVelocityConstraints(b2TimeStep step){
 		//B2_NOT_USED(step);
 		b2Mat22 tMat;
-		double tX;
+		double tX = 0.0;
 
 		b2Body bA = m_bodyA;
 		b2Body bB= m_bodyB;
@@ -213,7 +213,7 @@
 	{
 		//B2_NOT_USED(baumgarte);
 				b2Mat22 tMat;
-		double tX;
+		double tX = 0.0;
 		
 		b2Body bA = m_bodyA;
 		b2Body bB= m_bodyB;
@@ -294,7 +294,7 @@
 
 	 b2Vec2 m_localAnchorA = new b2Vec2();
 	 b2Vec2 m_localAnchorB = new b2Vec2();
-	 double m_referenceAngle;
+	 double m_referenceAngle = 0.0;
 	
 	 b2Vec3 m_impulse = new b2Vec3();
 	 b2Mat33 m_mass = new b2Mat33();

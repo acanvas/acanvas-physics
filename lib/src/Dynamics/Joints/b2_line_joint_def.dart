@@ -79,12 +79,12 @@
 	/**
 	* The lower translation limit, usually in meters.
 	*/
-	 double lowerTranslation;
+	 double lowerTranslation = 0.0;
 
 	/**
 	* The upper translation limit, usually in meters.
 	*/
-	 double upperTranslation;
+	 double upperTranslation = 0.0;
 
 	/**
 	* Enable/disable the joint motor.
@@ -94,12 +94,12 @@
 	/**
 	* The maximum motor torque, usually in N-m.
 	*/
-	 double maxMotorForce;
+	 double maxMotorForce = 0.0;
 
 	/**
 	* The desired motor speed in radians per second.
 	*/
-	 double motorSpeed;
+	 double motorSpeed = 0.0;
 
 	
 }

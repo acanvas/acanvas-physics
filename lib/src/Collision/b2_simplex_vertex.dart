@@ -33,8 +33,8 @@ class b2SimplexVertex
 	 b2Vec2 wA;		// support point in proxyA
 	 b2Vec2 wB;		// support point in proxyB
 	 b2Vec2 w;		// wB - wA
-	 double a;		// barycentric coordinate for closest point
-	 int indexA;	// wA index
-	 int indexB;	// wB index
+	 double a = 0.0;		// barycentric coordinate for closest point
+	 int indexA = 0;	// wA index
+	 int indexB = 0;	// wB index
 }
 	

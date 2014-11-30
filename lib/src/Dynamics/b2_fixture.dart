@@ -341,13 +341,13 @@
 	 b2MassData m_massData;
 	
 	b2AABB m_aabb;
-	double m_density;
+	double m_density = 0.0;
 	b2Fixture m_next;
 	b2Body m_body;
 	b2Shape m_shape;
 	
-	double m_friction;
-	double m_restitution;
+	double m_friction = 0.0;
+	double m_restitution = 0.0;
 	
 	dynamic m_proxy;
 	b2FilterData m_filter = new b2FilterData();

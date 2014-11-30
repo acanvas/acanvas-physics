@@ -116,7 +116,7 @@ Baumgarte method in performance critical scenarios.
 	
 	  void Initialize(int bodyCapacity,int contactCapacity,int jointCapacity,dynamic allocator,b2ContactListener listener,b2ContactSolver contactSolver)
 	{
-		int i;
+		int i = 0;
 		
 		m_bodyCapacity = bodyCapacity;
 		m_contactCapacity = contactCapacity;
@@ -150,8 +150,8 @@ Baumgarte method in performance critical scenarios.
 
 	  void Solve(b2TimeStep step,b2Vec2 gravity,bool allowSleep)
 	{
-		int i;
-		int j;
+		int i = 0;
+		int j = 0;
 		b2Body b;
 		b2Joint joint;
 		
@@ -330,8 +330,8 @@ Baumgarte method in performance critical scenarios.
 	
 	  void SolveTOI(b2TimeStep subStep)
 	{
-		int i;
-		int j;
+		int i = 0;
+		int j = 0;
 		m_contactSolver.Initialize(subStep, m_contacts, m_contactCount, m_allocator);
 		b2ContactSolver contactSolver = m_contactSolver;
 		
@@ -477,13 +477,13 @@ Baumgarte method in performance critical scenarios.
 	List<b2Contact> m_contacts;
 	List<b2Joint> m_joints;
 
-	int m_bodyCount;
-	int m_jointCount;
-	int m_contactCount;
+	int m_bodyCount = 0;
+	int m_jointCount = 0;
+	int m_contactCount = 0;
 
-	 int m_bodyCapacity;
-	int m_contactCapacity;
-	int m_jointCapacity;
+	 int m_bodyCapacity = 0;
+	int m_contactCapacity = 0;
+	int m_jointCapacity = 0;
 	
 }
 

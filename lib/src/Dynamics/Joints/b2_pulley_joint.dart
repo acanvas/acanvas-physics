@@ -130,8 +130,8 @@
 		// parent
 		
 		b2Mat22 tMat;
-		double tX;
-		double tY;
+		double tX = 0.0;
+		double tY = 0.0;
 		
 		m_ground = m_bodyA.m_world.m_groundBody;
 		//m_groundAnchor1 = def->groundAnchorA - m_ground->m_xf.position;
@@ -329,17 +329,17 @@
 		r2X = tX;
 		
 		// temp vars
-		double v1X;
-		double v1Y;
-		double v2X;
-		double v2Y;
-		double P1X;
-		double P1Y;
-		double P2X;
-		double P2Y;
-		double Cdot;
-		double impulse;
-		double oldImpulse;
+		double v1X = 0.0;
+		double v1Y = 0.0;
+		double v2X = 0.0;
+		double v2Y = 0.0;
+		double P1X = 0.0;
+		double P1Y = 0.0;
+		double P2X = 0.0;
+		double P2Y = 0.0;
+		double Cdot = 0.0;
+		double impulse = 0.0;
+		double oldImpulse = 0.0;
 		
 		if (m_state == b2Joint.e_atUpperLimit)
 		{
@@ -439,22 +439,22 @@
 		double s2Y = m_ground.m_xf.position.y + m_groundAnchor2.y;
 		
 		// temp vars
-		double r1X;
-		double r1Y;
-		double r2X;
-		double r2Y;
-		double p1X;
-		double p1Y;
-		double p2X;
-		double p2Y;
-		double length1;
-		double length2;
-		double C;
-		double impulse;
-		double oldImpulse;
-		double oldLimitPositionImpulse;
+		double r1X = 0.0;
+		double r1Y = 0.0;
+		double r2X = 0.0;
+		double r2Y = 0.0;
+		double p1X = 0.0;
+		double p1Y = 0.0;
+		double p2X = 0.0;
+		double p2Y = 0.0;
+		double length1 = 0.0;
+		double length2 = 0.0;
+		double C = 0.0;
+		double impulse = 0.0;
+		double oldImpulse = 0.0;
+		double oldLimitPositionImpulse = 0.0;
 		
-		double tX;
+		double tX = 0.0;
 		
 		double linearError = 0.0;
 		
@@ -639,25 +639,25 @@
 	 b2Vec2 m_u1 = new b2Vec2();
 	 b2Vec2 m_u2 = new b2Vec2();
 	
-	 double m_constant;
-	 double m_ratio;
+	 double m_constant = 0.0;
+	 double m_ratio = 0.0;
 	
-	 double m_maxLength1;
-	 double m_maxLength2;
+	 double m_maxLength1 = 0.0;
+	 double m_maxLength2 = 0.0;
 
 	// Effective masses
-	 double m_pulleyMass;
-	 double m_limitMass1;
-	 double m_limitMass2;
+	 double m_pulleyMass = 0.0;
+	 double m_limitMass1 = 0.0;
+	 double m_limitMass2 = 0.0;
 
 	// Impulses for accumulation/warm starting.
-	 double m_impulse;
-	 double m_limitImpulse1;
-	 double m_limitImpulse2;
+	 double m_impulse = 0.0;
+	 double m_limitImpulse1 = 0.0;
+	 double m_limitImpulse2 = 0.0;
 
-	 int m_state;
-	 int m_limitState1;
-	 int m_limitState2;
+	 int m_state = 0;
+	 int m_limitState1 = 0;
+	 int m_limitState2 = 0;
 	
 	// static
 	static const double b2_minPulleyLength = 2.0;

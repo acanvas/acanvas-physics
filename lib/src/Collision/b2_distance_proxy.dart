@@ -110,7 +110,7 @@
 		}
 		
  		 List<b2Vec2> m_vertices;
- 		 int m_count;
- 		 double m_radius;
+ 		 int m_count = 0;
+ 		 double m_radius = 0.0;
 	}
 	

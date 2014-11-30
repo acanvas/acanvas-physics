@@ -57,17 +57,17 @@
 	/**
 	 * The friction coefficient, usually in the range [0,1].
 	 */
-	 double friction;
+	 double friction = 0.0;
 
 	/**
 	 * The restitution (usually as elasticity) in the range [0,1].
 	 */
-	 double restitution;
+	 double restitution = 0.0;
 
 	/**
 	 * The density, usually in kg/m^2.
 	 */
-	 double density;
+	 double density = 0.0;
 
 	/**
 	 * A sensor shape collects contact information but never generates a collision

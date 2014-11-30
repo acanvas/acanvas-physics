@@ -26,7 +26,7 @@
 		 b2DistanceProxy proxyB = new b2DistanceProxy();
 		 b2Sweep sweepA = new b2Sweep();
 		 b2Sweep sweepB = new b2Sweep();
-		 double tolerance;
+		 double tolerance = 0.0;
 		
 	}
 	
