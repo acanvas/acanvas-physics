@@ -192,7 +192,7 @@
 		m_sprite.graphics.lineTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
 		m_sprite.graphics.closePath();
     m_sprite.graphics.strokeColor(((m_alpha * 255).round() << 24) | color.color, m_lineThickness);
-		m_sprite.graphics.fillColor(((m_fillAlpha * 255).round() << 24) | color.color);
+		m_sprite.graphics.fillColor(((m_fillAlpha * 255).round() << 24) & color.color);
 		//m_sprite.graphics.endFill() //not supported in StageXL;
 		
 	}

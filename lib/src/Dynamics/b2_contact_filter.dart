@@ -55,10 +55,10 @@
 	* @param fixture		the fixture that we are testing for filtering
 	* @return a bool, with a value of false indicating that this fixture should be ignored.
 	*/
-	 bool RayCollide(dynamic userData,b2Fixture fixture){
+	 bool RayCollide(b2Fixture userData,b2Fixture fixture){
 		if( userData == null )
 			return true;
-		return ShouldCollide(userData as b2Fixture,fixture);
+		return ShouldCollide(userData,fixture);
 	}
 	
 	static b2ContactFilter b2_defaultFilter = new b2ContactFilter();

@@ -174,7 +174,7 @@ class b2DynamicTree {
 
     int count = 0;
 
-    if (stack.length - 1 <= count) {
+    if (stack.length <= count) {
       stack.add(m_root);
     } else {
       stack[count] = m_root;
@@ -190,13 +190,13 @@ class b2DynamicTree {
           if (proceed == false) return;
         } else {
           // No stack limit, so no assert
-          if (stack.length - 1 <= count) {
+          if (stack.length <= count) {
             stack.add(node.child1);
           } else {
             stack[count] = node.child1;
           }
           count++;
-          if (stack.length - 1 <= count) {
+          if (stack.length <= count) {
             stack.add(node.child2);
           } else {
             stack[count] = node.child2;
@@ -248,7 +248,7 @@ class b2DynamicTree {
     List<b2DynamicTreeNode> stack = new List<b2DynamicTreeNode>();
 
     int count = 0;
-    if (stack.length - 1 <= count) {
+    if (stack.length <= count) {
       stack.add(m_root);
     } else {
       stack[count] = m_root;
@@ -291,13 +291,13 @@ class b2DynamicTree {
         }
       } else {
         // No stack limit, so no assert
-        if (stack.length - 1 <= count) {
+        if (stack.length <= count) {
           stack.add(node.child1);
         } else {
           stack[count] = node.child1;
         }
         count++;
-        if (stack.length - 1 <= count) {
+        if (stack.length <= count) {
           stack.add(node.child2);
         } else {
           stack[count] = node.child2;
