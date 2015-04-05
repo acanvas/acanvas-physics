@@ -3,7 +3,7 @@ version: 0.1.0
 description: Port of Box2DFlash v2.1a to StageXL/Dart.
 dependencies:
   stagexl: 
-   git : https://github.com/bp74/StageXL
+    git : https://github.com/bp74/StageXL
   logging: any
 transformers:
 - $dart2js:
