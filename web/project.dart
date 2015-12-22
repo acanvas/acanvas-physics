@@ -1,6 +1,6 @@
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
-import 'package:stagexl_box2d/stagexl_box2d.dart';
+import 'package:rockdot_box2d/rockdot_box2d.dart';
 
 void main() {
   html.CanvasElement stageEl = html.querySelector('#stage');

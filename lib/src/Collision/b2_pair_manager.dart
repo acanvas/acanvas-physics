@@ -19,7 +19,7 @@
 // of overlapping proxies. It is based closely on code provided by Pierre Terdiman.
 // http://www.codercorner.com/IncrementalSAP.txt
 
- part of stagexl_box2d;
+ part of rockdot_box2d;
 
 
 

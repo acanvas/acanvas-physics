@@ -18,7 +18,7 @@
 /**
  * Returns data on the collision between a ray and a shape.
  */
- part of stagexl_box2d;
+ part of rockdot_box2d;
 	
 	 class b2RayCastOutput 
 	{

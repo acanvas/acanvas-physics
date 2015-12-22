@@ -1,4 +1,4 @@
-name: stagexl_box2d
+name: rockdot_box2d
 version: 0.1.0
 description: Port of Box2DFlash v2.1a to StageXL/Dart.
 dependencies:

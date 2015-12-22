@@ -15,7 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of stagexl_box2d;
+ part of rockdot_box2d;
 
 
 

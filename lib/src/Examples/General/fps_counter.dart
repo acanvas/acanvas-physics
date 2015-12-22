@@ -15,7 +15,7 @@
 //========================================
 // FPS COUNTER CLASS
 //========================================
-part of stagexl_box2d;
+part of rockdot_box2d;
 
 
 class FpsCounter extends Sprite {

@@ -1,4 +1,4 @@
-library stagexl_box2d;
+library rockdot_box2d;
 
 import 'dart:math';
 import 'package:stagexl/stagexl.dart';

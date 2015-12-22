@@ -18,7 +18,7 @@
 /**
  * Specifies a segment for use with RayCast functions.
  */
- part of stagexl_box2d;
+ part of rockdot_box2d;
 	
 	 class b2RayCastInput 
 	{

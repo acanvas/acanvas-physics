@@ -50,9 +50,9 @@ canvas.stage-full-screen:fullscreen {
 /* TODO */
 
 @media screen and (orientation:portrait) {
-    // CSS applied when the device is in portrait mode
+    /* CSS applied when the device is in portrait mode */
 }
 
 @media screen and (orientation:landscape) {
-    // CSS applied when the device is in landscape mode
+    /* CSS applied when the device is in landscape mode */
 }

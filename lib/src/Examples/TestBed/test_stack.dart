@@ -16,7 +16,7 @@
 */
 
 
- part of stagexl_box2d;
+ part of rockdot_box2d;
 	
 	 class TestStack extends Test{
 	 TestStack(Stopwatch w) : super(w) {

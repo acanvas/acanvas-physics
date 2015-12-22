@@ -16,7 +16,7 @@
 // frame limiter
 //========================================
 
- part of stagexl_box2d;
+ part of rockdot_box2d;
 	
 	
 	
