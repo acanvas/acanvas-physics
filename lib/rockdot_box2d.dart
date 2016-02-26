@@ -114,7 +114,6 @@ part 'src/Dynamics/Joints/b2_weld_joint_def.dart';
 
 //examples
 /*
- */
 part 'src/Examples/benchmark.dart';
 part 'src/Examples/Benchmarks/i_benchmark.dart';
 part 'src/Examples/Benchmarks/lottery_benchmark.dart';
@@ -138,3 +137,4 @@ part 'src/Examples/TestBed/test_crank_gears_pulley.dart';
 part 'src/Examples/TestBed/test_raycast.dart';
 part 'src/Examples/TestBed/test_stack.dart';
 part 'src/Examples/TestBed/test_theo_jansen.dart';
+ */
