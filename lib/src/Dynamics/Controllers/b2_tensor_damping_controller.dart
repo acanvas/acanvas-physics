@@ -15,7 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_box2d;
+ part of rockdot_physics;
 
 
 
@@ -64,7 +64,7 @@
 			return;
 		if(timestep>maxTimestep && maxTimestep>0)
 			timestep = maxTimestep;
-		for(b2ControllerEdge i=m_bodyList;i;i=i.nextBody){
+		for(b2ControllerEdge i=m_bodyList;i != null;i=i.nextBody){
 			b2Body body = i.body;
 			if(!body.IsAwake()){
 				//Sleeping bodies are still - so have no damping

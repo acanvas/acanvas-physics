@@ -15,7 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_box2d;
+ part of rockdot_physics;
 	
 
 
@@ -262,7 +262,6 @@ class b2SeparationFunction
 		switch(m_type)
 		{
 			case e_points:
-			{
 				axisA = b2Math.MulTMV(transformA.R, m_axis);
 				axisB = b2Math.MulTMV(transformB.R, m_axis.GetNegative());
 				localPointA = m_proxyA.GetSupportVertex(axisA);
@@ -272,9 +271,7 @@ class b2SeparationFunction
 				//float32 separation = b2Dot(pointB - pointA, m_axis);
 				seperation = (pointB.x - pointA.x) * m_axis.x + (pointB.y - pointA.y) * m_axis.y;
 				return seperation;
-			}
 			case e_faceA:
-			{
 				normal = b2Math.MulMV(transformA.R, m_axis);
 				pointA = b2Math.MulX(transformA, m_localPoint);
 				
@@ -286,9 +283,7 @@ class b2SeparationFunction
 				//float32 separation = b2Dot(pointB - pointA, normal);
 				seperation = (pointB.x - pointA.x) * normal.x + (pointB.y - pointA.y) * normal.y;
 				return seperation;
-			}
 			case e_faceB:
-			{
 				normal = b2Math.MulMV(transformB.R, m_axis);
 				pointB = b2Math.MulX(transformB, m_localPoint);
 				
@@ -300,7 +295,6 @@ class b2SeparationFunction
 				//float32 separation = b2Dot(pointA - pointB, normal);
 				seperation = (pointA.x - pointB.x) * normal.x + (pointA.y - pointB.y) * normal.y;
 				return seperation;
-			}
 			default:
 			b2Settings.b2Assert(false);
 			return 0.0;

@@ -15,7 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-part of rockdot_box2d;
+part of rockdot_physics;
 
 /**
 * A rigid body.
@@ -453,7 +453,7 @@ class b2Body {
     b2Body body2 = m_world.CreateBody(GetDefinition());
 
     b2Fixture prev;
-    for (b2Fixture f = body1.m_fixtureList; f; ) {
+    for (b2Fixture f = body1.m_fixtureList; f != null; ) {
       if (callback(f)) {
         b2Fixture next = f.m_next;
         // Remove fixture
@@ -511,7 +511,7 @@ class b2Body {
     b2Body body2 = other;
 
     b2Fixture f;
-    for (f = other.m_fixtureList; f; ) {
+    for (f = other.m_fixtureList; f  != null; ) {
       b2Fixture next = f.m_next;
 
       // Remove fixture
@@ -807,7 +807,7 @@ class b2Body {
     m_torque = 0.0;
 
     // Since the body type changed, we need to flag contacts for filtering.
-    for (b2ContactEdge ce = m_contactList; ce; ce = ce.next) {
+    for (b2ContactEdge ce = m_contactList; ce  != null; ce = ce.next) {
       ce.contact.FlagForFiltering();
     }
   }
@@ -925,7 +925,7 @@ class b2Body {
 
       // Create all proxies.
       broadPhase = m_world.m_contactManager.m_broadPhase;
-      for (f = m_fixtureList; f; f = f.m_next) {
+      for (f = m_fixtureList; f  != null; f = f.m_next) {
         f.CreateProxy(broadPhase, m_xf);
       }
       // Contacts are created the next time step.
@@ -934,7 +934,7 @@ class b2Body {
 
       // Destroy all proxies.
       broadPhase = m_world.m_contactManager.m_broadPhase;
-      for (f = m_fixtureList; f; f = f.m_next) {
+      for (f = m_fixtureList; f != null; f = f.m_next) {
         f.DestroyProxy(broadPhase);
       }
 

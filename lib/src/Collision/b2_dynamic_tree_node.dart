@@ -15,7 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_box2d;
+ part of rockdot_physics;
 	
 	/**
 	 * A node in the dynamic tree. The client does not interact with this directly.

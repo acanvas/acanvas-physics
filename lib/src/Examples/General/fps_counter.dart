@@ -15,7 +15,7 @@
 //========================================
 // FPS COUNTER CLASS
 //========================================
-part of rockdot_box2d;
+part of rockdot_physics;
 
 
 class FpsCounter extends Sprite {

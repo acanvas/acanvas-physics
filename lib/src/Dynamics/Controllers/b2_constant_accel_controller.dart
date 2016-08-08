@@ -15,7 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_box2d;
+ part of rockdot_physics;
 
 
 
@@ -32,7 +32,7 @@
 	 @override 
 		 void Step(b2TimeStep step){
 		b2Vec2 smallA = new b2Vec2(A.x*step.dt,A.y*step.dt);
-		for(b2ControllerEdge i=m_bodyList;i;i=i.nextBody){
+		for(b2ControllerEdge i=m_bodyList;i != null;i=i.nextBody){
 			b2Body body = i.body;
 			if(!body.IsAwake()) continue;
 			//Am being lazy here

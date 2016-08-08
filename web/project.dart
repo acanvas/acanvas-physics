@@ -1,12 +1,15 @@
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
-import 'package:rockdot_box2d/rockdot_box2d.dart';
+import 'package:rockdot_physics/rockdot_physics.dart';
 
 void main() {
   html.CanvasElement stageEl = html.querySelector('#stage');
 
   /* Startup StageXL */
-  Stage stage = new Stage(stageEl, webGL: false, color: 0xFF292C2C, width: 640, height: 320);
+  var options = new StageOptions();
+  options.renderEngine = RenderEngine.WebGL;
+  options.backgroundColor = 0xFF292C2C;
+  Stage stage = new Stage(stageEl, options: options, width: 640, height: 320);
 
   stage.scaleMode = StageScaleMode.NO_SCALE;
   stage.align = StageAlign.TOP_LEFT;
@@ -14,6 +17,7 @@ void main() {
 
   RenderLoop renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
-  
-  stage.addChild( new Main() );
+
+  //TODO Examples are a direct conversion from ActionScript and don't work. Please use rockdot generator to see examples.
+  //stage.addChild( new Main() );
 }

@@ -15,7 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-part of rockdot_box2d;
+part of rockdot_physics;
 
 
 
@@ -106,8 +106,8 @@ class b2World {
   void SetBroadPhase(IBroadPhase broadPhase) {
     IBroadPhase oldBroadPhase = m_contactManager.m_broadPhase;
     m_contactManager.m_broadPhase = broadPhase;
-    for (b2Body b = m_bodyList; b; b = b.m_next) {
-      for (b2Fixture f = b.m_fixtureList; f; f = f.m_next) {
+    for (b2Body b = m_bodyList; b != null; b = b.m_next) {
+      for (b2Fixture f = b.m_fixtureList; f != null; f = f.m_next) {
         f.m_proxy = broadPhase.CreateProxy(oldBroadPhase.GetFatAABB(f.m_proxy), f);
       }
     }

@@ -15,7 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_box2d;
+ part of rockdot_physics;
 
 
 
@@ -48,7 +48,7 @@
 		double r2 = 0.0;
 		b2Vec2 f = null;
 		if( invSqr ){
-			for(i=m_bodyList;i;i=i.nextBody){
+			for(i=m_bodyList;i != null;i=i.nextBody){
 				body1 = i.body;
 				p1 = body1.GetWorldCenter();
 				mass1 = body1.GetMass();
@@ -68,7 +68,7 @@
 				}
 			}
 		}else{
-			for(i=m_bodyList;i;i=i.nextBody){
+			for(i=m_bodyList;i != null;i=i.nextBody){
 				body1 = i.body;
 				p1 = body1.GetWorldCenter();
 				mass1 = body1.GetMass();

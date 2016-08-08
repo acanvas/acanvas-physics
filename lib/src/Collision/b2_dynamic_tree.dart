@@ -15,7 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-part of rockdot_box2d;
+part of rockdot_physics;
 
 // A dynamic AABB tree broad-phase, inspired by Nathanael Presson's btDbvt.
 

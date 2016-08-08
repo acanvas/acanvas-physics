@@ -15,7 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_box2d;
+ part of rockdot_physics;
 
 class b2Simplex
 {
@@ -97,7 +97,6 @@ class b2Simplex
 		case 1:
 			return m_v1.w.GetNegative();
 		case 2:
-		{
 			b2Vec2 e12 = b2Math.SubtractVV(m_v2.w, m_v1.w);
 			double sgn = b2Math.CrossVV(e12, m_v1.w.GetNegative());
 			if (sgn > 0.0)
@@ -108,7 +107,7 @@ class b2Simplex
 				// Origin is right of e12.
 				return b2Math.CrossVF(e12, 1.0);
 			}
-		}
+			break;
 		default:
 		b2Settings.b2Assert(false);
 		return new b2Vec2();
