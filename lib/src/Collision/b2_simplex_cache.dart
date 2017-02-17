@@ -15,20 +15,18 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-	/**
+part of rockdot_physics;
+
+/**
 	 * Used to warm start b2Distance.
 	 * Set count to zero on first call.
 	 */
-	 class b2SimplexCache 
-	{
-	/** Length or area */	
-	 double metric = 0.0;		
-	 int count = 0;
-	/** Vertices on shape a */	
-	 List<int> indexA = new List<int>(3);	
-	/** Vertices on shape b */	
-	 List<int> indexB = new List<int>(3);	
+class b2SimplexCache {
+  /** Length or area */
+  double metric = 0.0;
+  int count = 0;
+  /** Vertices on shape a */
+  List<int> indexA = new List<int>(3);
+  /** Vertices on shape b */
+  List<int> indexB = new List<int>(3);
 }
-	

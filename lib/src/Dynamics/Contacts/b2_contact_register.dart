@@ -15,20 +15,15 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-	
+part of rockdot_physics;
+
 /**
 * @
 */
- class b2ContactRegister
-{
-	 Function createFcn; // fcn pointer
-	 Function destroyFcn;// fcn pointer
-	 bool primary;
-	 b2Contact pool;
-	 int poolCount = 0;
+class b2ContactRegister {
+  Function createFcn; // fcn pointer
+  Function destroyFcn; // fcn pointer
+  bool primary;
+  b2Contact pool;
+  int poolCount = 0;
 }
-	
-	
-	

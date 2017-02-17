@@ -15,20 +15,13 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-	
-
-
-
+part of rockdot_physics;
 
 /**
 * @
 */
- class b2NullContact extends b2Contact
-{
-	 b2NullContact() {}
-	@override 
-		 void Evaluate() {}
+class b2NullContact extends b2Contact {
+  b2NullContact() {}
+  @override
+  void Evaluate() {}
 }
-

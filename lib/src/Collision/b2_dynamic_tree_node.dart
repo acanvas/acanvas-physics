@@ -15,24 +15,21 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-	/**
+part of rockdot_physics;
+
+/**
 	 * A node in the dynamic tree. The client does not interact with this directly.
 	 * @
 	 */
-	 class b2DynamicTreeNode 
-	{
-		  bool IsLeaf()
-		{
-			return child1 == null;
-		}
-		
-		 int key = 0;
-		 dynamic userData;
-		 b2AABB aabb = new b2AABB();
-		 b2DynamicTreeNode parent;
-		 b2DynamicTreeNode child1;
-		 b2DynamicTreeNode child2;
-	}
-	
+class b2DynamicTreeNode {
+  bool IsLeaf() {
+    return child1 == null;
+  }
+
+  int key = 0;
+  dynamic userData;
+  b2AABB aabb = new b2AABB();
+  b2DynamicTreeNode parent;
+  b2DynamicTreeNode child1;
+  b2DynamicTreeNode child2;
+}

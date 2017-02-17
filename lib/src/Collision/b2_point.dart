@@ -15,28 +15,20 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-
-
+part of rockdot_physics;
 
 // This is used for polygon-vs-circle distance.
 /**
 * @
 */
- class b2Point
-{
-	  b2Vec2 Support(b2Transform xf,double vX,double vY)
-	{
-		return p;
-	}
+class b2Point {
+  b2Vec2 Support(b2Transform xf, double vX, double vY) {
+    return p;
+  }
 
-	  b2Vec2 GetFirstVertex(b2Transform xf)
-	{
-		return p;
-	}
-	
-	 b2Vec2 p = new b2Vec2();
+  b2Vec2 GetFirstVertex(b2Transform xf) {
+    return p;
+  }
+
+  b2Vec2 p = new b2Vec2();
 }
-
-

@@ -15,26 +15,22 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
+part of rockdot_physics;
 
-class b2SimplexVertex
-{
-	  void Set(b2SimplexVertex other)
-	{
-		wA.SetV(other.wA);
-		wB.SetV(other.wB);
-		w.SetV(other.w);
-		a = other.a;
-		indexA = other.indexA;
-		indexB = other.indexB;
-	}
-	
-	 b2Vec2 wA;		// support point in proxyA
-	 b2Vec2 wB;		// support point in proxyB
-	 b2Vec2 w;		// wB - wA
-	 double a = 0.0;		// barycentric coordinate for closest point
-	 int indexA = 0;	// wA index
-	 int indexB = 0;	// wB index
+class b2SimplexVertex {
+  void Set(b2SimplexVertex other) {
+    wA.SetV(other.wA);
+    wB.SetV(other.wB);
+    w.SetV(other.w);
+    a = other.a;
+    indexA = other.indexA;
+    indexB = other.indexB;
+  }
+
+  b2Vec2 wA; // support point in proxyA
+  b2Vec2 wB; // support point in proxyB
+  b2Vec2 w; // wB - wA
+  double a = 0.0; // barycentric coordinate for closest point
+  int indexA = 0; // wA index
+  int indexB = 0; // wB index
 }
-	

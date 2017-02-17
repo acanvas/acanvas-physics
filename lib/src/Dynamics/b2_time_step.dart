@@ -15,28 +15,24 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-	
+part of rockdot_physics;
+
 /**
 * @
 */
- class b2TimeStep
-{
-	  void Set(b2TimeStep step)
-	{
-		dt = step.dt;
-		inv_dt = step.inv_dt;
-		positionIterations = step.positionIterations;
-		velocityIterations = step.velocityIterations;
-		warmStarting = step.warmStarting;
-	}
-	 double dt = 0.0;			// time step
-	 double inv_dt = 0.0;		// inverse time step (0 if dt == 0).
-	 double dtRatio = 0.0;		// dt * inv_dt0
-	 int velocityIterations = 0;
-	 int positionIterations = 0;
-	 bool warmStarting;
+class b2TimeStep {
+  void Set(b2TimeStep step) {
+    dt = step.dt;
+    inv_dt = step.inv_dt;
+    positionIterations = step.positionIterations;
+    velocityIterations = step.velocityIterations;
+    warmStarting = step.warmStarting;
+  }
+
+  double dt = 0.0; // time step
+  double inv_dt = 0.0; // inverse time step (0 if dt == 0).
+  double dtRatio = 0.0; // dt * inv_dt0
+  int velocityIterations = 0;
+  int positionIterations = 0;
+  bool warmStarting;
 }
-
-

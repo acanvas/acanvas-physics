@@ -15,44 +15,39 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
+part of rockdot_physics;
 
 /**
 * @
 */
- class b2EdgeAndCircleContact extends b2Contact
-{
-	static   b2Contact Create(dynamic allocator){
-		return new b2EdgeAndCircleContact();
-	}
-	static   void Destroy(b2Contact contact,dynamic allocator){
-		//
-	}
+class b2EdgeAndCircleContact extends b2Contact {
+  static b2Contact Create(dynamic allocator) {
+    return new b2EdgeAndCircleContact();
+  }
 
-	  void Reset([b2Fixture fixtureA=null, b2Fixture fixtureB=null]){
-		super.Reset(fixtureA, fixtureB);
-		//b2Settings.b2Assert(m_shape1.m_type == b2Shape.e_circleShape);
-		//b2Settings.b2Assert(m_shape2.m_type == b2Shape.e_circleShape);
-	}
-	//~b2EdgeAndCircleContact() {}
-	
-	@override 
-		 void Evaluate(){
-		b2Body bA = m_fixtureA.GetBody();
-		b2Body bB = m_fixtureB.GetBody();
-		b2CollideEdgeAndCircle(m_manifold,
-					m_fixtureA.GetShape() as b2EdgeShape, bA.m_xf,
-					m_fixtureB.GetShape() as b2CircleShape, bB.m_xf);
-	}
-	
-	  void b2CollideEdgeAndCircle(b2Manifold manifold,b2EdgeShape edge,b2Transform xf1,b2CircleShape circle,b2Transform xf2)
-	{
-		//TODO_BORIS
-		/*
+  static void Destroy(b2Contact contact, dynamic allocator) {
+    //
+  }
+
+  void Reset([b2Fixture fixtureA = null, b2Fixture fixtureB = null]) {
+    super.Reset(fixtureA, fixtureB);
+    //b2Settings.b2Assert(m_shape1.m_type == b2Shape.e_circleShape);
+    //b2Settings.b2Assert(m_shape2.m_type == b2Shape.e_circleShape);
+  }
+  //~b2EdgeAndCircleContact() {}
+
+  @override
+  void Evaluate() {
+    b2Body bA = m_fixtureA.GetBody();
+    b2Body bB = m_fixtureB.GetBody();
+    b2CollideEdgeAndCircle(
+        m_manifold, m_fixtureA.GetShape() as b2EdgeShape, bA.m_xf, m_fixtureB.GetShape() as b2CircleShape, bB.m_xf);
+  }
+
+  void b2CollideEdgeAndCircle(
+      b2Manifold manifold, b2EdgeShape edge, b2Transform xf1, b2CircleShape circle, b2Transform xf2) {
+    //TODO_BORIS
+    /*
 		manifold.m_pointCount = 0;
 		b2Mat22 tMat;
 		b2Vec2 tVec;
@@ -159,6 +154,5 @@
 		tPoint.localPoint2.x = (tX * tMat.col1.x + tY * tMat.col1.y );
 		tPoint.localPoint2.y = (tX * tMat.col2.x + tY * tMat.col2.y );
 		*/
-	}
+  }
 }
-

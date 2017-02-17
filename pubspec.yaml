@@ -2,7 +2,8 @@ name: rockdot_physics
 version: 0.2.0
 description: Port of Box2DFlash v2.1a to StageXL/Dart.
 dependencies:
-  stagexl: any
+  stagexl:
+    git: https://github.com/bp74/StageXL
   logging: any
 transformers:
 - $dart2js:

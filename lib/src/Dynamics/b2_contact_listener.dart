@@ -15,12 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
-
+part of rockdot_physics;
 
 /**
  * Implement this class to get contact information. You can use these results for
@@ -33,19 +28,18 @@
  * many callbacks per time step.
  * @warning You cannot create/destroy Box2D entities inside these callbacks.
  */
- class b2ContactListener
-{
-	/**
+class b2ContactListener {
+  /**
 	 * Called when two fixtures begin to touch.
 	 */
-	 void BeginContact(b2Contact contact) { }
+  void BeginContact(b2Contact contact) {}
 
-	/**
+  /**
 	 * Called when two fixtures cease to touch.
 	 */
-	 void EndContact(b2Contact contact) { }
+  void EndContact(b2Contact contact) {}
 
-	/**
+  /**
 	 * This is called after a contact is updated. This allows you to inspect a
 	 * contact before it goes to the solver. If you are careful, you can modify the
 	 * contact manifold (e.g. disable contact).
@@ -57,9 +51,9 @@
 	 * get an EndContact callback. However, you may get a BeginContact callback
 	 * the next step.
 	 */
-	 void PreSolve(b2Contact contact,b2Manifold oldManifold) {}
+  void PreSolve(b2Contact contact, b2Manifold oldManifold) {}
 
-	/**
+  /**
 	 * This lets you inspect a contact after the solver is finished. This is useful
 	 * for inspecting impulses.
 	 * Note: the contact manifold does not include time of impact impulses, which can be
@@ -67,8 +61,7 @@
 	 * in a separate data structure.
 	 * Note: this is only called for contacts that are touching, solid, and awake.
 	 */
-	 void PostSolve(b2Contact contact,b2ContactImpulse impulse) { }
-	
-	static b2ContactListener b2_defaultListener = new b2ContactListener();
-}
+  void PostSolve(b2Contact contact, b2ContactImpulse impulse) {}
 
+  static b2ContactListener b2_defaultListener = new b2ContactListener();
+}

@@ -15,39 +15,31 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
-
+part of rockdot_physics;
 
 /**
 * @
 */
- class b2PolyAndCircleContact extends b2Contact{
-	
-	static   b2Contact Create(dynamic allocator){
-		return new b2PolyAndCircleContact();
-	}
-	static   void Destroy(b2Contact contact,dynamic allocator){
-	}
+class b2PolyAndCircleContact extends b2Contact {
+  static b2Contact Create(dynamic allocator) {
+    return new b2PolyAndCircleContact();
+  }
 
-	  void Reset([b2Fixture fixtureA=null, b2Fixture fixtureB=null]){
-		super.Reset(fixtureA, fixtureB);
-		b2Settings.b2Assert(fixtureA.GetType() == b2Shape.e_polygonShape);
-		b2Settings.b2Assert(fixtureB.GetType() == b2Shape.e_circleShape);
-	}
-	//~b2PolyAndCircleContact() {}
+  static void Destroy(b2Contact contact, dynamic allocator) {}
 
-	@override 
-		 void Evaluate(){
-		b2Body bA = m_fixtureA.m_body;
-		b2Body bB = m_fixtureB.m_body;
-		
-		b2Collision.CollidePolygonAndCircle(m_manifold, 
-					m_fixtureA.GetShape() as b2PolygonShape, bA.m_xf, 
-					m_fixtureB.GetShape() as b2CircleShape, bB.m_xf);
-	}
+  void Reset([b2Fixture fixtureA = null, b2Fixture fixtureB = null]) {
+    super.Reset(fixtureA, fixtureB);
+    b2Settings.b2Assert(fixtureA.GetType() == b2Shape.e_polygonShape);
+    b2Settings.b2Assert(fixtureB.GetType() == b2Shape.e_circleShape);
+  }
+  //~b2PolyAndCircleContact() {}
+
+  @override
+  void Evaluate() {
+    b2Body bA = m_fixtureA.m_body;
+    b2Body bB = m_fixtureB.m_body;
+
+    b2Collision.CollidePolygonAndCircle(
+        m_manifold, m_fixtureA.GetShape() as b2PolygonShape, bA.m_xf, m_fixtureB.GetShape() as b2CircleShape, bB.m_xf);
+  }
 }
-

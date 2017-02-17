@@ -15,65 +15,52 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
+part of rockdot_physics;
 
-	
-	
-	
 /**
 * A transform contains translation and rotation. It is used to represent
 * the position and orientation of rigid frames.
 */
- class b2Transform
-{
-	/**
+class b2Transform {
+  /**
 	* The default constructor does nothing (for performance).
 	*/
-	  b2Transform([b2Vec2 pos=null, b2Mat22 r=null]) 
-	{
-		if( pos != null){
-			position.SetV(pos);
-			R.SetM(r);
+  b2Transform([b2Vec2 pos = null, b2Mat22 r = null]) {
+    if (pos != null) {
+      position.SetV(pos);
+      R.SetM(r);
+    }
+  }
 
-		}
-	}
-
-	/**
+  /**
 	* Initialize using a position vector and a rotation matrix.
 	*/
-	  void Initialize(b2Vec2 pos,b2Mat22 r) 
-	{
-		position.SetV(pos);
-		R.SetM(r);
-	}
+  void Initialize(b2Vec2 pos, b2Mat22 r) {
+    position.SetV(pos);
+    R.SetM(r);
+  }
 
-	/**
+  /**
 	* Set this to the identity transform.
 	*/
-	  void SetIdentity()
-	{
-		position.SetZero();
-		R.SetIdentity();
-	}
+  void SetIdentity() {
+    position.SetZero();
+    R.SetIdentity();
+  }
 
-	  void Set(b2Transform x){
+  void Set(b2Transform x) {
+    position.SetV(x.position);
 
-		position.SetV(x.position);
+    R.SetM(x.R);
+  }
 
-		R.SetM(x.R);
-
-	}
-	
-	/** 
+  /** 
 	 * Calculate the angle that the rotation matrix represents.
 	 */
-	  double GetAngle()
-	{
-		return atan2(R.col1.y, R.col1.x);
-	}
-	 
+  double GetAngle() {
+    return atan2(R.col1.y, R.col1.x);
+  }
 
-	 b2Vec2 position = new b2Vec2();
-	 b2Mat22 R = new b2Mat22();
+  b2Vec2 position = new b2Vec2();
+  b2Mat22 R = new b2Mat22();
 }
-

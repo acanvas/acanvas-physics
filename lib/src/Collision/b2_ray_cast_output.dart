@@ -18,17 +18,15 @@
 /**
  * Returns data on the collision between a ray and a shape.
  */
- part of rockdot_physics;
-	
-	 class b2RayCastOutput 
-	{
-		/**
+part of rockdot_physics;
+
+class b2RayCastOutput {
+  /**
 		 * The normal at the point of collision
 		 */
-		 b2Vec2 normal = new b2Vec2();
-		/**
+  b2Vec2 normal = new b2Vec2();
+  /**
 		 * The fraction between p1 and p2 that the collision occurs at
 		 */
-		 double fraction = 0.0;
-	}
-	
+  double fraction = 0.0;
+}

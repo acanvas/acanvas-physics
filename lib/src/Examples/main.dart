@@ -17,8 +17,6 @@
 part of rockdot_physics;
 
 class Main extends MovieClip {
-
-
   //===============
   // Member data
   //===============
@@ -47,8 +45,6 @@ class Main extends MovieClip {
     // input
     m_input = new Input(m_sprite);
 
-
-
     //Instructions Text
     TextField instructions_text = new TextField();
 
@@ -60,7 +56,8 @@ class Main extends MovieClip {
     instructions_text.y = 4.5;
     instructions_text.width = 495;
     instructions_text.height = 61;
-    instructions_text.text = "Box2DFlashAS3 2.0.1\n'Left'/'Right' arrows to go to previous/next example. \n'R' to reset.";
+    instructions_text.text =
+        "Box2DFlashAS3 2.0.1\n'Left'/'Right' arrows to go to previous/next example. \n'R' to reset.";
     addChild(instructions_text);
 
     // textfield pointer
@@ -86,58 +83,61 @@ class Main extends MovieClip {
     m_sprite.graphics.clear();
 
     // toggle between tests
-    if (Input.isKeyPressed(39)) { // Right Arrow
+    if (Input.isKeyPressed(39)) {
+      // Right Arrow
       m_currId++;
       m_currTest = null;
-    } else if (Input.isKeyPressed(37)) { // Left Arrow
+    } else if (Input.isKeyPressed(37)) {
+      // Left Arrow
       m_currId--;
       m_currTest = null;
     } // Reset
-    else if (Input.isKeyPressed(82)) { // R
+    else if (Input.isKeyPressed(82)) {
+      // R
       m_currTest = null;
     }
 
-			// if null, set new test
-			if (m_currTest == null){
-	      m_currId = (m_currId + 11) % 11;
-				switch(m_currId) {
-				  case 0:
-					  m_currTest = new TestStack(watch);
-					  break;
-				  case 1:
-					  m_currTest = new TestCompound(watch);
-					  break;
-				  case 2:
-					  m_currTest = new TestCrankGearsPulley(watch);
-					  break;
-				  case 3:
-					  m_currTest = new TestBridge(watch);
-					  break;
-				  case 4:
-					  m_currTest = new TestRagdoll(watch);
-					  break;
-				  case 5:
-					  m_currTest = new TestCCD(watch);
-					  break;
-				  case 6:
-					  m_currTest = new TestTheoJansen(watch);
-					  break;
-				  case 7:
-					  m_currTest = new TestBuoyancy(watch);
-					  break;
-				  case 8:
-					  m_currTest = new TestOneSidedPlatform(watch);
-					  break;
-				  case 9:
-					  m_currTest = new TestBreakable(watch);
-					  break;
-				  case 10:
-					  m_currTest = new TestRaycast(watch);
-					  break;
-				  default:
-					  m_currTest = new TestRagdoll(watch);
-				}
-			}
+    // if null, set new test
+    if (m_currTest == null) {
+      m_currId = (m_currId + 11) % 11;
+      switch (m_currId) {
+        case 0:
+          m_currTest = new TestStack(watch);
+          break;
+        case 1:
+          m_currTest = new TestCompound(watch);
+          break;
+        case 2:
+          m_currTest = new TestCrankGearsPulley(watch);
+          break;
+        case 3:
+          m_currTest = new TestBridge(watch);
+          break;
+        case 4:
+          m_currTest = new TestRagdoll(watch);
+          break;
+        case 5:
+          m_currTest = new TestCCD(watch);
+          break;
+        case 6:
+          m_currTest = new TestTheoJansen(watch);
+          break;
+        case 7:
+          m_currTest = new TestBuoyancy(watch);
+          break;
+        case 8:
+          m_currTest = new TestOneSidedPlatform(watch);
+          break;
+        case 9:
+          m_currTest = new TestBreakable(watch);
+          break;
+        case 10:
+          m_currTest = new TestRaycast(watch);
+          break;
+        default:
+          m_currTest = new TestRagdoll(watch);
+      }
+    }
 
     // update current test
     m_currTest.Update();
@@ -148,6 +148,5 @@ class Main extends MovieClip {
     // update counter and limit framerate
     m_fpsCounter.update();
     FRateLimiter.limitFrame(30);
-
   }
 }

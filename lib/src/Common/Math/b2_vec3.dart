@@ -15,80 +15,80 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-	
-
+part of rockdot_physics;
 
 /**
 * A 2D column vector with 3 elements.
 */
 
- class b2Vec3
-{
-	/**
+class b2Vec3 {
+  /**
 	 * Construct using co-ordinates
 	 */
-	 b2Vec3([double x=0.0, double y=0.0, double z=0.0])
-	{
-		this.x = x;
-		this.y = y;
-		this.z = z;
-	}
-	
-	/**
+  b2Vec3([double x = 0.0, double y = 0.0, double z = 0.0]) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
+
+  /**
 	 * Sets this vector to all zeros
 	 */
-	  void SetZero()
-	{
-		x = y = z = 0.0;
-	}
-	
-	/**
+  void SetZero() {
+    x = y = z = 0.0;
+  }
+
+  /**
 	 * Set this vector to some specified coordinates.
 	 */
-	  void Set(double x,double y,double z)
-	{
-		this.x = x;
-		this.y = y;
-		this.z = z;
-	}
-	
-	  void SetV(b2Vec3 v)
-	{
-		x = v.x;
-		y = v.y;
-		z = v.z;
-	}
-	
-	/**
+  void Set(double x, double y, double z) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
+
+  void SetV(b2Vec3 v) {
+    x = v.x;
+    y = v.y;
+    z = v.z;
+  }
+
+  /**
 	 * Negate this vector
 	 */
-	  b2Vec3 GetNegative() { return new b2Vec3( -x, -y, -z); }
-	
-	  void NegativeSelf() { x = -x; y = -y; z = -z; }
-	
-	  b2Vec3 Copy(){
-		return new b2Vec3(x,y,z);
-	}
-	
-	  void Add(b2Vec3 v)
-	{
-		x += v.x; y += v.y; z += v.z;
-	}
-	
-	  void Subtract(b2Vec3 v)
-	{
-		x -= v.x; y -= v.y; z -= v.z;
-	}
+  b2Vec3 GetNegative() {
+    return new b2Vec3(-x, -y, -z);
+  }
 
-	  void Multiply(double a)
-	{
-		x *= a; y *= a; z *= a;
-	}
-	
-	 double x = 0.0;
-	 double y = 0.0;
-	 double z = 0.0;
-	
+  void NegativeSelf() {
+    x = -x;
+    y = -y;
+    z = -z;
+  }
+
+  b2Vec3 Copy() {
+    return new b2Vec3(x, y, z);
+  }
+
+  void Add(b2Vec3 v) {
+    x += v.x;
+    y += v.y;
+    z += v.z;
+  }
+
+  void Subtract(b2Vec3 v) {
+    x -= v.x;
+    y -= v.y;
+    z -= v.z;
+  }
+
+  void Multiply(double a) {
+    x *= a;
+    y *= a;
+    z *= a;
+  }
+
+  double x = 0.0;
+  double y = 0.0;
+  double z = 0.0;
 }

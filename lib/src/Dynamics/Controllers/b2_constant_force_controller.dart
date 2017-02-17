@@ -15,27 +15,23 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
+part of rockdot_physics;
 
 /**
  * Applies a force every frame
  */
- class b2ConstantForceController extends b2Controller
-{	
-	/**
+class b2ConstantForceController extends b2Controller {
+  /**
 	 * The force to apply
 	 */
-	 b2Vec2 F = new b2Vec2(0.0,0.0);
-	
-	 @override 
-		 void Step(b2TimeStep step){
-		for(b2ControllerEdge i=m_bodyList;i != null;i=i.nextBody){
-			b2Body body = i.body;
-			if(!body.IsAwake()) continue;
-			body.ApplyForce(F,body.GetWorldCenter());
-		}
-	}
-}
+  b2Vec2 F = new b2Vec2(0.0, 0.0);
 
+  @override
+  void Step(b2TimeStep step) {
+    for (b2ControllerEdge i = m_bodyList; i != null; i = i.nextBody) {
+      b2Body body = i.body;
+      if (!body.IsAwake()) continue;
+      body.ApplyForce(F, body.GetWorldCenter());
+    }
+  }
+}

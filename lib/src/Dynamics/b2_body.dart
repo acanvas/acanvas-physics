@@ -21,10 +21,9 @@ part of rockdot_physics;
 * A rigid body.
 */
 class b2Body {
-
   double connectEdges(b2EdgeShape s1, b2EdgeShape s2, double angle1) {
     double angle2 = atan2(s2.GetDirectionVector().y, s2.GetDirectionVector().x);
-    double coreOffset = /*Math.*/tan((angle2 - angle1) * 0.5);
+    double coreOffset = /*Math.*/ tan((angle2 - angle1) * 0.5);
     b2Vec2 core = b2Math.MulFV(coreOffset, s2.GetDirectionVector());
     core = b2Math.SubtractVV(core, s2.GetNormalVector());
     core = b2Math.MulFV(b2Settings.b2_toiSlop, core);
@@ -164,7 +163,10 @@ class b2Body {
     bool found = false;
     while (node != null) {
       if (node == fixture) {
-        if (ppF != null) ppF.m_next = fixture.m_next; else m_fixtureList = fixture.m_next;
+        if (ppF != null)
+          ppF.m_next = fixture.m_next;
+        else
+          m_fixtureList = fixture.m_next;
         //node = fixture.m_next;
         found = true;
         break;
@@ -217,7 +219,6 @@ class b2Body {
 	* @param angle the new world rotation angle of the body in radians.
 	*/
   void SetPositionAndAngle(b2Vec2 position, double angle) {
-
     b2Fixture f;
 
     //b2Settings.b2Assert(m_world.IsLocked() == false);
@@ -301,7 +302,6 @@ class b2Body {
   void SetAngle(double angle) {
     SetPositionAndAngle(GetPosition(), angle);
   }
-
 
   /**
 	* Get the world position of the center of mass.
@@ -446,14 +446,14 @@ class b2Body {
 	 * @asonly
 	 */
   b2Body Split(Function callback) {
-    b2Vec2 linearVelocity = GetLinearVelocity().Copy();//Reset mass will alter this
+    b2Vec2 linearVelocity = GetLinearVelocity().Copy(); //Reset mass will alter this
     double angularVelocity = GetAngularVelocity();
     b2Vec2 center = GetWorldCenter();
     b2Body body1 = this;
     b2Body body2 = m_world.CreateBody(GetDefinition());
 
     b2Fixture prev;
-    for (b2Fixture f = body1.m_fixtureList; f != null; ) {
+    for (b2Fixture f = body1.m_fixtureList; f != null;) {
       if (callback(f)) {
         b2Fixture next = f.m_next;
         // Remove fixture
@@ -485,9 +485,11 @@ class b2Body {
     b2Vec2 center1 = body1.GetWorldCenter();
     b2Vec2 center2 = body2.GetWorldCenter();
 
-    b2Vec2 velocity1 = b2Math.AddVV(linearVelocity, b2Math.CrossFV(angularVelocity, b2Math.SubtractVV(center1, center)));
+    b2Vec2 velocity1 =
+        b2Math.AddVV(linearVelocity, b2Math.CrossFV(angularVelocity, b2Math.SubtractVV(center1, center)));
 
-    b2Vec2 velocity2 = b2Math.AddVV(linearVelocity, b2Math.CrossFV(angularVelocity, b2Math.SubtractVV(center2, center)));
+    b2Vec2 velocity2 =
+        b2Math.AddVV(linearVelocity, b2Math.CrossFV(angularVelocity, b2Math.SubtractVV(center2, center)));
 
     body1.SetLinearVelocity(velocity1);
     body2.SetLinearVelocity(velocity2);
@@ -511,7 +513,7 @@ class b2Body {
     b2Body body2 = other;
 
     b2Fixture f;
-    for (f = other.m_fixtureList; f  != null; ) {
+    for (f = other.m_fixtureList; f != null;) {
       b2Fixture next = f.m_next;
 
       // Remove fixture
@@ -527,7 +529,6 @@ class b2Body {
       f = next;
     }
     body1.m_fixtureCount = 0;
-
 
     // Compute consistent velocites for new bodies based on cached velocity
     b2Vec2 center1 = body1.GetWorldCenter();
@@ -618,7 +619,6 @@ class b2Body {
     //m_linearVelocity += b2Cross(m_angularVelocity, m_sweep.c - oldCenter);
     m_linearVelocity.x += m_angularVelocity * -(m_sweep.c.y - oldCenter.y);
     m_linearVelocity.y += m_angularVelocity * (m_sweep.c.x - oldCenter.x);
-
   }
 
   /**
@@ -687,7 +687,6 @@ class b2Body {
     //m_linearVelocity += b2Cross(m_angularVelocity, m_sweep.c - oldCenter);
     m_linearVelocity.x += m_angularVelocity * -(m_sweep.c.y - oldCenter.y);
     m_linearVelocity.y += m_angularVelocity * (m_sweep.c.x - oldCenter.x);
-
   }
 
   /**
@@ -698,7 +697,8 @@ class b2Body {
   b2Vec2 GetWorldPoint(b2Vec2 localPoint) {
     //return b2Math.b2MulX(m_xf, localPoint);
     b2Mat22 A = m_xf.R;
-    b2Vec2 u = new b2Vec2(A.col1.x * localPoint.x + A.col2.x * localPoint.y, A.col1.y * localPoint.x + A.col2.y * localPoint.y);
+    b2Vec2 u = new b2Vec2(
+        A.col1.x * localPoint.x + A.col2.x * localPoint.y, A.col1.y * localPoint.x + A.col2.y * localPoint.y);
     u.x += m_xf.position.x;
     u.y += m_xf.position.y;
     return u;
@@ -738,7 +738,8 @@ class b2Body {
 	*/
   b2Vec2 GetLinearVelocityFromWorldPoint(b2Vec2 worldPoint) {
     //return          m_linearVelocity   + b2Cross(m_angularVelocity,   worldPoint   - m_sweep.c);
-    return new b2Vec2(m_linearVelocity.x - m_angularVelocity * (worldPoint.y - m_sweep.c.y), m_linearVelocity.y + m_angularVelocity * (worldPoint.x - m_sweep.c.x));
+    return new b2Vec2(m_linearVelocity.x - m_angularVelocity * (worldPoint.y - m_sweep.c.y),
+        m_linearVelocity.y + m_angularVelocity * (worldPoint.x - m_sweep.c.x));
   }
 
   /**
@@ -749,10 +750,12 @@ class b2Body {
   b2Vec2 GetLinearVelocityFromLocalPoint(b2Vec2 localPoint) {
     //return GetLinearVelocityFromWorldPoint(GetWorldPoint(localPoint));
     b2Mat22 A = m_xf.R;
-    b2Vec2 worldPoint = new b2Vec2(A.col1.x * localPoint.x + A.col2.x * localPoint.y, A.col1.y * localPoint.x + A.col2.y * localPoint.y);
+    b2Vec2 worldPoint = new b2Vec2(
+        A.col1.x * localPoint.x + A.col2.x * localPoint.y, A.col1.y * localPoint.x + A.col2.y * localPoint.y);
     worldPoint.x += m_xf.position.x;
     worldPoint.y += m_xf.position.y;
-    return new b2Vec2(m_linearVelocity.x - m_angularVelocity * (worldPoint.y - m_sweep.c.y), m_linearVelocity.y + m_angularVelocity * (worldPoint.x - m_sweep.c.x));
+    return new b2Vec2(m_linearVelocity.x - m_angularVelocity * (worldPoint.y - m_sweep.c.y),
+        m_linearVelocity.y + m_angularVelocity * (worldPoint.x - m_sweep.c.x));
   }
 
   /**
@@ -807,7 +810,7 @@ class b2Body {
     m_torque = 0.0;
 
     // Since the body type changed, we need to flag contacts for filtering.
-    for (b2ContactEdge ce = m_contactList; ce  != null; ce = ce.next) {
+    for (b2ContactEdge ce = m_contactList; ce != null; ce = ce.next) {
       ce.contact.FlagForFiltering();
     }
   }
@@ -925,7 +928,7 @@ class b2Body {
 
       // Create all proxies.
       broadPhase = m_world.m_contactManager.m_broadPhase;
-      for (f = m_fixtureList; f  != null; f = f.m_next) {
+      for (f = m_fixtureList; f != null; f = f.m_next) {
         f.CreateProxy(broadPhase, m_xf);
       }
       // Contacts are created the next time step.
@@ -1021,7 +1024,6 @@ class b2Body {
   }
 
   //--------------- Internals Below -------------------
-
 
   // Constructor
   /**
@@ -1125,7 +1127,6 @@ class b2Body {
   static b2Transform s_xf1 = new b2Transform();
   //
   void SynchronizeFixtures() {
-
     b2Transform xf1 = s_xf1;
     xf1.R.Set(m_sweep.a0);
     //xf1.position = m_sweep.c0 - b2Mul(xf1.R, m_sweep.localCenter);
@@ -1214,7 +1215,6 @@ class b2Body {
   double m_sleepTime = 0.0;
 
   dynamic m_userData;
-
 
   // m_flags
   //edouble

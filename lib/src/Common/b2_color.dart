@@ -15,50 +15,46 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-	
-
+part of rockdot_physics;
 
 /**
 * Color for debug drawing. Each value has the range [0,1].
 */
 
- class b2Color
-{
-	 b2Color(double rr,double gg,double bb){
-		_r = (255 * b2Math.Clamp(rr, 0.0, 1.0)).toInt();
-		_g = (255 * b2Math.Clamp(gg, 0.0, 1.0)).toInt();
-		_b = (255 * b2Math.Clamp(bb, 0.0, 1.0)).toInt();
-	}
-	
-	  void Set(double rr,double gg,double bb){
-		_r = (255 * b2Math.Clamp(rr, 0.0, 1.0)).toInt();
-		_g = (255 * b2Math.Clamp(gg, 0.0, 1.0)).toInt();
-		_b = (255 * b2Math.Clamp(bb, 0.0, 1.0)).toInt();
-	}
-	
-	// R
-	  void set r(double rr){
-		_r = (255 * b2Math.Clamp(rr, 0.0, 1.0)).toInt();
-	}
-	// G
-	  void set g(double gg){
-		_g = (255 * b2Math.Clamp(gg, 0.0, 1.0)).toInt();
-	}
-	// B
-	  void set b(double bb){
-		_b = (255 * b2Math.Clamp(bb, 0.0, 1.0)).toInt();
-	}
-	
-	// Color
-	  int get color{
-		return (_r << 16) | (_g << 8) | (_b);
-	}
-	
-	 int _r = 0;
-	 int _g = 0;
-	 int _b = 0;
+class b2Color {
+  b2Color(double rr, double gg, double bb) {
+    _r = (255 * b2Math.Clamp(rr, 0.0, 1.0)).toInt();
+    _g = (255 * b2Math.Clamp(gg, 0.0, 1.0)).toInt();
+    _b = (255 * b2Math.Clamp(bb, 0.0, 1.0)).toInt();
+  }
 
+  void Set(double rr, double gg, double bb) {
+    _r = (255 * b2Math.Clamp(rr, 0.0, 1.0)).toInt();
+    _g = (255 * b2Math.Clamp(gg, 0.0, 1.0)).toInt();
+    _b = (255 * b2Math.Clamp(bb, 0.0, 1.0)).toInt();
+  }
+
+  // R
+  void set r(double rr) {
+    _r = (255 * b2Math.Clamp(rr, 0.0, 1.0)).toInt();
+  }
+
+  // G
+  void set g(double gg) {
+    _g = (255 * b2Math.Clamp(gg, 0.0, 1.0)).toInt();
+  }
+
+  // B
+  void set b(double bb) {
+    _b = (255 * b2Math.Clamp(bb, 0.0, 1.0)).toInt();
+  }
+
+  // Color
+  int get color {
+    return (_r << 16) | (_g << 8) | (_b);
+  }
+
+  int _r = 0;
+  int _g = 0;
+  int _b = 0;
 }
-

@@ -14,19 +14,17 @@
 * misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 */
- part of rockdot_physics;
-	
-	/**
+part of rockdot_physics;
+
+/**
 	 * Input for b2Distance.
 	 * You have to option to use the shape radii
 	 * in the computation. Even 
 	 */
-	 class b2DistanceInput 
-	{
-		 b2DistanceProxy proxyA;
-		 b2DistanceProxy proxyB;
-		 b2Transform transformA;
-		 b2Transform transformB;
-		 bool useRadii;
-	}
-	
+class b2DistanceInput {
+  b2DistanceProxy proxyA;
+  b2DistanceProxy proxyB;
+  b2Transform transformA;
+  b2Transform transformB;
+  bool useRadii;
+}

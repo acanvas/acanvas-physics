@@ -15,48 +15,39 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
-
+part of rockdot_physics;
 
 /**
 * Joint definitions are used to construct joints.
 * @see b2Joint
 */
- class b2JointDef
-{
-	 b2JointDef()
-	{
-		type = b2Joint.e_unknownJoint;
-		userData = null;
-		bodyA = null;
-		bodyB = null;
-		collideConnected = false;
-	}
+class b2JointDef {
+  b2JointDef() {
+    type = b2Joint.e_unknownJoint;
+    userData = null;
+    bodyA = null;
+    bodyB = null;
+    collideConnected = false;
+  }
 
-	/**
+  /**
 	* The joint type is set automatically for concrete joint types.
 	*/
-	 int type = 0;
-	/**
+  int type = 0;
+  /**
 	* Use this to attach application specific data to your joints.
 	*/
-	 dynamic userData;
-	/**
+  dynamic userData;
+  /**
 	* The first attached body.
 	*/
-	 b2Body bodyA;
-	/**
+  b2Body bodyA;
+  /**
 	* The second attached body.
 	*/
-	 b2Body bodyB;
-	/**
+  b2Body bodyB;
+  /**
 	* Set this flag to true if the attached bodies should collide.
 	*/
-	 bool collideConnected;
-	
+  bool collideConnected;
 }
-

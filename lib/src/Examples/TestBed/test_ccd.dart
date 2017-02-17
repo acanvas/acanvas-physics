@@ -15,71 +15,64 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
+part of rockdot_physics;
 
- part of rockdot_physics;
-	
-	
-	
-	
-	
-	
-	 class TestCCD extends Test{
-	 TestCCD(Stopwatch w) : super(w) {
-			
-			// Set Text field
-			Main.m_aboutText.text = "Continuous Collision Detection";
-			
-			b2BodyDef bd;
-			b2Body body;
-			b2FixtureDef fixtureDef = new b2FixtureDef();
-			// These values are used for all the parts of the 'basket'
-			fixtureDef.density = 4.0; 
-			fixtureDef.restitution = 1.4;
-			
-			// Create 'basket'
-			{
-				bd = new b2BodyDef();
-				bd.type = b2Body.b2_dynamicBody;
-				bd.bullet = true;
-				bd.position.Set( 150.0/m_physScale, 100.0/m_physScale );
-				body = m_world.CreateBody(bd);
-				b2PolygonShape sd_bottom = new b2PolygonShape();
-				sd_bottom.SetAsBox( 45.0 / m_physScale, 4.5 / m_physScale );
-				fixtureDef.shape = sd_bottom;
-				body.CreateFixture( fixtureDef );
-				
-				b2PolygonShape sd_left = new b2PolygonShape();
-				sd_left.SetAsOrientedBox(4.5/m_physScale, 81.0/m_physScale, new b2Vec2(-43.5/m_physScale, -70.5/m_physScale), -0.2);
-				fixtureDef.shape = sd_left;
-				body.CreateFixture( fixtureDef );
-				
-				b2PolygonShape sd_right = new b2PolygonShape();
-				sd_right.SetAsOrientedBox(4.5/m_physScale, 81.0/m_physScale, new b2Vec2(43.5/m_physScale, -70.5/m_physScale), 0.2);
-				fixtureDef.shape = sd_right;
-				body.CreateFixture( fixtureDef );
-			}
-			
-			// add some small circles for effect
-			for (int i = 0; i < 5; i++){
-				b2CircleShape cd = new b2CircleShape((new Random().nextDouble() * 10 + 5) / m_physScale);
-				fixtureDef.shape = cd;
-				fixtureDef.friction = 0.3;
-				fixtureDef.density = 1.0;
-				fixtureDef.restitution = 1.1;
-				bd = new b2BodyDef();
-				bd.type = b2Body.b2_dynamicBody;
-				bd.bullet = true;
-				bd.position.Set( (new Random().nextDouble()*300 + 250)/m_physScale, (new Random().nextDouble()*320 + 20)/m_physScale );
-				body = m_world.CreateBody(bd);
-				body.CreateFixture(fixtureDef);
-			}
-			
-		}
-		
-		
-		//===============
-		// Member Data 
-		//===============
-		
-	}
-	
+class TestCCD extends Test {
+  TestCCD(Stopwatch w) : super(w) {
+    // Set Text field
+    Main.m_aboutText.text = "Continuous Collision Detection";
+
+    b2BodyDef bd;
+    b2Body body;
+    b2FixtureDef fixtureDef = new b2FixtureDef();
+    // These values are used for all the parts of the 'basket'
+    fixtureDef.density = 4.0;
+    fixtureDef.restitution = 1.4;
+
+    // Create 'basket'
+    {
+      bd = new b2BodyDef();
+      bd.type = b2Body.b2_dynamicBody;
+      bd.bullet = true;
+      bd.position.Set(150.0 / m_physScale, 100.0 / m_physScale);
+      body = m_world.CreateBody(bd);
+      b2PolygonShape sd_bottom = new b2PolygonShape();
+      sd_bottom.SetAsBox(45.0 / m_physScale, 4.5 / m_physScale);
+      fixtureDef.shape = sd_bottom;
+      body.CreateFixture(fixtureDef);
+
+      b2PolygonShape sd_left = new b2PolygonShape();
+      sd_left.SetAsOrientedBox(
+          4.5 / m_physScale, 81.0 / m_physScale, new b2Vec2(-43.5 / m_physScale, -70.5 / m_physScale), -0.2);
+      fixtureDef.shape = sd_left;
+      body.CreateFixture(fixtureDef);
+
+      b2PolygonShape sd_right = new b2PolygonShape();
+      sd_right.SetAsOrientedBox(
+          4.5 / m_physScale, 81.0 / m_physScale, new b2Vec2(43.5 / m_physScale, -70.5 / m_physScale), 0.2);
+      fixtureDef.shape = sd_right;
+      body.CreateFixture(fixtureDef);
+    }
+
+    // add some small circles for effect
+    for (int i = 0; i < 5; i++) {
+      b2CircleShape cd = new b2CircleShape((new Random().nextDouble() * 10 + 5) / m_physScale);
+      fixtureDef.shape = cd;
+      fixtureDef.friction = 0.3;
+      fixtureDef.density = 1.0;
+      fixtureDef.restitution = 1.1;
+      bd = new b2BodyDef();
+      bd.type = b2Body.b2_dynamicBody;
+      bd.bullet = true;
+      bd.position.Set(
+          (new Random().nextDouble() * 300 + 250) / m_physScale, (new Random().nextDouble() * 320 + 20) / m_physScale);
+      body = m_world.CreateBody(bd);
+      body.CreateFixture(fixtureDef);
+    }
+  }
+
+  //===============
+  // Member Data
+  //===============
+
+}

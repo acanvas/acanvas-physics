@@ -15,26 +15,17 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-	
+part of rockdot_physics;
 
-
-	
-	
 /**
 * @
 */
- class ClipVertex
-{
-	  void Set(ClipVertex other)
-	{
-		v.SetV(other.v);
-		id.Set(other.id);
-	}
-	
-	 b2Vec2 v = new b2Vec2();
-	 b2ContactID id = new b2ContactID();
+class ClipVertex {
+  void Set(ClipVertex other) {
+    v.SetV(other.v);
+    id.Set(other.id);
+  }
+
+  b2Vec2 v = new b2Vec2();
+  b2ContactID id = new b2ContactID();
 }
-	
-	

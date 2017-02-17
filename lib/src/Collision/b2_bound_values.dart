@@ -15,25 +15,21 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-	
+part of rockdot_physics;
+
 /**
 * @
 */
- class b2BoundValues {
-	 b2BoundValues()
-	{
-		lowerValues = new List<double>();
-		lowerValues[0] = 0.0;
-		lowerValues[1] = 0.0;
-		upperValues = new List<double>();
-		upperValues[0] = 0.0;
-		upperValues[1] = 0.0;
-	}
-	
-	 List<double> lowerValues;
-	 List<double> upperValues;
+class b2BoundValues {
+  b2BoundValues() {
+    lowerValues = new List<double>();
+    lowerValues[0] = 0.0;
+    lowerValues[1] = 0.0;
+    upperValues = new List<double>();
+    upperValues[0] = 0.0;
+    upperValues[1] = 0.0;
+  }
+
+  List<double> lowerValues;
+  List<double> upperValues;
 }
-	
-	

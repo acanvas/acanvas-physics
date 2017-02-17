@@ -15,30 +15,24 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
+part of rockdot_physics;
 
 /**
 * This structure is used to report contact point results.
 */
- class  b2ContactResult
-{
-	/** The first shape */
-	 b2Shape shape1;
-	/** The second shape */
-	 b2Shape shape2;
-	/** Position in world coordinates */
-	 b2Vec2 position = new b2Vec2();
-	/** Points from shape1 to shape2 */
-	 b2Vec2 normal = new b2Vec2();
-	/** The normal impulse applied to body2 */
-	 double normalImpulse = 0.0;
-	/** The tangent impulse applied to body2 */
-	 double tangentImpulse = 0.0;
-	/** The contact id identifies the features in contact */
-	 b2ContactID id = new b2ContactID();
+class b2ContactResult {
+  /** The first shape */
+  b2Shape shape1;
+  /** The second shape */
+  b2Shape shape2;
+  /** Position in world coordinates */
+  b2Vec2 position = new b2Vec2();
+  /** Points from shape1 to shape2 */
+  b2Vec2 normal = new b2Vec2();
+  /** The normal impulse applied to body2 */
+  double normalImpulse = 0.0;
+  /** The tangent impulse applied to body2 */
+  double tangentImpulse = 0.0;
+  /** The contact id identifies the features in contact */
+  b2ContactID id = new b2ContactID();
 }
-
-

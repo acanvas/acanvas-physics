@@ -15,27 +15,19 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
-
+part of rockdot_physics;
 
 /**
 * @
 */
- class b2ContactConstraintPoint
-{
-	 b2Vec2 localPoint=new b2Vec2();
-	 b2Vec2 rA=new b2Vec2();
-	 b2Vec2 rB=new b2Vec2();
-	 double normalImpulse = 0.0;
-	 double tangentImpulse = 0.0;
-	 double normalMass = 0.0;
-	 double tangentMass = 0.0;
-	 double equalizedMass = 0.0;
-	 double velocityBias = 0.0;
+class b2ContactConstraintPoint {
+  b2Vec2 localPoint = new b2Vec2();
+  b2Vec2 rA = new b2Vec2();
+  b2Vec2 rB = new b2Vec2();
+  double normalImpulse = 0.0;
+  double tangentImpulse = 0.0;
+  double normalMass = 0.0;
+  double tangentMass = 0.0;
+  double equalizedMass = 0.0;
+  double velocityBias = 0.0;
 }
-
-

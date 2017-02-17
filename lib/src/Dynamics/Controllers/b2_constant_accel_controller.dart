@@ -15,32 +15,25 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
+part of rockdot_physics;
 
 /**
  * Applies an acceleration every frame, like gravity
  */
- class b2ConstantAccelController extends b2Controller
-{	
-	/**
+class b2ConstantAccelController extends b2Controller {
+  /**
 	 * The acceleration to apply
 	 */
-	 b2Vec2 A = new b2Vec2(0.0,0.0);
-	
-	 @override 
-		 void Step(b2TimeStep step){
-		b2Vec2 smallA = new b2Vec2(A.x*step.dt,A.y*step.dt);
-		for(b2ControllerEdge i=m_bodyList;i != null;i=i.nextBody){
-			b2Body body = i.body;
-			if(!body.IsAwake()) continue;
-			//Am being lazy here
-			body.SetLinearVelocity(new b2Vec2(
-				body.GetLinearVelocity().x +smallA.x,
-				body.GetLinearVelocity().y +smallA.y
-				));
-		}
-	}
-}
+  b2Vec2 A = new b2Vec2(0.0, 0.0);
 
+  @override
+  void Step(b2TimeStep step) {
+    b2Vec2 smallA = new b2Vec2(A.x * step.dt, A.y * step.dt);
+    for (b2ControllerEdge i = m_bodyList; i != null; i = i.nextBody) {
+      b2Body body = i.body;
+      if (!body.IsAwake()) continue;
+      //Am being lazy here
+      body.SetLinearVelocity(new b2Vec2(body.GetLinearVelocity().x + smallA.x, body.GetLinearVelocity().y + smallA.y));
+    }
+  }
+}

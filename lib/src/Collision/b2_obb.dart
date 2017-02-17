@@ -15,21 +15,16 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-
+part of rockdot_physics;
 
 /**
 * An oriented bounding box.
 */
- class b2OBB
-{
-	/** The rotation matrix */
-	 b2Mat22 R = new b2Mat22();
-	/** The local centroid */
-	 b2Vec2 center = new b2Vec2();
-	/** The half-widths */
-	 b2Vec2 extents = new b2Vec2();
+class b2OBB {
+  /** The rotation matrix */
+  b2Mat22 R = new b2Mat22();
+  /** The local centroid */
+  b2Vec2 center = new b2Vec2();
+  /** The half-widths */
+  b2Vec2 extents = new b2Vec2();
 }
-
-

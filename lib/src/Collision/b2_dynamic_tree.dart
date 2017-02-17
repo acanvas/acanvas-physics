@@ -41,7 +41,6 @@ class b2DynamicTree {
 
   int m_insertionCount = 0;
 
-  
   b2DynamicTree() {
     m_root = null;
 
@@ -118,8 +117,10 @@ class b2DynamicTree {
     RemoveLeaf(proxy);
 
     // Extend AABB
-    double extendX = b2Settings.b2_aabbExtension + b2Settings.b2_aabbMultiplier * (displacement.x > 0 ? displacement.x : -displacement.x);
-    double extendY = b2Settings.b2_aabbExtension + b2Settings.b2_aabbMultiplier * (displacement.y > 0 ? displacement.y : -displacement.y);
+    double extendX = b2Settings.b2_aabbExtension +
+        b2Settings.b2_aabbMultiplier * (displacement.x > 0 ? displacement.x : -displacement.x);
+    double extendY = b2Settings.b2_aabbExtension +
+        b2Settings.b2_aabbMultiplier * (displacement.y > 0 ? displacement.y : -displacement.y);
     proxy.aabb.lowerBound.x = aabb.lowerBound.x - extendX;
     proxy.aabb.lowerBound.y = aabb.lowerBound.y - extendY;
     proxy.aabb.upperBound.x = aabb.upperBound.x + extendX;
@@ -239,10 +240,10 @@ class b2DynamicTree {
     {
       tX = p1.x + maxFraction * (p2.x - p1.x);
       tY = p1.y + maxFraction * (p2.y - p1.y);
-      segmentAABB.lowerBound.x = /*Math.*/min(p1.x, tX);
-      segmentAABB.lowerBound.y = /*Math.*/min(p1.y, tY);
-      segmentAABB.upperBound.x = /*Math.*/max(p1.x, tX);
-      segmentAABB.upperBound.y = /*Math.*/max(p1.y, tY);
+      segmentAABB.lowerBound.x = /*Math.*/ min(p1.x, tX);
+      segmentAABB.lowerBound.y = /*Math.*/ min(p1.y, tY);
+      segmentAABB.upperBound.x = /*Math.*/ max(p1.x, tX);
+      segmentAABB.upperBound.y = /*Math.*/ max(p1.y, tY);
     }
 
     List<b2DynamicTreeNode> stack = new List<b2DynamicTreeNode>();
@@ -284,10 +285,10 @@ class b2DynamicTree {
         {
           tX = p1.x + maxFraction * (p2.x - p1.x);
           tY = p1.y + maxFraction * (p2.y - p1.y);
-          segmentAABB.lowerBound.x = /*Math.*/min(p1.x, tX);
-          segmentAABB.lowerBound.y = /*Math.*/min(p1.y, tY);
-          segmentAABB.upperBound.x = /*Math.*/max(p1.x, tX);
-          segmentAABB.upperBound.y = /*Math.*/max(p1.y, tY);
+          segmentAABB.lowerBound.x = /*Math.*/ min(p1.x, tX);
+          segmentAABB.lowerBound.y = /*Math.*/ min(p1.y, tY);
+          segmentAABB.upperBound.x = /*Math.*/ max(p1.x, tX);
+          segmentAABB.upperBound.y = /*Math.*/ max(p1.y, tY);
         }
       } else {
         // No stack limit, so no assert
@@ -307,7 +308,6 @@ class b2DynamicTree {
     }
   }
 
-
   b2DynamicTreeNode AllocateNode() {
     // Peel a node off the free list
     if (m_freeList != null) {
@@ -322,7 +322,7 @@ class b2DynamicTree {
 
     // Ignore length pool expansion and relocation found in the C++
     // As we are using heap allocation
-    return new b2DynamicTreeNode();//..key = _nodeCounter++;
+    return new b2DynamicTreeNode(); //..key = _nodeCounter++;
   }
 
   void FreeNode(b2DynamicTreeNode node) {
@@ -351,8 +351,10 @@ class b2DynamicTree {
         //float32 norm1 = delta1.x + delta1.y;
         //float32 norm2 = delta2.x + delta2.y;
 
-        double norm1 = ((child1.aabb.lowerBound.x + child1.aabb.upperBound.x) / 2 - center.x).abs() + ((child1.aabb.lowerBound.y + child1.aabb.upperBound.y) / 2 - center.y).abs();
-        double norm2 = ((child2.aabb.lowerBound.x + child2.aabb.upperBound.x) / 2 - center.x).abs() + ((child2.aabb.lowerBound.y + child2.aabb.upperBound.y) / 2 - center.y).abs();
+        double norm1 = ((child1.aabb.lowerBound.x + child1.aabb.upperBound.x) / 2 - center.x).abs() +
+            ((child1.aabb.lowerBound.y + child1.aabb.upperBound.y) / 2 - center.y).abs();
+        double norm2 = ((child2.aabb.lowerBound.x + child2.aabb.upperBound.x) / 2 - center.x).abs() +
+            ((child2.aabb.lowerBound.y + child2.aabb.upperBound.y) / 2 - center.y).abs();
 
         if (norm1 < norm2) {
           sibling = child1;
@@ -393,7 +395,6 @@ class b2DynamicTree {
       leaf.parent = node2;
       m_root = node2;
     }
-
   }
 
   void RemoveLeaf(b2DynamicTreeNode leaf) {
@@ -411,7 +412,7 @@ class b2DynamicTree {
       sibling = node2.child1;
     }
 
-    if (node1 != null ) {
+    if (node1 != null) {
       // Destroy node2 and connect node1 to sibling
       if (node1.child1 == node2) {
         node1.child1 = sibling;
@@ -436,6 +437,4 @@ class b2DynamicTree {
       FreeNode(node2);
     }
   }
-
-
 }

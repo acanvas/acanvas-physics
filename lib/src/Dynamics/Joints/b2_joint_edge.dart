@@ -15,12 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
-
+part of rockdot_physics;
 
 /**
 * A joint edge is used to connect bodies and joints together
@@ -30,16 +25,13 @@
 * nodes, one for attached body.
 */
 
- class b2JointEdge
-{
-	
-	/** Provides quick access to the other body attached. */
-	 b2Body other;
-	/** The joint */
-	 b2Joint joint;
-	/** The previous joint edge in the body's joint list */
-	 b2JointEdge prev;
-	/** The next joint edge in the body's joint list */
-	 b2JointEdge next;	
+class b2JointEdge {
+  /** Provides quick access to the other body attached. */
+  b2Body other;
+  /** The joint */
+  b2Joint joint;
+  /** The previous joint edge in the body's joint list */
+  b2JointEdge prev;
+  /** The next joint edge in the body's joint list */
+  b2JointEdge next;
 }
-

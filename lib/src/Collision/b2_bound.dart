@@ -15,32 +15,35 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-	
+part of rockdot_physics;
+
 /**
 * @
 */
- class b2Bound{
-	  bool IsLower() { return (value & 1) == 0; }
-	  bool IsUpper() { return (value & 1) == 1; }
-	  void Swap(b2Bound b){
-		int tempValue = value;
-		b2Proxy tempProxy = proxy;
-		int tempStabbingCount = stabbingCount;
-		
-		value = b.value;
-		proxy = b.proxy;
-		stabbingCount = b.stabbingCount;
-		
-		b.value = tempValue;
-		b.proxy = tempProxy;
-		b.stabbingCount = tempStabbingCount;
-	}
+class b2Bound {
+  bool IsLower() {
+    return (value & 1) == 0;
+  }
 
-	 int value = 0;
-	 b2Proxy proxy;
-	 int stabbingCount = 0;
+  bool IsUpper() {
+    return (value & 1) == 1;
+  }
+
+  void Swap(b2Bound b) {
+    int tempValue = value;
+    b2Proxy tempProxy = proxy;
+    int tempStabbingCount = stabbingCount;
+
+    value = b.value;
+    proxy = b.proxy;
+    stabbingCount = b.stabbingCount;
+
+    b.value = tempValue;
+    b.proxy = tempProxy;
+    b.stabbingCount = tempStabbingCount;
+  }
+
+  int value = 0;
+  b2Proxy proxy;
+  int stabbingCount = 0;
 }
-	
-	

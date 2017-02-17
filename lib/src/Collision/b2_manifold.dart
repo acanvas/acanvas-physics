@@ -17,9 +17,6 @@
 
 part of rockdot_physics;
 
-
-
-
 /**
  * A manifold for two touching convex shapes.
  * Box2D supports multiple types of contact: dynamic - clip point versus plane with radius
@@ -53,6 +50,7 @@ class b2Manifold {
     m_type = 0;
     _m_pointCount = 0;
   }
+
   void Set(b2Manifold m) {
     _m_pointCount = m._m_pointCount;
     for (int i = 0; i < b2Settings.b2_maxManifoldPoints; i++) {
@@ -62,26 +60,30 @@ class b2Manifold {
     m_localPoint.SetV(m.m_localPoint);
     m_type = m.m_type;
   }
+
   b2Manifold Copy() {
     b2Manifold copy = new b2Manifold();
     copy.Set(this);
     return copy;
   }
+
   /** The points of contact */
   List<b2ManifoldPoint> _m_points;
-  void set m_points(List<b2ManifoldPoint> p){
-_m_points = p;
+  void set m_points(List<b2ManifoldPoint> p) {
+    _m_points = p;
   }
+
   List<b2ManifoldPoint> get m_points {
     return _m_points;
   }
-  
+
   int _m_pointCount = 0;
-  void set m_pointCount(int p){
+  void set m_pointCount(int p) {
     _m_pointCount = p;
   }
+
   int get m_pointCount => _m_pointCount;
-  
+
   /** Not used for Type e_points*/
   b2Vec2 m_localPlaneNormal;
   /** Usage depends on manifold type */
@@ -94,4 +96,3 @@ _m_points = p;
   static const int e_faceA = 0x0002;
   static const int e_faceB = 0x0004;
 }
-

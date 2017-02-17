@@ -17,8 +17,6 @@
 part of rockdot_physics;
 
 class Test {
-
-
   //===============
   // Member Data
   //===============
@@ -38,9 +36,7 @@ class Test {
   Sprite m_sprite;
   Stopwatch watch;
 
-
   Test(this.watch) {
-
     m_sprite = Main.m_sprite;
 
     b2AABB worldAABB = new b2AABB();
@@ -94,7 +90,6 @@ class Test {
     wallB.CreateFixture2(wall);
   }
 
-
   void Update() {
     // Update mouse joint
     UpdateMouseWorld();
@@ -123,10 +118,7 @@ class Test {
 
     //DrawPairs();
     //DrawBounds();
-
   }
-
-
 
   //===============
   // Update mouseWorld
@@ -139,18 +131,15 @@ class Test {
     mouseYWorld = (Input.mouseY);
   }
 
-
-
   //===============
   // Mouse Drag
   //===============
   void MouseDrag() {
     // mouse press
     if (Input.mouseDown && m_mouseJoint == null) {
-
       b2Body body = GetBodyAtMouse();
 
-      if (body != null ) {
+      if (body != null) {
         b2MouseJointDef md = new b2MouseJointDef();
         md.bodyA = m_world.GetGroundBody();
         md.bodyB = body;
@@ -162,7 +151,6 @@ class Test {
       }
     }
 
-
     // mouse release
     if (!Input.mouseDown) {
       if (m_mouseJoint != null) {
@@ -171,7 +159,6 @@ class Test {
       }
     }
 
-
     // mouse move
     if (m_mouseJoint != null) {
       b2Vec2 p2 = new b2Vec2(mouseXWorldPhys, mouseYWorldPhys);
@@ -179,25 +166,20 @@ class Test {
     }
   }
 
-
-
   //===============
   // Mouse Destroy
   //===============
   void MouseDestroy() {
     // mouse press
-    if (!Input.mouseDown && Input.isKeyPressed(68/*D*/)) {
-
+    if (!Input.mouseDown && Input.isKeyPressed(68 /*D*/)) {
       b2Body body = GetBodyAtMouse(true);
 
-      if (body != null ) {
+      if (body != null) {
         m_world.DestroyBody(body);
         return;
       }
     }
   }
-
-
 
   //===============
   // GetBodyAtMouse
@@ -217,18 +199,17 @@ class Test {
       b2Shape shape = fixture.GetShape();
       if (fixture.GetBody().GetType() != b2Body.b2_staticBody || includeStatic) {
         bool inside = shape.TestPoint(fixture.GetBody().GetTransform(), mousePVec);
-        if (inside ) {
+        if (inside) {
           body = fixture.GetBody();
           return false;
         }
       }
       return true;
     }
+
     m_world.QueryAABB(GetBodyCallback, aabb);
     return body;
   }
-
-
 
   //===============
   // Draw Bounds

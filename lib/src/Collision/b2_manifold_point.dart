@@ -15,10 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-
-
+part of rockdot_physics;
 
 /**
  * A manifold point is a contact point belonging to a contact
@@ -31,28 +28,26 @@
  * Note: the impulses are used for internal caching and may not
  * provide reliable contact forces, especially for high speed collisions.
  */
- class b2ManifoldPoint
-{
-	 b2ManifoldPoint()
-	{
-		Reset();
-	}
-	  void Reset(){
-		m_localPoint.SetZero();
-		m_normalImpulse = 0.0;
-		m_tangentImpulse = 0.0;
-		m_id.key = 0;
-	}
-	  void Set(b2ManifoldPoint m){
-		m_localPoint.SetV(m.m_localPoint);
-		m_normalImpulse = m.m_normalImpulse;
-		m_tangentImpulse = m.m_tangentImpulse;
-		m_id.Set(m.m_id);
-	}
-	 b2Vec2 m_localPoint = new b2Vec2();
-	 double m_normalImpulse = 0.0;
-	 double m_tangentImpulse = 0.0;
-	 b2ContactID m_id = new b2ContactID();
+class b2ManifoldPoint {
+  b2ManifoldPoint() {
+    Reset();
+  }
+  void Reset() {
+    m_localPoint.SetZero();
+    m_normalImpulse = 0.0;
+    m_tangentImpulse = 0.0;
+    m_id.key = 0;
+  }
+
+  void Set(b2ManifoldPoint m) {
+    m_localPoint.SetV(m.m_localPoint);
+    m_normalImpulse = m.m_normalImpulse;
+    m_tangentImpulse = m.m_tangentImpulse;
+    m_id.Set(m.m_id);
+  }
+
+  b2Vec2 m_localPoint = new b2Vec2();
+  double m_normalImpulse = 0.0;
+  double m_tangentImpulse = 0.0;
+  b2ContactID m_id = new b2ContactID();
 }
-
-

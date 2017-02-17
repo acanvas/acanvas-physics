@@ -15,20 +15,14 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
+part of rockdot_physics;
 
-	 class NullBenchmark implements IBenchmark
-	{
-		  String Name()
-		{
-			return "Null";
-		}
-		
-		  void Init(b2World world)
-		{
-		}
-		
-		  void Update()
-		{
-		}
-	}
+class NullBenchmark implements IBenchmark {
+  String Name() {
+    return "Null";
+  }
+
+  void Init(b2World world) {}
+
+  void Update() {}
+}

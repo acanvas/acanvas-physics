@@ -15,45 +15,38 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
-
+part of rockdot_physics;
 
 /**
 * @
 */
- class b2PolyAndEdgeContact extends b2Contact{
-	
-	static   b2Contact Create(dynamic allocator){
-		return new b2PolyAndEdgeContact();
-	}
-	static   void Destroy(b2Contact contact,dynamic allocator){
-	}
+class b2PolyAndEdgeContact extends b2Contact {
+  static b2Contact Create(dynamic allocator) {
+    return new b2PolyAndEdgeContact();
+  }
 
-	  void Reset([b2Fixture fixtureA=null, b2Fixture fixtureB=null]){
-		super.Reset(fixtureA, fixtureB);
-		b2Settings.b2Assert(fixtureA.GetType() == b2Shape.e_polygonShape);
-		b2Settings.b2Assert(fixtureB.GetType() == b2Shape.e_edgeShape);
-	}
-	//~b2PolyAndEdgeContact() {}
+  static void Destroy(b2Contact contact, dynamic allocator) {}
 
-	@override 
-		 void Evaluate(){
-		b2Body bA = m_fixtureA.GetBody();
-		b2Body bB = m_fixtureB.GetBody();
-		
-		b2CollidePolyAndEdge(m_manifold,
-					m_fixtureA.GetShape() as b2PolygonShape, bA.m_xf, 
-					m_fixtureB.GetShape() as b2EdgeShape, bB.m_xf);
-	}
-	
-	  void b2CollidePolyAndEdge(b2Manifold manifold,b2PolygonShape polygon,b2Transform xf1,b2EdgeShape edge,b2Transform xf2)
-	{
-		//TODO_BORIS
-		/*
+  void Reset([b2Fixture fixtureA = null, b2Fixture fixtureB = null]) {
+    super.Reset(fixtureA, fixtureB);
+    b2Settings.b2Assert(fixtureA.GetType() == b2Shape.e_polygonShape);
+    b2Settings.b2Assert(fixtureB.GetType() == b2Shape.e_edgeShape);
+  }
+  //~b2PolyAndEdgeContact() {}
+
+  @override
+  void Evaluate() {
+    b2Body bA = m_fixtureA.GetBody();
+    b2Body bB = m_fixtureB.GetBody();
+
+    b2CollidePolyAndEdge(
+        m_manifold, m_fixtureA.GetShape() as b2PolygonShape, bA.m_xf, m_fixtureB.GetShape() as b2EdgeShape, bB.m_xf);
+  }
+
+  void b2CollidePolyAndEdge(
+      b2Manifold manifold, b2PolygonShape polygon, b2Transform xf1, b2EdgeShape edge, b2Transform xf2) {
+    //TODO_BORIS
+    /*
 		manifold.pointCount = 0;
 		b2Mat22 tMat;
 		b2Vec2 tVec1;
@@ -358,6 +351,5 @@
 			tPoint.separation = exitSepN;
 		}
 		*/
-	}
+  }
 }
-

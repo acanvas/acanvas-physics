@@ -15,32 +15,23 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
-
+part of rockdot_physics;
 
 /**
 * Joints and shapes are destroyed when their associated
 * body is destroyed. Implement this listener so that you
 * may nullify references to these joints and shapes.
 */
- class b2DestructionListener
-{
-
-	/**
+class b2DestructionListener {
+  /**
 	* Called when any joint is about to be destroyed due
 	* to the destruction of one of its attached bodies.
 	*/
-	 void SayGoodbyeJoint(b2Joint joint){}
+  void SayGoodbyeJoint(b2Joint joint) {}
 
-	/**
+  /**
 	* Called when any fixture is about to be destroyed due
 	* to the destruction of its parent body.
 	*/
-	 void SayGoodbyeFixture(b2Fixture fixture){}
-	
+  void SayGoodbyeFixture(b2Fixture fixture) {}
 }
-

@@ -15,12 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-	
-
-
-
+part of rockdot_physics;
 
 /**
  * Line joint definition. This requires defining a line of
@@ -31,76 +26,70 @@
  * anchors and a local axis helps when saving and loading a game.
  * @see b2LineJoint
  */
- class b2LineJointDef extends b2JointDef
-{
-	 b2LineJointDef()
-	{
-		type = b2Joint.e_lineJoint;
-		//localAnchor1.SetZero();
-		//localAnchor2.SetZero();
-		localAxisA.Set(1.0, 0.0);
-		enableLimit = false;
-		lowerTranslation = 0.0;
-		upperTranslation = 0.0;
-		enableMotor = false;
-		maxMotorForce = 0.0;
-		motorSpeed = 0.0;
-	}
-	
-	  void Initialize(b2Body bA,b2Body bB,b2Vec2 anchor,b2Vec2 axis)
-	{
-		bodyA = bA;
-		bodyB = bB;
-		localAnchorA = bodyA.GetLocalPoint(anchor);
-		localAnchorB = bodyB.GetLocalPoint(anchor);
-		localAxisA = bodyA.GetLocalVector(axis);
-	}
-	
-	/**
+class b2LineJointDef extends b2JointDef {
+  b2LineJointDef() {
+    type = b2Joint.e_lineJoint;
+    //localAnchor1.SetZero();
+    //localAnchor2.SetZero();
+    localAxisA.Set(1.0, 0.0);
+    enableLimit = false;
+    lowerTranslation = 0.0;
+    upperTranslation = 0.0;
+    enableMotor = false;
+    maxMotorForce = 0.0;
+    motorSpeed = 0.0;
+  }
+
+  void Initialize(b2Body bA, b2Body bB, b2Vec2 anchor, b2Vec2 axis) {
+    bodyA = bA;
+    bodyB = bB;
+    localAnchorA = bodyA.GetLocalPoint(anchor);
+    localAnchorB = bodyB.GetLocalPoint(anchor);
+    localAxisA = bodyA.GetLocalVector(axis);
+  }
+
+  /**
 	* The local anchor point relative to bodyA's origin.
 	*/
-	 b2Vec2 localAnchorA = new b2Vec2();
+  b2Vec2 localAnchorA = new b2Vec2();
 
-	/**
+  /**
 	* The local anchor point relative to bodyB's origin.
 	*/
-	 b2Vec2 localAnchorB = new b2Vec2();
+  b2Vec2 localAnchorB = new b2Vec2();
 
-	/**
+  /**
 	* The local translation axis in bodyA.
 	*/
-	 b2Vec2 localAxisA = new b2Vec2();
+  b2Vec2 localAxisA = new b2Vec2();
 
-	/**
+  /**
 	* Enable/disable the joint limit.
 	*/
-	 bool enableLimit;
+  bool enableLimit;
 
-	/**
+  /**
 	* The lower translation limit, usually in meters.
 	*/
-	 double lowerTranslation = 0.0;
+  double lowerTranslation = 0.0;
 
-	/**
+  /**
 	* The upper translation limit, usually in meters.
 	*/
-	 double upperTranslation = 0.0;
+  double upperTranslation = 0.0;
 
-	/**
+  /**
 	* Enable/disable the joint motor.
 	*/
-	 bool enableMotor;
+  bool enableMotor;
 
-	/**
+  /**
 	* The maximum motor torque, usually in N-m.
 	*/
-	 double maxMotorForce = 0.0;
+  double maxMotorForce = 0.0;
 
-	/**
+  /**
 	* The desired motor speed in radians per second.
 	*/
-	 double motorSpeed = 0.0;
-
-	
+  double motorSpeed = 0.0;
 }
-	

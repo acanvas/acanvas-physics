@@ -15,14 +15,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-
 part of rockdot_physics;
 
 class TestRagdoll extends Test {
-
-
   TestRagdoll(Stopwatch w) : super(w) {
-
     // Set Text field
     Main.m_aboutText.text = "Ragdolls";
 
@@ -52,7 +48,8 @@ class TestRagdoll extends Test {
       head = m_world.CreateBody(bd);
       head.CreateFixture(fixtureDef);
       //if (i == 0){
-      head.ApplyImpulse(new b2Vec2(new Random().nextDouble() * 100 - 50, new Random().nextDouble() * 100 - 50), head.GetWorldCenter());
+      head.ApplyImpulse(new b2Vec2(new Random().nextDouble() * 100 - 50, new Random().nextDouble() * 100 - 50),
+          head.GetWorldCenter());
       //}
 
       // Torso1
@@ -155,7 +152,6 @@ class TestRagdoll extends Test {
       b2Body lowerLegR = m_world.CreateBody(bd);
       lowerLegR.CreateFixture(fixtureDef);
 
-
       // JOINTS
       jd.enableLimit = true;
 
@@ -221,9 +217,7 @@ class TestRagdoll extends Test {
       jd.upperAngle = 25 / (180 / PI);
       jd.Initialize(upperLegR, lowerLegR, new b2Vec2((startX + 8) / m_physScale, (startY + 105) / m_physScale));
       m_world.CreateJoint(jd);
-
     }
-
 
     // Add stairs on the left, these are static bodies so set the type accordingly
     bd.type = b2Body.b2_staticBody;
@@ -255,10 +249,7 @@ class TestRagdoll extends Test {
     bd.position.Set(320 / m_physScale, 320 / m_physScale);
     head = m_world.CreateBody(bd);
     head.CreateFixture(fixtureDef);
-
-
   }
-
 
   //===============
   // Member Data

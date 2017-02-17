@@ -15,39 +15,33 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
+part of rockdot_physics;
 
 /**
 * @
 */
- class b2CircleContact extends b2Contact
-{
-	static   b2Contact Create(dynamic allocator){
-		return new b2CircleContact();
-	}
-	static   void Destroy(b2Contact contact,dynamic allocator){
-		//
-	}
+class b2CircleContact extends b2Contact {
+  static b2Contact Create(dynamic allocator) {
+    return new b2CircleContact();
+  }
 
-	  void Reset([b2Fixture fixtureA=null, b2Fixture fixtureB=null]){
-		super.Reset(fixtureA, fixtureB);
-		//b2Settings.b2Assert(m_shape1.m_type == b2Shape.e_circleShape);
-		//b2Settings.b2Assert(m_shape2.m_type == b2Shape.e_circleShape);
-	}
-	//~b2CircleContact() {}
-	
-	@override 
-		 void Evaluate(){
-		b2Body bA = m_fixtureA.GetBody();
-		b2Body bB = m_fixtureB.GetBody();
-		
-		b2Collision.CollideCircles(m_manifold, 
-					m_fixtureA.GetShape() as b2CircleShape, bA.m_xf, 
-					m_fixtureB.GetShape() as b2CircleShape, bB.m_xf);
-	}
+  static void Destroy(b2Contact contact, dynamic allocator) {
+    //
+  }
+
+  void Reset([b2Fixture fixtureA = null, b2Fixture fixtureB = null]) {
+    super.Reset(fixtureA, fixtureB);
+    //b2Settings.b2Assert(m_shape1.m_type == b2Shape.e_circleShape);
+    //b2Settings.b2Assert(m_shape2.m_type == b2Shape.e_circleShape);
+  }
+  //~b2CircleContact() {}
+
+  @override
+  void Evaluate() {
+    b2Body bA = m_fixtureA.GetBody();
+    b2Body bB = m_fixtureB.GetBody();
+
+    b2Collision.CollideCircles(
+        m_manifold, m_fixtureA.GetShape() as b2CircleShape, bA.m_xf, m_fixtureB.GetShape() as b2CircleShape, bB.m_xf);
+  }
 }
-

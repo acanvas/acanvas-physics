@@ -15,30 +15,23 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
-
+part of rockdot_physics;
 
 /**
 * This holds the mass data computed for a shape.
 */
- class b2MassData
-{
-	/**
+class b2MassData {
+  /**
 	* The mass of the shape, usually in kilograms.
 	*/
-	 double mass = 0.0;
-	/**
+  double mass = 0.0;
+  /**
 	* The position of the shape's centroid relative to the shape's origin.
 	*/
-	 b2Vec2 center = new b2Vec2(0.0,0.0);
-	/**
+  b2Vec2 center = new b2Vec2(0.0, 0.0);
+  /**
 	* The rotational inertia of the shape.
 	* This may be about the center or local origin, depending on usage.
 	*/
-	 double I = 0.0;
+  double I = 0.0;
 }
-

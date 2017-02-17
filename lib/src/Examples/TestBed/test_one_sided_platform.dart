@@ -15,14 +15,9 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-
 part of rockdot_physics;
 
-
-
-
 class TestOneSidedPlatform extends Test {
-
   //===============
   // Member Data
   //===============
@@ -39,7 +34,6 @@ class TestOneSidedPlatform extends Test {
   b2Fixture m_character;
 
   TestOneSidedPlatform(Stopwatch w) : super(w) {
-
     // Set Text field
     Main.m_aboutText.text = "One Sided Platform\n" + "Press: (create as c) a shape, (destroy as d) a shape.";
 
@@ -57,7 +51,6 @@ class TestOneSidedPlatform extends Test {
 
       m_bottom = bd.position.y + 0.5;
       m_top = bd.position.y - 0.5;
-
     }
 
     // Actor
@@ -76,8 +69,6 @@ class TestOneSidedPlatform extends Test {
 
     m_world.SetContactListener(new ContactListener(this));
   }
-
-
 }
 
 class ContactListener extends b2ContactListener {

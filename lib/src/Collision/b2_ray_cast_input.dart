@@ -18,29 +18,24 @@
 /**
  * Specifies a segment for use with RayCast functions.
  */
- part of rockdot_physics;
-	
-	 class b2RayCastInput 
-	{
-	 b2RayCastInput([b2Vec2 p1=null, b2Vec2 p2=null, double maxFraction=1.0])
-		{
-			if( p1 != null )
-				this.p1.SetV(p1);
-			if( p2 != null )
-				this.p2.SetV(p2);
-			this.maxFraction = maxFraction;
-		}
-		/**
+part of rockdot_physics;
+
+class b2RayCastInput {
+  b2RayCastInput([b2Vec2 p1 = null, b2Vec2 p2 = null, double maxFraction = 1.0]) {
+    if (p1 != null) this.p1.SetV(p1);
+    if (p2 != null) this.p2.SetV(p2);
+    this.maxFraction = maxFraction;
+  }
+  /**
 		 * The start point of the ray
 		 */
-		 b2Vec2 p1 = new b2Vec2();
-		/**
+  b2Vec2 p1 = new b2Vec2();
+  /**
 		 * The end point of the ray
 		 */
-		 b2Vec2 p2 = new b2Vec2();
-		/**
+  b2Vec2 p2 = new b2Vec2();
+  /**
 		 * Truncate the ray to reach up to this fraction from p1 to p2
 		 */
-		 double maxFraction = 0.0;
-	}
-	
+  double maxFraction = 0.0;
+}

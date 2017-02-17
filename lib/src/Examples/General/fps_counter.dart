@@ -10,16 +10,12 @@
 //======================================//
 //========================================
 
-
-
 //========================================
 // FPS COUNTER CLASS
 //========================================
 part of rockdot_physics;
 
-
 class FpsCounter extends Sprite {
-
   //===============
   //  variables
   //===============
@@ -37,7 +33,6 @@ class FpsCounter extends Sprite {
   // constructor
   //===============
   FpsCounter(this.watch) {
-
     // create text field
     textBox = new TextField();
     textBox.text = "...";
@@ -81,22 +76,23 @@ class FpsCounter extends Sprite {
     oldT = watch.elapsedMilliseconds;
 
     //textBox3.text = (System.totalMemory/(1024*1024)).round().toString() + " MB used"
-
   }
-
 
   void updatePhys(int oldT2) {
     int newT = watch.elapsedMilliseconds;
     int f1 = (newT - oldT2);
     mfpsCount2 += f1 + 1;
     if (avgCount2 < 1) {
-      textBox2.text = ("Physics step: " + (mfpsCount2 / 30).toString() + " ms (" + (1000 / (mfpsCount2 / 30)).round().toString() + " fps)");
+      textBox2.text = ("Physics step: " +
+          (mfpsCount2 / 30).toString() +
+          " ms (" +
+          (1000 / (mfpsCount2 / 30)).round().toString() +
+          " fps)");
       avgCount2 = 30;
       mfpsCount2 = 0;
     }
     avgCount2--;
   }
-
 
   //===============
   // updateend function
@@ -112,8 +108,5 @@ class FpsCounter extends Sprite {
 				mfpsCount2 = 0;
 			}
 			avgCount2--;*/
-
   }
-
-
 }

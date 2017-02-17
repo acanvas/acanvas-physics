@@ -15,12 +15,8 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-	
+part of rockdot_physics;
 
-
-	
 /**
 * A contact edge is used to connect bodies and contacts together
 * in a contact graph where each body is a node and each contact
@@ -28,13 +24,9 @@
 * maintained in each attached body. Each contact has two contact
 * nodes, one for attached body.
 */
- class b2ContactEdge
-{
-	 b2Body other;
-	 b2Contact contact;
-	 b2ContactEdge prev;
-	 b2ContactEdge next;
+class b2ContactEdge {
+  b2Body other;
+  b2Contact contact;
+  b2ContactEdge prev;
+  b2ContactEdge next;
 }
-	
-	
-	

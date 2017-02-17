@@ -19,46 +19,56 @@
 // of overlapping proxies. It is based closely on code provided by Pierre Terdiman.
 // http://www.codercorner.com/IncrementalSAP.txt
 
- part of rockdot_physics;
-
-
-
-
-
+part of rockdot_physics;
 
 /**
  * A Pair represents a pair of overlapping b2Proxy in the broadphse.
  * @
  */
- class b2Pair
-{
-	
+class b2Pair {
+  void SetBuffered() {
+    status |= e_pairBuffered;
+  }
 
-	  void SetBuffered()	{ status |= e_pairBuffered; }
-	  void ClearBuffered()	{ status &= ~e_pairBuffered; }
-	  bool IsBuffered()	{ return (status & e_pairBuffered) == e_pairBuffered; }
+  void ClearBuffered() {
+    status &= ~e_pairBuffered;
+  }
 
-	  void SetRemoved()		{ status |= e_pairRemoved; }
-	  void ClearRemoved()	{ status &= ~e_pairRemoved; }
-	  bool IsRemoved()		{ return (status & e_pairRemoved) == e_pairRemoved; }
-	
-	  void SetFinal()		{ status |= e_pairFinal; }
-	  bool IsFinal()		{ return (status & e_pairFinal) == e_pairFinal; }
+  bool IsBuffered() {
+    return (status & e_pairBuffered) == e_pairBuffered;
+  }
 
-	 dynamic userData = null;
-	 b2Proxy proxy1;
-	 b2Proxy proxy2;
-	 b2Pair next;
-	 int status = 0;
-	
-	// STATIC
-	static  int b2_nullProxy = b2Settings.USHRT_MAX;
-	
-	// edouble
-	static  int e_pairBuffered = 0x0001;
-	static  int e_pairRemoved = 0x0002;
-	static  int e_pairFinal = 0x0004;
+  void SetRemoved() {
+    status |= e_pairRemoved;
+  }
 
+  void ClearRemoved() {
+    status &= ~e_pairRemoved;
+  }
+
+  bool IsRemoved() {
+    return (status & e_pairRemoved) == e_pairRemoved;
+  }
+
+  void SetFinal() {
+    status |= e_pairFinal;
+  }
+
+  bool IsFinal() {
+    return (status & e_pairFinal) == e_pairFinal;
+  }
+
+  dynamic userData = null;
+  b2Proxy proxy1;
+  b2Proxy proxy2;
+  b2Pair next;
+  int status = 0;
+
+  // STATIC
+  static int b2_nullProxy = b2Settings.USHRT_MAX;
+
+  // edouble
+  static int e_pairBuffered = 0x0001;
+  static int e_pairRemoved = 0x0002;
+  static int e_pairFinal = 0x0004;
 }
-
-

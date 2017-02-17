@@ -15,42 +15,39 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
+part of rockdot_physics;
 
-
-
-// 
+//
 /**
 * We use contact ids to facilitate warm starting.
 */
- class b2ContactID
-{
-	 b2ContactID(){
-		features._m_id = this;
-		
-	}
-	  void Set(b2ContactID id){
-		key = id._key;
-	}
-	  b2ContactID Copy(){
-		b2ContactID id = new b2ContactID();
-		id.key = key;
-		return id;
-	}
-	  int get key {
-		return _key;
-	}
-	  void set key(int value) {
-		_key = value;
-		features._referenceEdge = _key & 0x000000ff;
-		features._incidentEdge = ((_key & 0x0000ff00) >> 8) & 0x000000ff;
-		features._incidentVertex = ((_key & 0x00ff0000) >> 16) & 0x000000ff;
-		features._flip = ((_key & 0xff000000) >> 24) & 0x000000ff;
-	}
-	 Features features = new Features();
-	/** Used to quickly compare contact ids. */
-	int _key = 0;
+class b2ContactID {
+  b2ContactID() {
+    features._m_id = this;
+  }
+  void Set(b2ContactID id) {
+    key = id._key;
+  }
+
+  b2ContactID Copy() {
+    b2ContactID id = new b2ContactID();
+    id.key = key;
+    return id;
+  }
+
+  int get key {
+    return _key;
+  }
+
+  void set key(int value) {
+    _key = value;
+    features._referenceEdge = _key & 0x000000ff;
+    features._incidentEdge = ((_key & 0x0000ff00) >> 8) & 0x000000ff;
+    features._incidentVertex = ((_key & 0x00ff0000) >> 16) & 0x000000ff;
+    features._flip = ((_key & 0xff000000) >> 24) & 0x000000ff;
+  }
+
+  Features features = new Features();
+  /** Used to quickly compare contact ids. */
+  int _key = 0;
 }
-
-

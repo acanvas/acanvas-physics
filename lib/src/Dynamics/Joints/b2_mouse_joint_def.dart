@@ -15,42 +15,38 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
+part of rockdot_physics;
 
 /**
 * Mouse joint definition. This requires a world target point,
 * tuning parameters, and the time step.
 * @see b2MouseJoint
 */
- class b2MouseJointDef extends b2JointDef
-{
-	 b2MouseJointDef()
-	{
-		type = b2Joint.e_mouseJoint;
-		maxForce = 0.0;
-		frequencyHz = 5.0;
-		dampingRatio = 0.7;
-	}
+class b2MouseJointDef extends b2JointDef {
+  b2MouseJointDef() {
+    type = b2Joint.e_mouseJoint;
+    maxForce = 0.0;
+    frequencyHz = 5.0;
+    dampingRatio = 0.7;
+  }
 
-	/**
+  /**
 	* The initial world target point. This is assumed
 	* to coincide with the body anchor initially.
 	*/
-	 b2Vec2 target = new b2Vec2();
-	/**
+  b2Vec2 target = new b2Vec2();
+  /**
 	* The maximum constraint force that can be exerted
 	* to move the candidate body. Usually you will express
 	* as some multiple of the weight (multiplier * mass * gravity).
 	*/
-	 double maxForce = 0.0;
-	/**
+  double maxForce = 0.0;
+  /**
 	* The response speed.
 	*/
-	 double frequencyHz = 0.0;
-	/**
+  double frequencyHz = 0.0;
+  /**
 	* The damping ratio. 0 = no damping, 1 = critical damping.
 	*/
-	 double dampingRatio = 0.0;
+  double dampingRatio = 0.0;
 }
-

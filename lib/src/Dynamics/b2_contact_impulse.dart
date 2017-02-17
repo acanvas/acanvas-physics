@@ -15,17 +15,14 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-	/**
+part of rockdot_physics;
+
+/**
 	 * Contact impulses for reporting. Impulses are used instead of forces because
 	 * sub-step forces may approach infinity for rigid body collisions. These
 	 * match up one-to-one with the contact points in b2Manifold.
 	 */
-	 class b2ContactImpulse 
-	{
-		 List<double> normalImpulses = new List<double>(b2Settings.b2_maxManifoldPoints);
-		 List<double> tangentImpulses = new List<double>(b2Settings.b2_maxManifoldPoints);
-		
-	}
-	
+class b2ContactImpulse {
+  List<double> normalImpulses = new List<double>(b2Settings.b2_maxManifoldPoints);
+  List<double> tangentImpulses = new List<double>(b2Settings.b2_maxManifoldPoints);
+}

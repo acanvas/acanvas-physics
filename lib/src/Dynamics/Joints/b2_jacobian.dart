@@ -15,36 +15,36 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
-
+part of rockdot_physics;
 
 /**
 * @
 */
- class b2Jacobian
-{
-	 b2Vec2 linearA = new b2Vec2();
-	 double angularA = 0.0;
-	 b2Vec2 linearB = new b2Vec2();
-	 double angularB = 0.0;
+class b2Jacobian {
+  b2Vec2 linearA = new b2Vec2();
+  double angularA = 0.0;
+  b2Vec2 linearB = new b2Vec2();
+  double angularB = 0.0;
 
-	  void SetZero(){
-		linearA.SetZero(); angularA = 0.0;
-		linearB.SetZero(); angularB = 0.0;
-	}
-	  void Set(b2Vec2 x1,double a1,b2Vec2 x2,double a2){
-		linearA.SetV(x1); angularA = a1;
-		linearB.SetV(x2); angularB = a2;
-	}
-	  double Compute(b2Vec2 x1,double a1,b2Vec2 x2,double a2){
-		
-		//return b2Math.b2Dot(linearA, x1) + angularA * a1 + b2Math.b2Dot(linearV, x2) + angularV * a2;
-		return (linearA.x*x1.x + linearA.y*x1.y) + angularA * a1 + (linearB.x*x2.x + linearB.y*x2.y) + angularB * a2;
-	}
+  void SetZero() {
+    linearA.SetZero();
+    angularA = 0.0;
+    linearB.SetZero();
+    angularB = 0.0;
+  }
+
+  void Set(b2Vec2 x1, double a1, b2Vec2 x2, double a2) {
+    linearA.SetV(x1);
+    angularA = a1;
+    linearB.SetV(x2);
+    angularB = a2;
+  }
+
+  double Compute(b2Vec2 x1, double a1, b2Vec2 x2, double a2) {
+    //return b2Math.b2Dot(linearA, x1) + angularA * a1 + b2Math.b2Dot(linearV, x2) + angularV * a2;
+    return (linearA.x * x1.x + linearA.y * x1.y) +
+        angularA * a1 +
+        (linearB.x * x2.x + linearB.y * x2.y) +
+        angularB * a2;
+  }
 }
-
-

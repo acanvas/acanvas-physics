@@ -15,35 +15,27 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
-
-
+part of rockdot_physics;
 
 /**
 * This structure is used to build edge shapes.
 * @see b2EdgeShape
 */
- class b2EdgeChainDef// extends b2ShapeDef
+class b2EdgeChainDef // extends b2ShapeDef
 {
-	 b2EdgeChainDef()
-	{
-		//type = b2Shape.e_edgeShape;
-		vertexCount = 0;
-		isALoop = true;
-		vertices = [];
-	}
+  b2EdgeChainDef() {
+    //type = b2Shape.e_edgeShape;
+    vertexCount = 0;
+    isALoop = true;
+    vertices = [];
+  }
 
-	/** The vertices in local coordinates. */
-	 List vertices;
-	
-	/** The doubleber of vertices in the chain. */
-	 int vertexCount = 0;
-	
-	/** Whether to create an extra edge between the first and last vertices. */
-	 bool isALoop;
+  /** The vertices in local coordinates. */
+  List vertices;
+
+  /** The doubleber of vertices in the chain. */
+  int vertexCount = 0;
+
+  /** Whether to create an extra edge between the first and last vertices. */
+  bool isALoop;
 }
-

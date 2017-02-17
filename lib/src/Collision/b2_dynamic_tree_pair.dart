@@ -1,10 +1,9 @@
- part of rockdot_physics;
-	/**
+part of rockdot_physics;
+
+/**
 	 * @
 	 */
-	 class b2DynamicTreePair 
-	{
-		 b2DynamicTreeNode proxyA;
-		 b2DynamicTreeNode proxyB;
-	}
-	
+class b2DynamicTreePair {
+  b2DynamicTreeNode proxyA;
+  b2DynamicTreeNode proxyB;
+}

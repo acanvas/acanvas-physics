@@ -15,11 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
+part of rockdot_physics;
 
 // Linear constraint (point-to-line)
 // d = p2 - p1 = x2 + r2 - x1 - r1
@@ -34,7 +30,6 @@
 // a = perp
 // s1 = cross(d + r1, a) = cross(p2 - x1, a)
 // s2 = cross(r2, a) = cross(p2 - x2, a)
-
 
 // Motor/Limit linear constraint
 // C = dot(ax1, d)
@@ -88,687 +83,644 @@
  * model joint friction.
  * @see b2LineJointDef
  */
- class b2LineJoint extends b2Joint
-{
-	/** @inheritDoc */
-	 @override 
-		 b2Vec2 GetAnchorA(){
-		return m_bodyA.GetWorldPoint(m_localAnchor1);
-	}
-	/** @inheritDoc */
-	 @override 
-		 b2Vec2 GetAnchorB(){
-		return m_bodyB.GetWorldPoint(m_localAnchor2);
-	}
-	/** @inheritDoc */
-	 @override 
-		 b2Vec2 GetReactionForce(double inv_dt)
-	{
-		//return inv_dt * (m_impulse.x * m_perp + (m_motorImpulse + m_impulse.y) * m_axis);
-		return new b2Vec2(	inv_dt * (m_impulse.x * m_perp.x + (m_motorImpulse + m_impulse.y) * m_axis.x),
-							inv_dt * (m_impulse.x * m_perp.y + (m_motorImpulse + m_impulse.y) * m_axis.y));
-	}
+class b2LineJoint extends b2Joint {
+  /** @inheritDoc */
+  @override
+  b2Vec2 GetAnchorA() {
+    return m_bodyA.GetWorldPoint(m_localAnchor1);
+  }
 
-	/** @inheritDoc */
-	 @override 
-		 double GetReactionTorque(double inv_dt)
-	{
-		return inv_dt * m_impulse.y;
-	}
-	
-	/**
+  /** @inheritDoc */
+  @override
+  b2Vec2 GetAnchorB() {
+    return m_bodyB.GetWorldPoint(m_localAnchor2);
+  }
+
+  /** @inheritDoc */
+  @override
+  b2Vec2 GetReactionForce(double inv_dt) {
+    //return inv_dt * (m_impulse.x * m_perp + (m_motorImpulse + m_impulse.y) * m_axis);
+    return new b2Vec2(inv_dt * (m_impulse.x * m_perp.x + (m_motorImpulse + m_impulse.y) * m_axis.x),
+        inv_dt * (m_impulse.x * m_perp.y + (m_motorImpulse + m_impulse.y) * m_axis.y));
+  }
+
+  /** @inheritDoc */
+  @override
+  double GetReactionTorque(double inv_dt) {
+    return inv_dt * m_impulse.y;
+  }
+
+  /**
 	* Get the current joint translation, usually in meters.
 	*/
-	  double GetJointTranslation(){
-		b2Body bA = m_bodyA;
-		b2Body bB = m_bodyB;
-		
-		b2Mat22 tMat;
-		
-		b2Vec2 p1 = bA.GetWorldPoint(m_localAnchor1);
-		b2Vec2 p2 = bB.GetWorldPoint(m_localAnchor2);
-		//b2Vec2 d = b2Math.SubtractVV(p2, p1);
-		double dX = p2.x - p1.x;
-		double dY = p2.y - p1.y;
-		//b2Vec2 axis = bA->GetWorldListm_localXAxis1);
-		b2Vec2 axis = bA.GetWorldVector(m_localXAxis1);
-		
-		//float32 translation = b2Dot(d, axis);
-		double translation = axis.x*dX + axis.y*dY;
-		return translation;
-	}
-	
-	/**
+  double GetJointTranslation() {
+    b2Body bA = m_bodyA;
+    b2Body bB = m_bodyB;
+
+    b2Mat22 tMat;
+
+    b2Vec2 p1 = bA.GetWorldPoint(m_localAnchor1);
+    b2Vec2 p2 = bB.GetWorldPoint(m_localAnchor2);
+    //b2Vec2 d = b2Math.SubtractVV(p2, p1);
+    double dX = p2.x - p1.x;
+    double dY = p2.y - p1.y;
+    //b2Vec2 axis = bA->GetWorldListm_localXAxis1);
+    b2Vec2 axis = bA.GetWorldVector(m_localXAxis1);
+
+    //float32 translation = b2Dot(d, axis);
+    double translation = axis.x * dX + axis.y * dY;
+    return translation;
+  }
+
+  /**
 	* Get the current joint translation speed, usually in meters per second.
 	*/
-	  double GetJointSpeed(){
-		b2Body bA = m_bodyA;
-		b2Body bB = m_bodyB;
-		
-		b2Mat22 tMat;
-		
-		//b2Vec2 r1 = b2Mul(bA->m_xf.R, m_localAnchor1 - bA->GetLocalCenter());
-		tMat = bA.m_xf.R;
-		double r1X = m_localAnchor1.x - bA.m_sweep.localCenter.x;
-		double r1Y = m_localAnchor1.y - bA.m_sweep.localCenter.y;
-		double tX =  (tMat.col1.x * r1X + tMat.col2.x * r1Y);
-		r1Y = (tMat.col1.y * r1X + tMat.col2.y * r1Y);
-		r1X = tX;
-		//b2Vec2 r2 = b2Mul(bB->m_xf.R, m_localAnchor2 - bB->GetLocalCenter());
-		tMat = bB.m_xf.R;
-		double r2X = m_localAnchor2.x - bB.m_sweep.localCenter.x;
-		double r2Y = m_localAnchor2.y - bB.m_sweep.localCenter.y;
-		tX =  (tMat.col1.x * r2X + tMat.col2.x * r2Y);
-		r2Y = (tMat.col1.y * r2X + tMat.col2.y * r2Y);
-		r2X = tX;
-		
-		//b2Vec2 p1 = bA->m_sweep.c + r1;
-		double p1X = bA.m_sweep.c.x + r1X;
-		double p1Y = bA.m_sweep.c.y + r1Y;
-		//b2Vec2 p2 = bB->m_sweep.c + r2;
-		double p2X = bB.m_sweep.c.x + r2X;
-		double p2Y = bB.m_sweep.c.y + r2Y;
-		//b2Vec2 d = b2Math.SubtractVV(p2, p1);
-		double dX = p2X - p1X;
-		double dY = p2Y - p1Y;
-		//b2Vec2 axis = bA->GetWorldListm_localXAxis1);
-		b2Vec2 axis = bA.GetWorldVector(m_localXAxis1);
-		
-		b2Vec2 v1 = bA.m_linearVelocity;
-		b2Vec2 v2 = bB.m_linearVelocity;
-		double w1 = bA.m_angularVelocity;
-		double w2 = bB.m_angularVelocity;
-		
-		//double speed = b2Math.b2Dot(d, b2Math.b2CrossFV(w1, ax1)) + b2Math.b2Dot(ax1, b2Math.SubtractVV( b2Math.SubtractVV( b2Math.AddVV( v2 , b2Math.b2CrossFV(w2, r2)) , v1) , b2Math.b2CrossFV(w1, r1)));
-		//double b2D = (dX*(-w1 * ax1Y) + dY*(w1 * ax1X));
-		//double b2D2 = (ax1X * ((( v2.x + (-w2 * r2Y)) - v1.x) - (-w1 * r1Y)) + ax1Y * ((( v2.y + (w2 * r2X)) - v1.y) - (w1 * r1X)));
-		double speed = (dX*(-w1 * axis.y) + dY*(w1 * axis.x)) + (axis.x * ((( v2.x + (-w2 * r2Y)) - v1.x) - (-w1 * r1Y)) + axis.y * ((( v2.y + (w2 * r2X)) - v1.y) - (w1 * r1X)));
-		
-		return speed;
-	}
-	
-	/**
+  double GetJointSpeed() {
+    b2Body bA = m_bodyA;
+    b2Body bB = m_bodyB;
+
+    b2Mat22 tMat;
+
+    //b2Vec2 r1 = b2Mul(bA->m_xf.R, m_localAnchor1 - bA->GetLocalCenter());
+    tMat = bA.m_xf.R;
+    double r1X = m_localAnchor1.x - bA.m_sweep.localCenter.x;
+    double r1Y = m_localAnchor1.y - bA.m_sweep.localCenter.y;
+    double tX = (tMat.col1.x * r1X + tMat.col2.x * r1Y);
+    r1Y = (tMat.col1.y * r1X + tMat.col2.y * r1Y);
+    r1X = tX;
+    //b2Vec2 r2 = b2Mul(bB->m_xf.R, m_localAnchor2 - bB->GetLocalCenter());
+    tMat = bB.m_xf.R;
+    double r2X = m_localAnchor2.x - bB.m_sweep.localCenter.x;
+    double r2Y = m_localAnchor2.y - bB.m_sweep.localCenter.y;
+    tX = (tMat.col1.x * r2X + tMat.col2.x * r2Y);
+    r2Y = (tMat.col1.y * r2X + tMat.col2.y * r2Y);
+    r2X = tX;
+
+    //b2Vec2 p1 = bA->m_sweep.c + r1;
+    double p1X = bA.m_sweep.c.x + r1X;
+    double p1Y = bA.m_sweep.c.y + r1Y;
+    //b2Vec2 p2 = bB->m_sweep.c + r2;
+    double p2X = bB.m_sweep.c.x + r2X;
+    double p2Y = bB.m_sweep.c.y + r2Y;
+    //b2Vec2 d = b2Math.SubtractVV(p2, p1);
+    double dX = p2X - p1X;
+    double dY = p2Y - p1Y;
+    //b2Vec2 axis = bA->GetWorldListm_localXAxis1);
+    b2Vec2 axis = bA.GetWorldVector(m_localXAxis1);
+
+    b2Vec2 v1 = bA.m_linearVelocity;
+    b2Vec2 v2 = bB.m_linearVelocity;
+    double w1 = bA.m_angularVelocity;
+    double w2 = bB.m_angularVelocity;
+
+    //double speed = b2Math.b2Dot(d, b2Math.b2CrossFV(w1, ax1)) + b2Math.b2Dot(ax1, b2Math.SubtractVV( b2Math.SubtractVV( b2Math.AddVV( v2 , b2Math.b2CrossFV(w2, r2)) , v1) , b2Math.b2CrossFV(w1, r1)));
+    //double b2D = (dX*(-w1 * ax1Y) + dY*(w1 * ax1X));
+    //double b2D2 = (ax1X * ((( v2.x + (-w2 * r2Y)) - v1.x) - (-w1 * r1Y)) + ax1Y * ((( v2.y + (w2 * r2X)) - v1.y) - (w1 * r1X)));
+    double speed = (dX * (-w1 * axis.y) + dY * (w1 * axis.x)) +
+        (axis.x * (((v2.x + (-w2 * r2Y)) - v1.x) - (-w1 * r1Y)) + axis.y * (((v2.y + (w2 * r2X)) - v1.y) - (w1 * r1X)));
+
+    return speed;
+  }
+
+  /**
 	* Is the joint limit enabled?
 	*/
-	  bool IsLimitEnabled()
-	{
-		return m_enableLimit;
-	}
-	/**
+  bool IsLimitEnabled() {
+    return m_enableLimit;
+  }
+
+  /**
 	* Enable/disable the joint limit.
 	*/
-	  void EnableLimit(bool flag)
-	{
-		m_bodyA.SetAwake(true);
-		m_bodyB.SetAwake(true);
-		m_enableLimit = flag;
-	}
-	/**
+  void EnableLimit(bool flag) {
+    m_bodyA.SetAwake(true);
+    m_bodyB.SetAwake(true);
+    m_enableLimit = flag;
+  }
+
+  /**
 	* Get the lower joint limit, usually in meters.
 	*/
-	  double GetLowerLimit()
-	{
-		return m_lowerTranslation;
-	}
-	/**
+  double GetLowerLimit() {
+    return m_lowerTranslation;
+  }
+
+  /**
 	* Get the upper joint limit, usually in meters.
 	*/
-	  double GetUpperLimit()
-	{
-		return m_upperTranslation;
-	}
-	/**
+  double GetUpperLimit() {
+    return m_upperTranslation;
+  }
+
+  /**
 	* Set the joint limits, usually in meters.
 	*/
-	  void SetLimits(double lower,double upper)
-	{
-		//b2Settings.b2Assert(lower <= upper);
-		m_bodyA.SetAwake(true);
-		m_bodyB.SetAwake(true);
-		m_lowerTranslation = lower;
-		m_upperTranslation = upper;
-	}
-	/**
+  void SetLimits(double lower, double upper) {
+    //b2Settings.b2Assert(lower <= upper);
+    m_bodyA.SetAwake(true);
+    m_bodyB.SetAwake(true);
+    m_lowerTranslation = lower;
+    m_upperTranslation = upper;
+  }
+
+  /**
 	* Is the joint motor enabled?
 	*/
-	  bool IsMotorEnabled()
-	{
-		return m_enableMotor;
-	}
-	/**
+  bool IsMotorEnabled() {
+    return m_enableMotor;
+  }
+
+  /**
 	* Enable/disable the joint motor.
 	*/
-	  void EnableMotor(bool flag)
-	{
-		m_bodyA.SetAwake(true);
-		m_bodyB.SetAwake(true);
-		m_enableMotor = flag;
-	}
-	/**
+  void EnableMotor(bool flag) {
+    m_bodyA.SetAwake(true);
+    m_bodyB.SetAwake(true);
+    m_enableMotor = flag;
+  }
+
+  /**
 	* Set the motor speed, usually in meters per second.
 	*/
-	  void SetMotorSpeed(double speed)
-	{
-		m_bodyA.SetAwake(true);
-		m_bodyB.SetAwake(true);
-		m_motorSpeed = speed;
-	}
-	/**
+  void SetMotorSpeed(double speed) {
+    m_bodyA.SetAwake(true);
+    m_bodyB.SetAwake(true);
+    m_motorSpeed = speed;
+  }
+
+  /**
 	* Get the motor speed, usually in meters per second.
 	*/
-	  double GetMotorSpeed()
-	{
-		return m_motorSpeed;
-	}
-	
-	/**
+  double GetMotorSpeed() {
+    return m_motorSpeed;
+  }
+
+  /**
 	 * Set the maximum motor force, usually in N.
 	 */
-	  void SetMaxMotorForce(double force)
-	{
-		m_bodyA.SetAwake(true);
-		m_bodyB.SetAwake(true);
-		m_maxMotorForce = force;
-	}
-	
-	/**
+  void SetMaxMotorForce(double force) {
+    m_bodyA.SetAwake(true);
+    m_bodyB.SetAwake(true);
+    m_maxMotorForce = force;
+  }
+
+  /**
 	 * Get the maximum motor force, usually in N.
 	 */
-	  double GetMaxMotorForce()
-	{
-		return m_maxMotorForce;
-	}
-	
-	/**
+  double GetMaxMotorForce() {
+    return m_maxMotorForce;
+  }
+
+  /**
 	* Get the current motor force, usually in N.
 	*/
-	  double GetMotorForce()
-	{
-		return m_motorImpulse;
-	}
-	
+  double GetMotorForce() {
+    return m_motorImpulse;
+  }
 
-	//--------------- Internals Below -------------------
+  //--------------- Internals Below -------------------
 
-	/** @ */
-	 b2LineJoint(b2LineJointDef def): super(def) {
-		
-		b2Mat22 tMat;
-		double tX = 0.0;
-		double tY = 0.0;
-		
-		m_localAnchor1.SetV(def.localAnchorA);
-		m_localAnchor2.SetV(def.localAnchorB);
-		m_localXAxis1.SetV(def.localAxisA);
-		
-		//m_localYAxis1 = b2Cross(1.0f, m_localXAxis1);
-		m_localYAxis1.x = -m_localXAxis1.y;
-		m_localYAxis1.y = m_localXAxis1.x;
-		
-		m_impulse.SetZero();
-		m_motorMass = 0.0;
-		m_motorImpulse = 0.0;
-		
-		m_lowerTranslation = def.lowerTranslation;
-		m_upperTranslation = def.upperTranslation;
-		m_maxMotorForce = def.maxMotorForce;
-		m_motorSpeed = def.motorSpeed;
-		m_enableLimit = def.enableLimit;
-		m_enableMotor = def.enableMotor;
-		m_limitState = b2Joint.e_inactiveLimit;
-		
-		m_axis.SetZero();
-		m_perp.SetZero();
-	}
+  /** @ */
+  b2LineJoint(b2LineJointDef def) : super(def) {
+    b2Mat22 tMat;
+    double tX = 0.0;
+    double tY = 0.0;
 
-	@override 
-		 void InitVelocityConstraints(b2TimeStep step){
-		b2Body bA = m_bodyA;
-		b2Body bB = m_bodyB;
-		
-		b2Mat22 tMat;
-		double tX = 0.0;
-		
-		m_localCenterA.SetV(bA.GetLocalCenter());
-		m_localCenterB.SetV(bB.GetLocalCenter());
-		
-		b2Transform xf1 = bA.GetTransform();
-		b2Transform xf2 = bB.GetTransform();
-		
-		// Compute the effective masses.
-		//b2Vec2 r1 = b2Mul(bA->m_xf.R, m_localAnchor1 - bA->GetLocalCenter());
-		tMat = bA.m_xf.R;
-		double r1X = m_localAnchor1.x - m_localCenterA.x;
-		double r1Y = m_localAnchor1.y - m_localCenterA.y;
-		tX =  (tMat.col1.x * r1X + tMat.col2.x * r1Y);
-		r1Y = (tMat.col1.y * r1X + tMat.col2.y * r1Y);
-		r1X = tX;
-		//b2Vec2 r2 = b2Mul(bB->m_xf.R, m_localAnchor2 - bB->GetLocalCenter());
-		tMat = bB.m_xf.R;
-		double r2X = m_localAnchor2.x - m_localCenterB.x;
-		double r2Y = m_localAnchor2.y - m_localCenterB.y;
-		tX =  (tMat.col1.x * r2X + tMat.col2.x * r2Y);
-		r2Y = (tMat.col1.y * r2X + tMat.col2.y * r2Y);
-		r2X = tX;
-		
-		//b2Vec2 d = bB->m_sweep.c + r2 - bA->m_sweep.c - r1;
-		double dX = bB.m_sweep.c.x + r2X - bA.m_sweep.c.x - r1X;
-		double dY = bB.m_sweep.c.y + r2Y - bA.m_sweep.c.y - r1Y;
-		
-		m_invMassA = bA.m_invMass;
-		m_invMassB = bB.m_invMass;
-		m_invIA = bA.m_invI;
-		m_invIB = bB.m_invI;
-		
-		// Compute motor Jacobian and effective mass.
-		{
-			m_axis.SetV(b2Math.MulMV(xf1.R, m_localXAxis1));
-			//m_a1 = b2Math.b2Cross(d + r1, m_axis);
-			m_a1 = (dX + r1X) * m_axis.y - (dY + r1Y) * m_axis.x;
-			//m_a2 = b2Math.b2Cross(r2, m_axis);
-			m_a2 = r2X * m_axis.y - r2Y * m_axis.x;
-			
-			m_motorMass = m_invMassA + m_invMassB + m_invIA * m_a1 * m_a1 + m_invIB * m_a2 * m_a2; 
-			m_motorMass = m_motorMass > double.MIN_POSITIVE?1.0 / m_motorMass:0.0;
-		}
-		
-		// Prismatic constraint.
-		{
-			m_perp.SetV(b2Math.MulMV(xf1.R, m_localYAxis1));
-			//m_s1 = b2Math.b2Cross(d + r1, m_perp);
-			m_s1 = (dX + r1X) * m_perp.y - (dY + r1Y) * m_perp.x;
-			//m_s2 = b2Math.b2Cross(r2, m_perp);
-			m_s2 = r2X * m_perp.y - r2Y * m_perp.x;
-			
-			double m1 = m_invMassA;
-			double m2 = m_invMassB;
-			double i1 = m_invIA;
-			double i2 = m_invIB;
-			
-			m_K.col1.x = m1 + m2 + i1 * m_s1 * m_s1 + i2 * m_s2 * m_s2;
- 	  	  	m_K.col1.y = i1 * m_s1 * m_a1 + i2 * m_s2 * m_a2;
-			m_K.col2.x = m_K.col1.y;
- 	  	  	m_K.col2.y = m1 + m2 + i1 * m_a1 * m_a1 + i2 * m_a2 * m_a2; 
-		}
-		
-		// Compute motor and limit terms
-		if (m_enableLimit)
-		{
-			//float32 jointTranslation = b2Dot(m_axis, d); 
-			double jointTransition = m_axis.x * dX + m_axis.y * dY;
-			if (b2Math.Abs(m_upperTranslation - m_lowerTranslation) < 2.0 * b2Settings.b2_linearSlop)
-			{
-				m_limitState = b2Joint.e_equalLimits;
-			}
-			else if (jointTransition <= m_lowerTranslation)
-			{
-				if (m_limitState != b2Joint.e_atLowerLimit)
-				{
-					m_limitState = b2Joint.e_atLowerLimit;
-					m_impulse.y = 0.0;
-				}
-			}
-			else if (jointTransition >= m_upperTranslation)
-			{
-				if (m_limitState != b2Joint.e_atUpperLimit)
-				{
-					m_limitState = b2Joint.e_atUpperLimit;
-					m_impulse.y = 0.0;
-				}
-			}
-			else
-			{
-				m_limitState = b2Joint.e_inactiveLimit;
-				m_impulse.y = 0.0;
-			}
-		}
-		else
-		{
-			m_limitState = b2Joint.e_inactiveLimit;
-		}
-		
-		if (m_enableMotor == false)
-		{
-			m_motorImpulse = 0.0;
-		}
-		
-		if (step.warmStarting)
-		{
-			// Account for variable time step.
-			m_impulse.x *= step.dtRatio;
-			m_impulse.y *= step.dtRatio;
-			m_motorImpulse *= step.dtRatio; 
-			
-			//b2Vec2 P = m_impulse.x * m_perp + (m_motorImpulse + m_impulse.z) * m_axis;
-			double PX = m_impulse.x * m_perp.x + (m_motorImpulse + m_impulse.y) * m_axis.x;
-			double PY = m_impulse.x * m_perp.y + (m_motorImpulse + m_impulse.y) * m_axis.y;
-			double L1 = m_impulse.x * m_s1     + (m_motorImpulse + m_impulse.y) * m_a1;
-			double L2 = m_impulse.x * m_s2     + (m_motorImpulse + m_impulse.y) * m_a2; 
+    m_localAnchor1.SetV(def.localAnchorA);
+    m_localAnchor2.SetV(def.localAnchorB);
+    m_localXAxis1.SetV(def.localAxisA);
 
-			//bA->m_linearVelocity -= m_invMassA * P;
-			bA.m_linearVelocity.x -= m_invMassA * PX;
-			bA.m_linearVelocity.y -= m_invMassA * PY;
-			//bA->m_angularVelocity -= m_invIA * L1;
-			bA.m_angularVelocity -= m_invIA * L1;
-			
-			//bB->m_linearVelocity += m_invMassB * P;
-			bB.m_linearVelocity.x += m_invMassB * PX;
-			bB.m_linearVelocity.y += m_invMassB * PY;
-			//bB->m_angularVelocity += m_invIB * L2;
-			bB.m_angularVelocity += m_invIB * L2;
-		}
-		else
-		{
-			m_impulse.SetZero();
-			m_motorImpulse = 0.0;
-		}
-	}
-	
-	@override 
-		 void SolveVelocityConstraints(b2TimeStep step){
-		b2Body bA = m_bodyA;
-		b2Body bB = m_bodyB;
-		
-		b2Vec2 v1 = bA.m_linearVelocity;
-		double w1 = bA.m_angularVelocity;
-		b2Vec2 v2 = bB.m_linearVelocity;
-		double w2 = bB.m_angularVelocity;
-		
-		double PX = 0.0;
-		double PY = 0.0;
-		double L1 = 0.0;
-		double L2 = 0.0;
-		
-		// Solve linear motor constraint
-		if (m_enableMotor && m_limitState != b2Joint.e_equalLimits)
-		{
-			//float32 Cdot = b2Dot(m_axis, v2 - v1) + m_a2 * w2 - m_a1 * w1; 
-			double Cdot = m_axis.x * (v2.x -v1.x) + m_axis.y * (v2.y - v1.y) + m_a2 * w2 - m_a1 * w1;
-			double impulse = m_motorMass * (m_motorSpeed - Cdot);
-			double oldImpulse = m_motorImpulse;
-			double maxImpulse = step.dt * m_maxMotorForce;
-			m_motorImpulse = b2Math.Clamp(m_motorImpulse + impulse, -maxImpulse, maxImpulse);
-			impulse = m_motorImpulse - oldImpulse;
-			
-			PX = impulse * m_axis.x;
-			PY = impulse * m_axis.y;
-			L1 = impulse * m_a1;
-			L2 = impulse * m_a2;
-			
-			v1.x -= m_invMassA * PX;
-			v1.y -= m_invMassA * PY;
-			w1 -= m_invIA * L1;
-			
-			v2.x += m_invMassB * PX;
-			v2.y += m_invMassB * PY;
-			w2 += m_invIB * L2;
-		}
-		
-		//Cdot1 = b2Dot(m_perp, v2 - v1) + m_s2 * w2 - m_s1 * w1; 
-		double Cdot1 = m_perp.x * (v2.x - v1.x) + m_perp.y * (v2.y - v1.y) + m_s2 * w2 - m_s1 * w1; 
-		
-		if (m_enableLimit && m_limitState != b2Joint.e_inactiveLimit)
-		{
-			// Solve prismatic and limit constraint in block form
-			//Cdot2 = b2Dot(m_axis, v2 - v1) + m_a2 * w2 - m_a1 * w1; 
-			double Cdot2 = m_axis.x * (v2.x - v1.x) + m_axis.y * (v2.y - v1.y) + m_a2 * w2 - m_a1 * w1; 
-			
-			b2Vec2 f1 = m_impulse.Copy();
-			b2Vec2 df = m_K.Solve(new b2Vec2(), -Cdot1, -Cdot2);
-			
-			m_impulse.Add(df);
-			
-			if (m_limitState == b2Joint.e_atLowerLimit)
-			{
-				m_impulse.y = b2Math.Max(m_impulse.y, 0.0);
-			}
-			else if (m_limitState == b2Joint.e_atUpperLimit)
-			{
-				m_impulse.y = b2Math.Min(m_impulse.y, 0.0);
-			}
-			
-			// f2(1) = invK(1,1) * (-Cdot(1) - K(1,3) * (f2(2) - f1(2))) + f1(1) 
-			double b = -Cdot1 - (m_impulse.y - f1.y) * m_K.col2.x;
-			double f2r = 0.0;
-			if (m_K.col1.x != 0.0)
-			{
-				f2r = b / m_K.col1.x + f1.x;
-			}else {
-				f2r = f1.x;
-			}
-			m_impulse.x = f2r;
-			
-			df.x = m_impulse.x - f1.x;
-			df.y = m_impulse.y - f1.y;
-			
-			PX = df.x * m_perp.x + df.y * m_axis.x;
-			PY = df.x * m_perp.y + df.y * m_axis.y;
-			L1 = df.x * m_s1 + df.y * m_a1;
-			L2 = df.x * m_s2 + df.y * m_a2;
-			
-			v1.x -= m_invMassA * PX;
-			v1.y -= m_invMassA * PY;
-			w1 -= m_invIA * L1;
-			
-			v2.x += m_invMassB * PX;
-			v2.y += m_invMassB * PY;
-			w2 += m_invIB * L2;
-		}
-		else
-		{
-			// Limit is inactive, just solve the prismatic constraint in block form. 
-			double df2 = 0.0;
-			if (m_K.col1.x != 0.0)
-			{
-				df2 = ( -Cdot1) / m_K.col1.x;
-			}else {
-				df2 = 0.0;
-			}
-			m_impulse.x += df2;
-			
-			PX = df2 * m_perp.x;
-			PY = df2 * m_perp.y;
-			L1 = df2 * m_s1;
-			L2 = df2 * m_s2;
-			
-			v1.x -= m_invMassA * PX;
-			v1.y -= m_invMassA * PY;
-			w1 -= m_invIA * L1;
-			
-			v2.x += m_invMassB * PX;
-			v2.y += m_invMassB * PY;
-			w2 += m_invIB * L2;
-		}
-		
-		bA.m_linearVelocity.SetV(v1);
-		bA.m_angularVelocity = w1;
-		bB.m_linearVelocity.SetV(v2);
-		bB.m_angularVelocity = w2;
-	}
-	
-	@override 
-		 bool SolvePositionConstraints(double baumgarte)
-	{
-		//B2_NOT_USED(baumgarte);
-		
-		
-		double limitC = 0.0;
-		double oldLimitImpulse = 0.0;
-		
-		b2Body bA = m_bodyA;
-		b2Body bB = m_bodyB;
-		
-		b2Vec2 c1 = bA.m_sweep.c;
-		double a1 = bA.m_sweep.a;
-		
-		b2Vec2 c2 = bB.m_sweep.c;
-		double a2 = bB.m_sweep.a;
-		
-		b2Mat22 tMat;
-		double tX = 0.0;
-		
-		double m1 = 0.0;
-		double m2 = 0.0;
-		double i1 = 0.0;
-		double i2 = 0.0;
-		
-		// Solve linear limit constraint
-		double linearError = 0.0;
-		double angularError = 0.0;
-		bool active = false;
-		double C2 = 0.0;
-		
-		b2Mat22 R1 = b2Mat22.FromAngle(a1);
-		b2Mat22 R2 = b2Mat22.FromAngle(a2);
-		
-		//b2Vec2 r1 = b2Mul(R1, m_localAnchor1 - m_localCenter1);
-		tMat = R1;
-		double r1X = m_localAnchor1.x - m_localCenterA.x;
-		double r1Y = m_localAnchor1.y - m_localCenterA.y;
-		tX =  (tMat.col1.x * r1X + tMat.col2.x * r1Y);
-		r1Y = (tMat.col1.y * r1X + tMat.col2.y * r1Y);
-		r1X = tX;
-		//b2Vec2 r2 = b2Mul(R2, m_localAnchor2 - m_localCenter2);
-		tMat = R2;
-		double r2X = m_localAnchor2.x - m_localCenterB.x;
-		double r2Y = m_localAnchor2.y - m_localCenterB.y;
-		tX =  (tMat.col1.x * r2X + tMat.col2.x * r2Y);
-		r2Y = (tMat.col1.y * r2X + tMat.col2.y * r2Y);
-		r2X = tX;
-		
-		double dX = c2.x + r2X - c1.x - r1X;
-		double dY = c2.y + r2Y - c1.y - r1Y;
-		
-		if (m_enableLimit)
-		{
-			m_axis = b2Math.MulMV(R1, m_localXAxis1);
-			
-			//m_a1 = b2Math.b2Cross(d + r1, m_axis);
-			m_a1 = (dX + r1X) * m_axis.y - (dY + r1Y) * m_axis.x;
-			//m_a2 = b2Math.b2Cross(r2, m_axis);
-			m_a2 = r2X * m_axis.y - r2Y * m_axis.x;
-			
-			double translation = m_axis.x * dX + m_axis.y * dY;
-			if (b2Math.Abs(m_upperTranslation - m_lowerTranslation) < 2.0 * b2Settings.b2_linearSlop)
-			{
-				// Prevent large angular corrections.
-				C2 = b2Math.Clamp(translation, -b2Settings.b2_maxLinearCorrection, b2Settings.b2_maxLinearCorrection);
-				linearError = b2Math.Abs(translation);
-				active = true;
-			}
-			else if (translation <= m_lowerTranslation)
-			{
-				// Prevent large angular corrections and allow some slop.
-				C2 = b2Math.Clamp(translation - m_lowerTranslation + b2Settings.b2_linearSlop, -b2Settings.b2_maxLinearCorrection, 0.0);
-				linearError = m_lowerTranslation - translation;
-				active = true;
-			}
-			else if (translation >= m_upperTranslation)
-			{
-				// Prevent large angular corrections and allow some slop.
-				C2 = b2Math.Clamp(translation - m_upperTranslation + b2Settings.b2_linearSlop, 0.0, b2Settings.b2_maxLinearCorrection);
-				linearError = translation - m_upperTranslation;
-				active = true;
-			}
-		}
-		
-		m_perp = b2Math.MulMV(R1, m_localYAxis1);
-		
-		//m_s1 = b2Cross(d + r1, m_perp); 
-		m_s1 = (dX + r1X) * m_perp.y - (dY + r1Y) * m_perp.x;
-		//m_s2 = b2Cross(r2, m_perp); 
-		m_s2 = r2X * m_perp.y - r2Y * m_perp.x;
-		
-		b2Vec2 impulse = new b2Vec2();
-		double C1 = m_perp.x * dX + m_perp.y * dY;
-		
-		linearError = b2Math.Max(linearError, b2Math.Abs(C1));
-		angularError = 0.0;
-		
-		if( active)
-		{
-			m1 = m_invMassA;
-			m2 = m_invMassB;
-			i1 = m_invIA;
-			i2 = m_invIB;
-			
-			m_K.col1.x = m1 + m2 + i1 * m_s1 * m_s1 + i2 * m_s2 * m_s2;
- 	  	  	m_K.col1.y = i1 * m_s1 * m_a1 + i2 * m_s2 * m_a2;
-			m_K.col2.x = m_K.col1.y;
- 	  	  	m_K.col2.y = m1 + m2 + i1 * m_a1 * m_a1 + i2 * m_a2 * m_a2;
-			
-			m_K.Solve(impulse, -C1, -C2);
-		}
-		else
-		{
-			m1 = m_invMassA;
-			m2 = m_invMassB;
-			i1 = m_invIA;
-			i2 = m_invIB;
-			
-			double k11  = m1 + m2 + i1 * m_s1 * m_s1 + i2 * m_s2 * m_s2;
-			
-			double impulse1 = 0.0;
-			if (k11 != 0.0)
-			{
-				impulse1 = ( -C1) / k11;
-			}else {
-				impulse1 = 0.0;
-			}
-			impulse.x = impulse1;
-			impulse.y = 0.0;
-		}
-		
-		double PX = impulse.x * m_perp.x + impulse.y * m_axis.x;
-		double PY = impulse.x * m_perp.y + impulse.y * m_axis.y;
-		double L1 = impulse.x * m_s1 + impulse.y * m_a1;
-		double L2 = impulse.x * m_s2 + impulse.y * m_a2;
-		
-		c1.x -= m_invMassA * PX;
-		c1.y -= m_invMassA * PY;
-		a1 -= m_invIA * L1;
-		
-		c2.x += m_invMassB * PX;
-		c2.y += m_invMassB * PY;
-		a2 += m_invIB * L2;
-		
-		// TODO_ERIN remove need for this
-		//bA.m_sweep.c = c1;	//Already done by reference
-		bA.m_sweep.a = a1;
-		//bB.m_sweep.c = c2;	//Already done by reference
-		bB.m_sweep.a = a2;
-		bA.SynchronizeTransform();
-		bB.SynchronizeTransform(); 
-		
-		return linearError <= b2Settings.b2_linearSlop && angularError <= b2Settings.b2_angularSlop;
-		
-	}
+    //m_localYAxis1 = b2Cross(1.0f, m_localXAxis1);
+    m_localYAxis1.x = -m_localXAxis1.y;
+    m_localYAxis1.y = m_localXAxis1.x;
 
-	b2Vec2 m_localAnchor1 = new b2Vec2();
-	b2Vec2 m_localAnchor2 = new b2Vec2();
-	b2Vec2 m_localXAxis1 = new b2Vec2();
-	 b2Vec2 m_localYAxis1 = new b2Vec2();
+    m_impulse.SetZero();
+    m_motorMass = 0.0;
+    m_motorImpulse = 0.0;
 
-	 b2Vec2 m_axis = new b2Vec2();
-	 b2Vec2 m_perp = new b2Vec2();
-	 double m_s1 = 0.0;
-	 double m_s2 = 0.0;
-	 double m_a1 = 0.0;
-	 double m_a2 = 0.0;
-	
-	 b2Mat22 m_K = new b2Mat22();
-	 b2Vec2 m_impulse = new b2Vec2();
+    m_lowerTranslation = def.lowerTranslation;
+    m_upperTranslation = def.upperTranslation;
+    m_maxMotorForce = def.maxMotorForce;
+    m_motorSpeed = def.motorSpeed;
+    m_enableLimit = def.enableLimit;
+    m_enableMotor = def.enableMotor;
+    m_limitState = b2Joint.e_inactiveLimit;
 
-	 double m_motorMass = 0.0;			// effective mass for motor/limit translational constraint.
-	 double m_motorImpulse = 0.0;
+    m_axis.SetZero();
+    m_perp.SetZero();
+  }
 
-	 double m_lowerTranslation = 0.0;
-	 double m_upperTranslation = 0.0;
-	 double m_maxMotorForce = 0.0;
-	 double m_motorSpeed = 0.0;
-	
-	 bool m_enableLimit;
-	 bool m_enableMotor;
-	 int m_limitState = 0;
+  @override
+  void InitVelocityConstraints(b2TimeStep step) {
+    b2Body bA = m_bodyA;
+    b2Body bB = m_bodyB;
+
+    b2Mat22 tMat;
+    double tX = 0.0;
+
+    m_localCenterA.SetV(bA.GetLocalCenter());
+    m_localCenterB.SetV(bB.GetLocalCenter());
+
+    b2Transform xf1 = bA.GetTransform();
+    b2Transform xf2 = bB.GetTransform();
+
+    // Compute the effective masses.
+    //b2Vec2 r1 = b2Mul(bA->m_xf.R, m_localAnchor1 - bA->GetLocalCenter());
+    tMat = bA.m_xf.R;
+    double r1X = m_localAnchor1.x - m_localCenterA.x;
+    double r1Y = m_localAnchor1.y - m_localCenterA.y;
+    tX = (tMat.col1.x * r1X + tMat.col2.x * r1Y);
+    r1Y = (tMat.col1.y * r1X + tMat.col2.y * r1Y);
+    r1X = tX;
+    //b2Vec2 r2 = b2Mul(bB->m_xf.R, m_localAnchor2 - bB->GetLocalCenter());
+    tMat = bB.m_xf.R;
+    double r2X = m_localAnchor2.x - m_localCenterB.x;
+    double r2Y = m_localAnchor2.y - m_localCenterB.y;
+    tX = (tMat.col1.x * r2X + tMat.col2.x * r2Y);
+    r2Y = (tMat.col1.y * r2X + tMat.col2.y * r2Y);
+    r2X = tX;
+
+    //b2Vec2 d = bB->m_sweep.c + r2 - bA->m_sweep.c - r1;
+    double dX = bB.m_sweep.c.x + r2X - bA.m_sweep.c.x - r1X;
+    double dY = bB.m_sweep.c.y + r2Y - bA.m_sweep.c.y - r1Y;
+
+    m_invMassA = bA.m_invMass;
+    m_invMassB = bB.m_invMass;
+    m_invIA = bA.m_invI;
+    m_invIB = bB.m_invI;
+
+    // Compute motor Jacobian and effective mass.
+    {
+      m_axis.SetV(b2Math.MulMV(xf1.R, m_localXAxis1));
+      //m_a1 = b2Math.b2Cross(d + r1, m_axis);
+      m_a1 = (dX + r1X) * m_axis.y - (dY + r1Y) * m_axis.x;
+      //m_a2 = b2Math.b2Cross(r2, m_axis);
+      m_a2 = r2X * m_axis.y - r2Y * m_axis.x;
+
+      m_motorMass = m_invMassA + m_invMassB + m_invIA * m_a1 * m_a1 + m_invIB * m_a2 * m_a2;
+      m_motorMass = m_motorMass > double.MIN_POSITIVE ? 1.0 / m_motorMass : 0.0;
+    }
+
+    // Prismatic constraint.
+    {
+      m_perp.SetV(b2Math.MulMV(xf1.R, m_localYAxis1));
+      //m_s1 = b2Math.b2Cross(d + r1, m_perp);
+      m_s1 = (dX + r1X) * m_perp.y - (dY + r1Y) * m_perp.x;
+      //m_s2 = b2Math.b2Cross(r2, m_perp);
+      m_s2 = r2X * m_perp.y - r2Y * m_perp.x;
+
+      double m1 = m_invMassA;
+      double m2 = m_invMassB;
+      double i1 = m_invIA;
+      double i2 = m_invIB;
+
+      m_K.col1.x = m1 + m2 + i1 * m_s1 * m_s1 + i2 * m_s2 * m_s2;
+      m_K.col1.y = i1 * m_s1 * m_a1 + i2 * m_s2 * m_a2;
+      m_K.col2.x = m_K.col1.y;
+      m_K.col2.y = m1 + m2 + i1 * m_a1 * m_a1 + i2 * m_a2 * m_a2;
+    }
+
+    // Compute motor and limit terms
+    if (m_enableLimit) {
+      //float32 jointTranslation = b2Dot(m_axis, d);
+      double jointTransition = m_axis.x * dX + m_axis.y * dY;
+      if (b2Math.Abs(m_upperTranslation - m_lowerTranslation) < 2.0 * b2Settings.b2_linearSlop) {
+        m_limitState = b2Joint.e_equalLimits;
+      } else if (jointTransition <= m_lowerTranslation) {
+        if (m_limitState != b2Joint.e_atLowerLimit) {
+          m_limitState = b2Joint.e_atLowerLimit;
+          m_impulse.y = 0.0;
+        }
+      } else if (jointTransition >= m_upperTranslation) {
+        if (m_limitState != b2Joint.e_atUpperLimit) {
+          m_limitState = b2Joint.e_atUpperLimit;
+          m_impulse.y = 0.0;
+        }
+      } else {
+        m_limitState = b2Joint.e_inactiveLimit;
+        m_impulse.y = 0.0;
+      }
+    } else {
+      m_limitState = b2Joint.e_inactiveLimit;
+    }
+
+    if (m_enableMotor == false) {
+      m_motorImpulse = 0.0;
+    }
+
+    if (step.warmStarting) {
+      // Account for variable time step.
+      m_impulse.x *= step.dtRatio;
+      m_impulse.y *= step.dtRatio;
+      m_motorImpulse *= step.dtRatio;
+
+      //b2Vec2 P = m_impulse.x * m_perp + (m_motorImpulse + m_impulse.z) * m_axis;
+      double PX = m_impulse.x * m_perp.x + (m_motorImpulse + m_impulse.y) * m_axis.x;
+      double PY = m_impulse.x * m_perp.y + (m_motorImpulse + m_impulse.y) * m_axis.y;
+      double L1 = m_impulse.x * m_s1 + (m_motorImpulse + m_impulse.y) * m_a1;
+      double L2 = m_impulse.x * m_s2 + (m_motorImpulse + m_impulse.y) * m_a2;
+
+      //bA->m_linearVelocity -= m_invMassA * P;
+      bA.m_linearVelocity.x -= m_invMassA * PX;
+      bA.m_linearVelocity.y -= m_invMassA * PY;
+      //bA->m_angularVelocity -= m_invIA * L1;
+      bA.m_angularVelocity -= m_invIA * L1;
+
+      //bB->m_linearVelocity += m_invMassB * P;
+      bB.m_linearVelocity.x += m_invMassB * PX;
+      bB.m_linearVelocity.y += m_invMassB * PY;
+      //bB->m_angularVelocity += m_invIB * L2;
+      bB.m_angularVelocity += m_invIB * L2;
+    } else {
+      m_impulse.SetZero();
+      m_motorImpulse = 0.0;
+    }
+  }
+
+  @override
+  void SolveVelocityConstraints(b2TimeStep step) {
+    b2Body bA = m_bodyA;
+    b2Body bB = m_bodyB;
+
+    b2Vec2 v1 = bA.m_linearVelocity;
+    double w1 = bA.m_angularVelocity;
+    b2Vec2 v2 = bB.m_linearVelocity;
+    double w2 = bB.m_angularVelocity;
+
+    double PX = 0.0;
+    double PY = 0.0;
+    double L1 = 0.0;
+    double L2 = 0.0;
+
+    // Solve linear motor constraint
+    if (m_enableMotor && m_limitState != b2Joint.e_equalLimits) {
+      //float32 Cdot = b2Dot(m_axis, v2 - v1) + m_a2 * w2 - m_a1 * w1;
+      double Cdot = m_axis.x * (v2.x - v1.x) + m_axis.y * (v2.y - v1.y) + m_a2 * w2 - m_a1 * w1;
+      double impulse = m_motorMass * (m_motorSpeed - Cdot);
+      double oldImpulse = m_motorImpulse;
+      double maxImpulse = step.dt * m_maxMotorForce;
+      m_motorImpulse = b2Math.Clamp(m_motorImpulse + impulse, -maxImpulse, maxImpulse);
+      impulse = m_motorImpulse - oldImpulse;
+
+      PX = impulse * m_axis.x;
+      PY = impulse * m_axis.y;
+      L1 = impulse * m_a1;
+      L2 = impulse * m_a2;
+
+      v1.x -= m_invMassA * PX;
+      v1.y -= m_invMassA * PY;
+      w1 -= m_invIA * L1;
+
+      v2.x += m_invMassB * PX;
+      v2.y += m_invMassB * PY;
+      w2 += m_invIB * L2;
+    }
+
+    //Cdot1 = b2Dot(m_perp, v2 - v1) + m_s2 * w2 - m_s1 * w1;
+    double Cdot1 = m_perp.x * (v2.x - v1.x) + m_perp.y * (v2.y - v1.y) + m_s2 * w2 - m_s1 * w1;
+
+    if (m_enableLimit && m_limitState != b2Joint.e_inactiveLimit) {
+      // Solve prismatic and limit constraint in block form
+      //Cdot2 = b2Dot(m_axis, v2 - v1) + m_a2 * w2 - m_a1 * w1;
+      double Cdot2 = m_axis.x * (v2.x - v1.x) + m_axis.y * (v2.y - v1.y) + m_a2 * w2 - m_a1 * w1;
+
+      b2Vec2 f1 = m_impulse.Copy();
+      b2Vec2 df = m_K.Solve(new b2Vec2(), -Cdot1, -Cdot2);
+
+      m_impulse.Add(df);
+
+      if (m_limitState == b2Joint.e_atLowerLimit) {
+        m_impulse.y = b2Math.Max(m_impulse.y, 0.0);
+      } else if (m_limitState == b2Joint.e_atUpperLimit) {
+        m_impulse.y = b2Math.Min(m_impulse.y, 0.0);
+      }
+
+      // f2(1) = invK(1,1) * (-Cdot(1) - K(1,3) * (f2(2) - f1(2))) + f1(1)
+      double b = -Cdot1 - (m_impulse.y - f1.y) * m_K.col2.x;
+      double f2r = 0.0;
+      if (m_K.col1.x != 0.0) {
+        f2r = b / m_K.col1.x + f1.x;
+      } else {
+        f2r = f1.x;
+      }
+      m_impulse.x = f2r;
+
+      df.x = m_impulse.x - f1.x;
+      df.y = m_impulse.y - f1.y;
+
+      PX = df.x * m_perp.x + df.y * m_axis.x;
+      PY = df.x * m_perp.y + df.y * m_axis.y;
+      L1 = df.x * m_s1 + df.y * m_a1;
+      L2 = df.x * m_s2 + df.y * m_a2;
+
+      v1.x -= m_invMassA * PX;
+      v1.y -= m_invMassA * PY;
+      w1 -= m_invIA * L1;
+
+      v2.x += m_invMassB * PX;
+      v2.y += m_invMassB * PY;
+      w2 += m_invIB * L2;
+    } else {
+      // Limit is inactive, just solve the prismatic constraint in block form.
+      double df2 = 0.0;
+      if (m_K.col1.x != 0.0) {
+        df2 = (-Cdot1) / m_K.col1.x;
+      } else {
+        df2 = 0.0;
+      }
+      m_impulse.x += df2;
+
+      PX = df2 * m_perp.x;
+      PY = df2 * m_perp.y;
+      L1 = df2 * m_s1;
+      L2 = df2 * m_s2;
+
+      v1.x -= m_invMassA * PX;
+      v1.y -= m_invMassA * PY;
+      w1 -= m_invIA * L1;
+
+      v2.x += m_invMassB * PX;
+      v2.y += m_invMassB * PY;
+      w2 += m_invIB * L2;
+    }
+
+    bA.m_linearVelocity.SetV(v1);
+    bA.m_angularVelocity = w1;
+    bB.m_linearVelocity.SetV(v2);
+    bB.m_angularVelocity = w2;
+  }
+
+  @override
+  bool SolvePositionConstraints(double baumgarte) {
+    //B2_NOT_USED(baumgarte);
+
+    double limitC = 0.0;
+    double oldLimitImpulse = 0.0;
+
+    b2Body bA = m_bodyA;
+    b2Body bB = m_bodyB;
+
+    b2Vec2 c1 = bA.m_sweep.c;
+    double a1 = bA.m_sweep.a;
+
+    b2Vec2 c2 = bB.m_sweep.c;
+    double a2 = bB.m_sweep.a;
+
+    b2Mat22 tMat;
+    double tX = 0.0;
+
+    double m1 = 0.0;
+    double m2 = 0.0;
+    double i1 = 0.0;
+    double i2 = 0.0;
+
+    // Solve linear limit constraint
+    double linearError = 0.0;
+    double angularError = 0.0;
+    bool active = false;
+    double C2 = 0.0;
+
+    b2Mat22 R1 = b2Mat22.FromAngle(a1);
+    b2Mat22 R2 = b2Mat22.FromAngle(a2);
+
+    //b2Vec2 r1 = b2Mul(R1, m_localAnchor1 - m_localCenter1);
+    tMat = R1;
+    double r1X = m_localAnchor1.x - m_localCenterA.x;
+    double r1Y = m_localAnchor1.y - m_localCenterA.y;
+    tX = (tMat.col1.x * r1X + tMat.col2.x * r1Y);
+    r1Y = (tMat.col1.y * r1X + tMat.col2.y * r1Y);
+    r1X = tX;
+    //b2Vec2 r2 = b2Mul(R2, m_localAnchor2 - m_localCenter2);
+    tMat = R2;
+    double r2X = m_localAnchor2.x - m_localCenterB.x;
+    double r2Y = m_localAnchor2.y - m_localCenterB.y;
+    tX = (tMat.col1.x * r2X + tMat.col2.x * r2Y);
+    r2Y = (tMat.col1.y * r2X + tMat.col2.y * r2Y);
+    r2X = tX;
+
+    double dX = c2.x + r2X - c1.x - r1X;
+    double dY = c2.y + r2Y - c1.y - r1Y;
+
+    if (m_enableLimit) {
+      m_axis = b2Math.MulMV(R1, m_localXAxis1);
+
+      //m_a1 = b2Math.b2Cross(d + r1, m_axis);
+      m_a1 = (dX + r1X) * m_axis.y - (dY + r1Y) * m_axis.x;
+      //m_a2 = b2Math.b2Cross(r2, m_axis);
+      m_a2 = r2X * m_axis.y - r2Y * m_axis.x;
+
+      double translation = m_axis.x * dX + m_axis.y * dY;
+      if (b2Math.Abs(m_upperTranslation - m_lowerTranslation) < 2.0 * b2Settings.b2_linearSlop) {
+        // Prevent large angular corrections.
+        C2 = b2Math.Clamp(translation, -b2Settings.b2_maxLinearCorrection, b2Settings.b2_maxLinearCorrection);
+        linearError = b2Math.Abs(translation);
+        active = true;
+      } else if (translation <= m_lowerTranslation) {
+        // Prevent large angular corrections and allow some slop.
+        C2 = b2Math.Clamp(
+            translation - m_lowerTranslation + b2Settings.b2_linearSlop, -b2Settings.b2_maxLinearCorrection, 0.0);
+        linearError = m_lowerTranslation - translation;
+        active = true;
+      } else if (translation >= m_upperTranslation) {
+        // Prevent large angular corrections and allow some slop.
+        C2 = b2Math.Clamp(
+            translation - m_upperTranslation + b2Settings.b2_linearSlop, 0.0, b2Settings.b2_maxLinearCorrection);
+        linearError = translation - m_upperTranslation;
+        active = true;
+      }
+    }
+
+    m_perp = b2Math.MulMV(R1, m_localYAxis1);
+
+    //m_s1 = b2Cross(d + r1, m_perp);
+    m_s1 = (dX + r1X) * m_perp.y - (dY + r1Y) * m_perp.x;
+    //m_s2 = b2Cross(r2, m_perp);
+    m_s2 = r2X * m_perp.y - r2Y * m_perp.x;
+
+    b2Vec2 impulse = new b2Vec2();
+    double C1 = m_perp.x * dX + m_perp.y * dY;
+
+    linearError = b2Math.Max(linearError, b2Math.Abs(C1));
+    angularError = 0.0;
+
+    if (active) {
+      m1 = m_invMassA;
+      m2 = m_invMassB;
+      i1 = m_invIA;
+      i2 = m_invIB;
+
+      m_K.col1.x = m1 + m2 + i1 * m_s1 * m_s1 + i2 * m_s2 * m_s2;
+      m_K.col1.y = i1 * m_s1 * m_a1 + i2 * m_s2 * m_a2;
+      m_K.col2.x = m_K.col1.y;
+      m_K.col2.y = m1 + m2 + i1 * m_a1 * m_a1 + i2 * m_a2 * m_a2;
+
+      m_K.Solve(impulse, -C1, -C2);
+    } else {
+      m1 = m_invMassA;
+      m2 = m_invMassB;
+      i1 = m_invIA;
+      i2 = m_invIB;
+
+      double k11 = m1 + m2 + i1 * m_s1 * m_s1 + i2 * m_s2 * m_s2;
+
+      double impulse1 = 0.0;
+      if (k11 != 0.0) {
+        impulse1 = (-C1) / k11;
+      } else {
+        impulse1 = 0.0;
+      }
+      impulse.x = impulse1;
+      impulse.y = 0.0;
+    }
+
+    double PX = impulse.x * m_perp.x + impulse.y * m_axis.x;
+    double PY = impulse.x * m_perp.y + impulse.y * m_axis.y;
+    double L1 = impulse.x * m_s1 + impulse.y * m_a1;
+    double L2 = impulse.x * m_s2 + impulse.y * m_a2;
+
+    c1.x -= m_invMassA * PX;
+    c1.y -= m_invMassA * PY;
+    a1 -= m_invIA * L1;
+
+    c2.x += m_invMassB * PX;
+    c2.y += m_invMassB * PY;
+    a2 += m_invIB * L2;
+
+    // TODO_ERIN remove need for this
+    //bA.m_sweep.c = c1;	//Already done by reference
+    bA.m_sweep.a = a1;
+    //bB.m_sweep.c = c2;	//Already done by reference
+    bB.m_sweep.a = a2;
+    bA.SynchronizeTransform();
+    bB.SynchronizeTransform();
+
+    return linearError <= b2Settings.b2_linearSlop && angularError <= b2Settings.b2_angularSlop;
+  }
+
+  b2Vec2 m_localAnchor1 = new b2Vec2();
+  b2Vec2 m_localAnchor2 = new b2Vec2();
+  b2Vec2 m_localXAxis1 = new b2Vec2();
+  b2Vec2 m_localYAxis1 = new b2Vec2();
+
+  b2Vec2 m_axis = new b2Vec2();
+  b2Vec2 m_perp = new b2Vec2();
+  double m_s1 = 0.0;
+  double m_s2 = 0.0;
+  double m_a1 = 0.0;
+  double m_a2 = 0.0;
+
+  b2Mat22 m_K = new b2Mat22();
+  b2Vec2 m_impulse = new b2Vec2();
+
+  double m_motorMass = 0.0; // effective mass for motor/limit translational constraint.
+  double m_motorImpulse = 0.0;
+
+  double m_lowerTranslation = 0.0;
+  double m_upperTranslation = 0.0;
+  double m_maxMotorForce = 0.0;
+  double m_motorSpeed = 0.0;
+
+  bool m_enableLimit;
+  bool m_enableMotor;
+  int m_limitState = 0;
 }
-

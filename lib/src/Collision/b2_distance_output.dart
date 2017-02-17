@@ -14,13 +14,15 @@
 * misrepresented as being the original software.
 * 3. This notice may not be removed or altered from any source distribution.
 */
- part of rockdot_physics;
-	
-	/**
+part of rockdot_physics;
+
+/**
 	 * Output for b2Distance.
 	 */
-	 class b2DistanceOutput 
-	{
-	/** Closest point on shapea */	 b2Vec2 pointA = new b2Vec2();	/** Closest point on shapeb */	 b2Vec2 pointB = new b2Vec2();		 double distance = 0.0;
-	/** double of gjk iterations used */	 int iterations = 0;	}
-	
+class b2DistanceOutput {
+  /** Closest point on shapea */ b2Vec2 pointA = new b2Vec2();
+  /** Closest point on shapeb */
+  b2Vec2 pointB = new b2Vec2();
+  double distance = 0.0;
+  /** double of gjk iterations used */ int iterations = 0;
+}

@@ -15,56 +15,47 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-	
-
-
-
+part of rockdot_physics;
 
 /**
  * Friction joint defintion
  * @see b2FrictionJoint
  */
- class b2FrictionJointDef extends b2JointDef
-{
-	 b2FrictionJointDef()
-	{
-		type = b2Joint.e_frictionJoint;
-		maxForce = 0.0;
-		maxTorque = 0.0;
-	}
-	
-	/**
+class b2FrictionJointDef extends b2JointDef {
+  b2FrictionJointDef() {
+    type = b2Joint.e_frictionJoint;
+    maxForce = 0.0;
+    maxTorque = 0.0;
+  }
+
+  /**
 	 * Initialize the bodies, anchors, axis, and reference angle using the world
 	 * anchor and world axis.
 	 */
-	  void Initialize(b2Body bA,b2Body bB,b2Vec2 anchor)
-	{
-		bodyA = bA;
-		bodyB = bB;
-		localAnchorA.SetV( bodyA.GetLocalPoint(anchor));
-		localAnchorB.SetV( bodyB.GetLocalPoint(anchor));
-	}
+  void Initialize(b2Body bA, b2Body bB, b2Vec2 anchor) {
+    bodyA = bA;
+    bodyB = bB;
+    localAnchorA.SetV(bodyA.GetLocalPoint(anchor));
+    localAnchorB.SetV(bodyB.GetLocalPoint(anchor));
+  }
 
-	/**
+  /**
 	* The local anchor point relative to bodyA's origin.
 	*/
-	 b2Vec2 localAnchorA = new b2Vec2();
+  b2Vec2 localAnchorA = new b2Vec2();
 
-	/**
+  /**
 	* The local anchor point relative to bodyB's origin.
 	*/
-	 b2Vec2 localAnchorB = new b2Vec2();
+  b2Vec2 localAnchorB = new b2Vec2();
 
-	/**
+  /**
 	 * The maximun force in N.
 	 */
-	 double maxForce = 0.0;
-	
-	/**
+  double maxForce = 0.0;
+
+  /**
 	 * The maximun friction torque in N-m
 	 */
-	 double maxTorque = 0.0;
+  double maxTorque = 0.0;
 }
-

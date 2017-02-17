@@ -15,18 +15,19 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
+part of rockdot_physics;
 
-	 abstract class IBenchmark
-	{
-		/// Return a string name for the benchmark
-		 String Name();
-		/// Return any further details, as XML with root element
-		/// benchmarkParameters
-		/// This should include a version tag with the revision details.
-		 //XML Details();
-		/// Initialize the world
-		 void Init(b2World world);
-		/// This is run every tick
-		 void Update();
-	}
+abstract class IBenchmark {
+  /// Return a string name for the benchmark
+  String Name();
+
+  /// Return any further details, as XML with root element
+  /// benchmarkParameters
+  /// This should include a version tag with the revision details.
+  //XML Details();
+  /// Initialize the world
+  void Init(b2World world);
+
+  /// This is run every tick
+  void Update();
+}

@@ -17,23 +17,17 @@
 
 part of rockdot_physics;
 
-
-
-
-
 /**
 * The world class manages all physics entities, dynamic simulation,
 * and asynchronous queries. 
 */
 class b2World {
-
   // Construct a world object.
   /**
 	* @param gravity the world gravity vector.
 	* @param doSleep improve performance by not simulating inactive bodies.
 	*/
   b2World(b2Vec2 gravity, bool doSleep) {
-
     m_destructionListener = null;
     m_debugDraw = null;
 
@@ -133,7 +127,6 @@ class b2World {
 	* @warning This function is locked during callbacks.
 	*/
   b2Body CreateBody(b2BodyDef def) {
-
     //b2Settings.b2Assert(m_lock == false);
     if (IsLocked() == true) {
       return null;
@@ -152,7 +145,6 @@ class b2World {
     ++m_bodyCount;
 
     return b;
-
   }
 
   /**
@@ -162,7 +154,6 @@ class b2World {
 	* @warning This function is locked during callbacks.
 	*/
   void DestroyBody(b2Body b) {
-
     //b2Settings.b2Assert(m_bodyCount > 0);
     //b2Settings.b2Assert(m_lock == false);
     if (IsLocked() == true) {
@@ -235,7 +226,6 @@ class b2World {
     --m_bodyCount;
     //b->~b2Body();
     //m_blockAllocator.Free(b, sizeof(b2Body));
-
   }
 
   /**
@@ -244,7 +234,6 @@ class b2World {
 	* @warning This function is locked during callbacks.
 	*/
   b2Joint CreateJoint(b2JointDef def) {
-
     //b2Settings.b2Assert(m_lock == false);
 
     b2Joint j = b2Joint.Create(def, null);
@@ -293,7 +282,6 @@ class b2World {
     // Note: creating a joint doesn't wake the bodies.
 
     return j;
-
   }
 
   /**
@@ -301,7 +289,6 @@ class b2World {
 	* @warning This function is locked during callbacks.
 	*/
   void DestroyJoint(b2Joint j) {
-
     //b2Settings.b2Assert(m_lock == false);
 
     bool collideConnected = j.m_collideConnected;
@@ -377,7 +364,6 @@ class b2World {
         edge = edge.next;
       }
     }
-
   }
 
   /**
@@ -549,7 +535,6 @@ class b2World {
 	 * Call this to draw shapes and other debug draw data.
 	 */
   void DrawDebugData() {
-
     if (m_debugDraw == null) {
       return;
     }
@@ -669,8 +654,10 @@ class b2World {
     bool WorldQueryWrapper(dynamic proxy) {
       return callback(broadPhase.GetUserData(proxy));
     }
+
     broadPhase.Query(WorldQueryWrapper, aabb);
   }
+
   /**
 	 * Query the world for all fixtures that precisely overlap the
 	 * provided transformed shape.
@@ -687,9 +674,11 @@ class b2World {
     IBroadPhase broadPhase = m_contactManager.m_broadPhase;
     bool WorldQueryWrapper(dynamic proxy) {
       b2Fixture fixture = broadPhase.GetUserData(proxy) as b2Fixture;
-      if (b2Shape.TestOverlap(shape, transform, fixture.GetShape(), fixture.GetBody().GetTransform())) return callback(fixture);
+      if (b2Shape.TestOverlap(shape, transform, fixture.GetShape(), fixture.GetBody().GetTransform()))
+        return callback(fixture);
       return true;
     }
+
     b2AABB aabb = new b2AABB();
     shape.ComputeAABB(aabb, transform);
     broadPhase.Query(WorldQueryWrapper, aabb);
@@ -709,6 +698,7 @@ class b2World {
       if (fixture.TestPoint(p)) return callback(fixture);
       return true;
     }
+
     // Make a small box.
     b2AABB aabb = new b2AABB();
     aabb.lowerBound.Set(p.x - b2Settings.b2_linearSlop, p.y - b2Settings.b2_linearSlop);
@@ -742,11 +732,13 @@ class b2World {
       bool hit = fixture.RayCast(output, input);
       if (hit) {
         double fraction = output.fraction;
-        b2Vec2 point = new b2Vec2((1.0 - fraction) * point1.x + fraction * point2.x, (1.0 - fraction) * point1.y + fraction * point2.y);
+        b2Vec2 point = new b2Vec2(
+            (1.0 - fraction) * point1.x + fraction * point2.x, (1.0 - fraction) * point1.y + fraction * point2.y);
         return callback(fixture, point, output.normal, fraction);
       }
       return input.maxFraction;
     }
+
     b2RayCastInput input = new b2RayCastInput(point1, point2);
     broadPhase.RayCast(RayCastWrapper, input);
   }
@@ -757,6 +749,7 @@ class b2World {
       result = fixture;
       return fraction;
     }
+
     RayCast(RayCastOneWrapper, point1, point2);
     return result;
   }
@@ -767,6 +760,7 @@ class b2World {
       result[result.length] = fixture;
       return 1.0;
     }
+
     RayCast(RayCastAllWrapper, point1, point2);
     return result;
   }
@@ -821,7 +815,8 @@ class b2World {
 
     // Size the island for the worst case.
     b2Island island = m_island;
-    island.Initialize(m_bodyCount, m_contactCount, m_jointCount, null, m_contactManager.m_contactListener, m_contactSolver);
+    island.Initialize(
+        m_bodyCount, m_contactCount, m_jointCount, null, m_contactManager.m_contactListener, m_contactSolver);
 
     // Clear all the island flags.
     for (b = m_bodyList; b != null; b = b.m_next) {
@@ -988,7 +983,6 @@ class b2World {
 
     // Look for new contacts.
     m_contactManager.FindNewContacts();
-
   }
 
   static b2Sweep s_backupA = new b2Sweep();
@@ -997,7 +991,6 @@ class b2World {
   static List<b2Body> s_queue = new List<b2Body>();
   // Find TOI contacts and solve them.
   void SolveTOI(b2TimeStep step) {
-
     b2Body b;
     b2Fixture fA;
     b2Fixture fB;
@@ -1008,7 +1001,8 @@ class b2World {
 
     // Reserve an island and a queue for TOI island solution.
     b2Island island = m_island;
-    island.Initialize(m_bodyCount, b2Settings.b2_maxTOIContactsPerIsland, b2Settings.b2_maxTOIJointsPerIsland, null, m_contactManager.m_contactListener, m_contactSolver);
+    island.Initialize(m_bodyCount, b2Settings.b2_maxTOIContactsPerIsland, b2Settings.b2_maxTOIJointsPerIsland, null,
+        m_contactManager.m_contactListener, m_contactSolver);
 
     //Simple one pass queue
     //Relies on the fact that we're only making one pass
@@ -1037,7 +1031,7 @@ class b2World {
     }
 
     // Find TOI events and solve them.
-    for ( ; ; ) {
+    for (;;) {
       // Find the first TOI.
       b2Contact minContact = null;
       double minTOI = 1.0;
@@ -1061,7 +1055,8 @@ class b2World {
           bA = fA.m_body;
           bB = fB.m_body;
 
-          if ((bA.GetType() != b2Body.b2_dynamicBody || bA.IsAwake() == false) && (bB.GetType() != b2Body.b2_dynamicBody || bB.IsAwake() == false)) {
+          if ((bA.GetType() != b2Body.b2_dynamicBody || bA.IsAwake() == false) &&
+              (bB.GetType() != b2Body.b2_dynamicBody || bB.IsAwake() == false)) {
             continue;
           }
 
@@ -1089,7 +1084,6 @@ class b2World {
             toi = (1.0 - toi) * t0 + toi;
             if (toi > 1.0) toi = 1.0;
           }
-
 
           c.m_toi = toi;
           c.m_flags |= b2Contact.e_toiFlag;
@@ -1192,7 +1186,9 @@ class b2World {
           }
 
           // Skip sperate, sensor, or disabled contacts.
-          if (cEdge.contact.IsSensor() == true || cEdge.contact.IsEnabled() == false || cEdge.contact.IsTouching() == false) {
+          if (cEdge.contact.IsSensor() == true ||
+              cEdge.contact.IsEnabled() == false ||
+              cEdge.contact.IsTouching() == false) {
             continue;
           }
 
@@ -1319,7 +1315,6 @@ class b2World {
   static b2Color s_jointColor = new b2Color(0.5, 0.8, 0.8);
   //
   void DrawJoint(b2Joint joint) {
-
     b2Body b1 = joint.GetBodyA();
     b2Body b2 = joint.GetBodyB();
     b2Transform xf1 = b1.m_xf;
@@ -1360,7 +1355,6 @@ class b2World {
   }
 
   void DrawShape(b2Shape shape, b2Transform xf, b2Color color) {
-
     switch (shape.m_type) {
       case b2Shape.e_circleShape:
         {
@@ -1396,7 +1390,6 @@ class b2World {
           b2EdgeShape edge = shape as b2EdgeShape;
 
           m_debugDraw.DrawSegment(b2Math.MulX(xf, edge.GetVertex1()), b2Math.MulX(xf, edge.GetVertex2()), color);
-
         }
         break;
     }
@@ -1442,5 +1435,4 @@ class b2World {
   // m_flags
   static final int e_newFixture = 0x0001;
   static final int e_locked = 0x0002;
-
 }

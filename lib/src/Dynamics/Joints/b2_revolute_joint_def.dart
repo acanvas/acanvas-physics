@@ -15,13 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-	
-
-
-
-
+part of rockdot_physics;
 
 /**
 * Revolute joint definition. This requires defining an
@@ -37,79 +31,75 @@
 * @see b2RevoluteJoint
 */
 
- class b2RevoluteJointDef extends b2JointDef
-{
-	 b2RevoluteJointDef()
-	{
-		type = b2Joint.e_revoluteJoint;
-		localAnchorA.Set(0.0, 0.0);
-		localAnchorB.Set(0.0, 0.0);
-		referenceAngle = 0.0;
-		lowerAngle = 0.0;
-		upperAngle = 0.0;
-		maxMotorTorque = 0.0;
-		motorSpeed = 0.0;
-		enableLimit = false;
-		enableMotor = false;
-	}
+class b2RevoluteJointDef extends b2JointDef {
+  b2RevoluteJointDef() {
+    type = b2Joint.e_revoluteJoint;
+    localAnchorA.Set(0.0, 0.0);
+    localAnchorB.Set(0.0, 0.0);
+    referenceAngle = 0.0;
+    lowerAngle = 0.0;
+    upperAngle = 0.0;
+    maxMotorTorque = 0.0;
+    motorSpeed = 0.0;
+    enableLimit = false;
+    enableMotor = false;
+  }
 
-	/**
+  /**
 	* Initialize the bodies, anchors, and reference angle using the world
 	* anchor.
 	*/
-	  void Initialize(b2Body bA,b2Body bB,b2Vec2 anchor){
-		bodyA = bA;
-		bodyB = bB;
-		localAnchorA = bodyA.GetLocalPoint(anchor);
-		localAnchorB = bodyB.GetLocalPoint(anchor);
-		referenceAngle = bodyB.GetAngle() - bodyA.GetAngle();
-	}
+  void Initialize(b2Body bA, b2Body bB, b2Vec2 anchor) {
+    bodyA = bA;
+    bodyB = bB;
+    localAnchorA = bodyA.GetLocalPoint(anchor);
+    localAnchorB = bodyB.GetLocalPoint(anchor);
+    referenceAngle = bodyB.GetAngle() - bodyA.GetAngle();
+  }
 
-	/**
+  /**
 	* The local anchor point relative to bodyA's origin.
 	*/
-	 b2Vec2 localAnchorA = new b2Vec2();
+  b2Vec2 localAnchorA = new b2Vec2();
 
-	/**
+  /**
 	* The local anchor point relative to bodyB's origin.
 	*/
-	 b2Vec2 localAnchorB = new b2Vec2();
+  b2Vec2 localAnchorB = new b2Vec2();
 
-	/**
+  /**
 	* The bodyB angle minus bodyA angle in the reference state (radians).
 	*/
-	 double referenceAngle = 0.0;
+  double referenceAngle = 0.0;
 
-	/**
+  /**
 	* A flag to enable joint limits.
 	*/
-	 bool enableLimit;
+  bool enableLimit;
 
-	/**
+  /**
 	* The lower angle for the joint limit (radians).
 	*/
-	 double lowerAngle = 0.0;
+  double lowerAngle = 0.0;
 
-	/**
+  /**
 	* The upper angle for the joint limit (radians).
 	*/
-	 double upperAngle = 0.0;
+  double upperAngle = 0.0;
 
-	/**
+  /**
 	* A flag to enable the joint motor.
 	*/
-	 bool enableMotor;
+  bool enableMotor;
 
-	/**
+  /**
 	* The desired motor speed. Usually in radians per second.
 	*/
-	 double motorSpeed = 0.0;
+  double motorSpeed = 0.0;
 
-	/**
+  /**
 	* The maximum motor torque used to achieve the desired motor speed.
 	* Usually in N-m.
 	*/
-	 double maxMotorTorque = 0.0;
-	
+  double maxMotorTorque = 0.0;
 }
-

@@ -15,40 +15,30 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-
-
-
-
-
+part of rockdot_physics;
 
 /**
 * @
 */
- class b2ContactConstraint
-{
-	 b2ContactConstraint(){
-		points = new List<b2ContactConstraintPoint>(b2Settings.b2_maxManifoldPoints);
-		for (int i = 0; i < b2Settings.b2_maxManifoldPoints; i++){
-			points[i] = new b2ContactConstraintPoint();
-		}
-		
-		
-	}
-	 List<b2ContactConstraintPoint> points;
-	 b2Vec2 localPlaneNormal = new b2Vec2();
-	 b2Vec2 localPoint = new b2Vec2();
-	 b2Vec2 normal = new b2Vec2();
-	 b2Mat22 normalMass = new b2Mat22();
-	 b2Mat22 K = new b2Mat22();
-	 b2Body bodyA;
-	 b2Body bodyB;
-	 int type = 0;//b2Manifold::Type
-	 double radius = 0.0;
-	 double friction = 0.0;
-	 double restitution = 0.0;
-	 int pointCount = 0;
-	 b2Manifold manifold;
+class b2ContactConstraint {
+  b2ContactConstraint() {
+    points = new List<b2ContactConstraintPoint>(b2Settings.b2_maxManifoldPoints);
+    for (int i = 0; i < b2Settings.b2_maxManifoldPoints; i++) {
+      points[i] = new b2ContactConstraintPoint();
+    }
+  }
+  List<b2ContactConstraintPoint> points;
+  b2Vec2 localPlaneNormal = new b2Vec2();
+  b2Vec2 localPoint = new b2Vec2();
+  b2Vec2 normal = new b2Vec2();
+  b2Mat22 normalMass = new b2Mat22();
+  b2Mat22 K = new b2Mat22();
+  b2Body bodyA;
+  b2Body bodyB;
+  int type = 0; //b2Manifold::Type
+  double radius = 0.0;
+  double friction = 0.0;
+  double restitution = 0.0;
+  int pointCount = 0;
+  b2Manifold manifold;
 }
-
-

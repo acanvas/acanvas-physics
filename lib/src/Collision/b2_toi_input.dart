@@ -15,18 +15,15 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-	/**
+part of rockdot_physics;
+
+/**
 	 * Inpute parameters for b2TimeOfImpact
 	 */
-	 class b2TOIInput 
-	{
-		 b2DistanceProxy proxyA = new b2DistanceProxy();
-		 b2DistanceProxy proxyB = new b2DistanceProxy();
-		 b2Sweep sweepA = new b2Sweep();
-		 b2Sweep sweepB = new b2Sweep();
-		 double tolerance = 0.0;
-		
-	}
-	
+class b2TOIInput {
+  b2DistanceProxy proxyA = new b2DistanceProxy();
+  b2DistanceProxy proxyB = new b2DistanceProxy();
+  b2Sweep sweepA = new b2Sweep();
+  b2Sweep sweepB = new b2Sweep();
+  double tolerance = 0.0;
+}

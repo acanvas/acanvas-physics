@@ -15,13 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-	
-
-
-
-
+part of rockdot_physics;
 
 /**
 * Gear joint definition. This definition requires two existing
@@ -30,28 +24,25 @@
 * @see b2GearJoint
 */
 
- class b2GearJointDef extends b2JointDef
-{
-	 b2GearJointDef()
-	{
-		type = b2Joint.e_gearJoint;
-		joint1 = null;
-		joint2 = null;
-		ratio = 1.0;
-	}
+class b2GearJointDef extends b2JointDef {
+  b2GearJointDef() {
+    type = b2Joint.e_gearJoint;
+    joint1 = null;
+    joint2 = null;
+    ratio = 1.0;
+  }
 
-	/**
+  /**
 	* The first revolute/prismatic joint attached to the gear joint.
 	*/
-	 b2Joint joint1;
-	/**
+  b2Joint joint1;
+  /**
 	* The second revolute/prismatic joint attached to the gear joint.
 	*/
-	 b2Joint joint2;
-	/**
+  b2Joint joint2;
+  /**
 	* The gear ratio.
 	* @see b2GearJoint for explanation.
 	*/
-	 double ratio = 0.0;
+  double ratio = 0.0;
 }
-

@@ -6,7 +6,6 @@ part of rockdot_physics;
  * It is up to the client to consume the new pairs and to track subsequent overlap.
  */
 class b2DynamicTreeBroadPhase implements IBroadPhase {
-
   b2DynamicTree m_tree = new b2DynamicTree();
   int m_proxyCount = 0;
   List<b2DynamicTreeNode> m_moveBuffer = new List<b2DynamicTreeNode>();
@@ -113,7 +112,7 @@ class b2DynamicTreeBroadPhase implements IBroadPhase {
     //m_pairBuffer.sort(ComparePairs);
 
     // Send the pair buffer
-    for (int i = 0; i < m_pairCount; ) {
+    for (int i = 0; i < m_pairCount;) {
       b2DynamicTreePair primaryPair = m_pairBuffer[i];
       dynamic userDataA = m_tree.GetUserData(primaryPair.proxyA);
       dynamic userDataB = m_tree.GetUserData(primaryPair.proxyB);
@@ -145,7 +144,6 @@ class b2DynamicTreeBroadPhase implements IBroadPhase {
     m_tree.RayCast(callback, input);
   }
 
-
   void Validate() {
     //TODO_BORIS
   }
@@ -153,7 +151,6 @@ class b2DynamicTreeBroadPhase implements IBroadPhase {
   void Rebalance(int iterations) {
     m_tree.Rebalance(iterations);
   }
-
 
   // Private ///////////////
 

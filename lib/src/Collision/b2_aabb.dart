@@ -17,9 +17,6 @@
 
 part of rockdot_physics;
 
-
-
-
 /**
 * An axis aligned bounding box.
 */
@@ -109,7 +106,7 @@ class b2AABB {
         }
 
         // Pull the max down
-        tmax = /*Math.*/min(tmax, t2);
+        tmax = /*Math.*/ min(tmax, t2);
 
         if (tmin > tmax) return false;
       }
@@ -142,7 +139,7 @@ class b2AABB {
         }
 
         // Pull the max down
-        tmax = /*Math.*/min(tmax, t2);
+        tmax = /*Math.*/ min(tmax, t2);
 
         if (tmin > tmax) return false;
       }
@@ -177,10 +174,10 @@ class b2AABB {
 
   /** Combine two AABBs into one. */
   void CombineI(b2AABB aabb1, b2AABB aabb2) {
-    lowerBound.x = /*Math.*/min(aabb1.lowerBound.x, aabb2.lowerBound.x);
-    lowerBound.y = /*Math.*/min(aabb1.lowerBound.y, aabb2.lowerBound.y);
-    upperBound.x = /*Math.*/max(aabb1.upperBound.x, aabb2.upperBound.x);
-    upperBound.y = /*Math.*/max(aabb1.upperBound.y, aabb2.upperBound.y);
+    lowerBound.x = /*Math.*/ min(aabb1.lowerBound.x, aabb2.lowerBound.x);
+    lowerBound.y = /*Math.*/ min(aabb1.lowerBound.y, aabb2.lowerBound.y);
+    upperBound.x = /*Math.*/ max(aabb1.upperBound.x, aabb2.upperBound.x);
+    upperBound.y = /*Math.*/ max(aabb1.upperBound.y, aabb2.upperBound.y);
   }
 
   /** The lower vertex */
@@ -188,4 +185,3 @@ class b2AABB {
   /** The upper vertex */
   b2Vec2 upperBound = new b2Vec2();
 }
-

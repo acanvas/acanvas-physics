@@ -10,39 +10,29 @@
 //======================================//
 //========================================
 
-
-
 //========================================
 // frame limiter
 //========================================
 
- part of rockdot_physics;
-	
-	
-	
-	
-	 class FRateLimiter{
-		
-		
-		//===============
-		// limit frame function
-		//===============
-		static   void limitFrame(int maxFPS){
-			
-			int fTime = (1000 / maxFPS).round();
-			
-			while((newT - oldT).abs() < fTime){
-				newT = watch.elapsedMilliseconds;
-			}
-			oldT = watch.elapsedMilliseconds;
-			
-		}
-		
-		//===============
-		// member vars
-		//===============
-		 static Stopwatch watch = new Stopwatch()..start();
-		 static int oldT = watch.elapsedMilliseconds;
-		 static int newT = oldT;
-	}
+part of rockdot_physics;
 
+class FRateLimiter {
+  //===============
+  // limit frame function
+  //===============
+  static void limitFrame(int maxFPS) {
+    int fTime = (1000 / maxFPS).round();
+
+    while ((newT - oldT).abs() < fTime) {
+      newT = watch.elapsedMilliseconds;
+    }
+    oldT = watch.elapsedMilliseconds;
+  }
+
+  //===============
+  // member vars
+  //===============
+  static Stopwatch watch = new Stopwatch()..start();
+  static int oldT = watch.elapsedMilliseconds;
+  static int newT = oldT;
+}

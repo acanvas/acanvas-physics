@@ -15,15 +15,10 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-
 part of rockdot_physics;
-
-
-
 
 class TestCompound extends Test {
   TestCompound(Stopwatch w) : super(w) {
-
     // Set Text field
     Main.m_aboutText.text = "Compound Shapes";
 
@@ -80,14 +75,22 @@ class TestCompound extends Test {
       xf1.position = b2Math.MulMV(xf1.R, new b2Vec2(1.0, 0.0));
 
       b2PolygonShape sd1 = new b2PolygonShape();
-      sd1.SetAsVector([b2Math.MulX(xf1, new b2Vec2(-30.0 / m_physScale, 0.0)), b2Math.MulX(xf1, new b2Vec2(30.0 / m_physScale, 0.0)), b2Math.MulX(xf1, new b2Vec2(0.0, 15.0 / m_physScale)),]);
+      sd1.SetAsVector([
+        b2Math.MulX(xf1, new b2Vec2(-30.0 / m_physScale, 0.0)),
+        b2Math.MulX(xf1, new b2Vec2(30.0 / m_physScale, 0.0)),
+        b2Math.MulX(xf1, new b2Vec2(0.0, 15.0 / m_physScale)),
+      ]);
 
       b2Transform xf2 = new b2Transform();
       xf2.R.Set(-0.3524 * PI);
       xf2.position = b2Math.MulMV(xf2.R, new b2Vec2(-30.0 / m_physScale, 0.0));
 
       b2PolygonShape sd2 = new b2PolygonShape();
-      sd2.SetAsVector([b2Math.MulX(xf2, new b2Vec2(-30.0 / m_physScale, 0.0)), b2Math.MulX(xf2, new b2Vec2(30.0 / m_physScale, 0.0)), b2Math.MulX(xf2, new b2Vec2(0.0, 15.0 / m_physScale)),]);
+      sd2.SetAsVector([
+        b2Math.MulX(xf2, new b2Vec2(-30.0 / m_physScale, 0.0)),
+        b2Math.MulX(xf2, new b2Vec2(30.0 / m_physScale, 0.0)),
+        b2Math.MulX(xf2, new b2Vec2(0.0, 15.0 / m_physScale)),
+      ]);
 
       bd = new b2BodyDef();
       bd.type = b2Body.b2_dynamicBody;
@@ -108,10 +111,12 @@ class TestCompound extends Test {
       sd_bottom.SetAsBox(45.0 / m_physScale, 4.5 / m_physScale);
 
       b2PolygonShape sd_left = new b2PolygonShape();
-      sd_left.SetAsOrientedBox(4.5 / m_physScale, 81.0 / m_physScale, new b2Vec2(-43.5 / m_physScale, -70.5 / m_physScale), -0.2);
+      sd_left.SetAsOrientedBox(
+          4.5 / m_physScale, 81.0 / m_physScale, new b2Vec2(-43.5 / m_physScale, -70.5 / m_physScale), -0.2);
 
       b2PolygonShape sd_right = new b2PolygonShape();
-      sd_right.SetAsOrientedBox(4.5 / m_physScale, 81.0 / m_physScale, new b2Vec2(43.5 / m_physScale, -70.5 / m_physScale), 0.2);
+      sd_right.SetAsOrientedBox(
+          4.5 / m_physScale, 81.0 / m_physScale, new b2Vec2(43.5 / m_physScale, -70.5 / m_physScale), 0.2);
 
       bd = new b2BodyDef();
       bd.type = b2Body.b2_dynamicBody;
@@ -121,9 +126,7 @@ class TestCompound extends Test {
       body.CreateFixture2(sd_left, 4.0);
       body.CreateFixture2(sd_right, 4.0);
     }
-
   }
-
 
   //===============
   // Member Data

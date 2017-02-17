@@ -15,34 +15,28 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
-	
-
-
+part of rockdot_physics;
 
 /**
 * This structure is used to report contact points.
 */
- class b2ContactPoint
-{
-	/** The first shape */
-	 b2Shape shape1;
-	/** The second shape */
-	 b2Shape shape2;
-	/** Position in world coordinates */
-	 b2Vec2 position = new b2Vec2();
-	/** Velocity of point on body2 relative to point on body1 (pre-solver) */
-	 b2Vec2 velocity = new b2Vec2();
-	/** Points from shape1 to shape2 */
-	 b2Vec2 normal = new b2Vec2();
-	/** The separation is negative when shapes are touching */
-	 double separation = 0.0;
-	/** The combined friction coefficient */
-	 double friction = 0.0;
-	/** The combined restitution coefficient */
-	 double restitution = 0.0;
-	/** The contact id identifies the features in contact */
-	 b2ContactID id = new b2ContactID();
+class b2ContactPoint {
+  /** The first shape */
+  b2Shape shape1;
+  /** The second shape */
+  b2Shape shape2;
+  /** Position in world coordinates */
+  b2Vec2 position = new b2Vec2();
+  /** Velocity of point on body2 relative to point on body1 (pre-solver) */
+  b2Vec2 velocity = new b2Vec2();
+  /** Points from shape1 to shape2 */
+  b2Vec2 normal = new b2Vec2();
+  /** The separation is negative when shapes are touching */
+  double separation = 0.0;
+  /** The combined friction coefficient */
+  double friction = 0.0;
+  /** The combined restitution coefficient */
+  double restitution = 0.0;
+  /** The contact id identifies the features in contact */
+  b2ContactID id = new b2ContactID();
 }
-
-

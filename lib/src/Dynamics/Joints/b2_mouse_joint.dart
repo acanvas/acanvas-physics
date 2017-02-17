@@ -53,16 +53,19 @@ class b2MouseJoint extends b2Joint {
   b2Vec2 GetAnchorA() {
     return m_target;
   }
+
   /** @inheritDoc */
   @override
   b2Vec2 GetAnchorB() {
     return m_bodyB.GetWorldPoint(m_localAnchor);
   }
+
   /** @inheritDoc */
   @override
   b2Vec2 GetReactionForce(double inv_dt) {
     return new b2Vec2(inv_dt * m_impulse.x, inv_dt * m_impulse.y);
   }
+
   /** @inheritDoc */
   @override
   double GetReactionTorque(double inv_dt) {
@@ -117,7 +120,6 @@ class b2MouseJoint extends b2Joint {
 
   /** @ */
   b2MouseJoint(b2MouseJointDef def) : super(def) {
-
     //b2Settings.b2Assert(def.target.IsValid());
     //b2Settings.b2Assert(b2Math.b2IsValid(def.maxForce) && def.maxForce > 0.0);
     //b2Settings.b2Assert(b2Math.b2IsValid(def.frequencyHz) && def.frequencyHz > 0.0);
@@ -277,6 +279,4 @@ class b2MouseJoint extends b2Joint {
     //B2_NOT_USED(baumgarte);
     return true;
   }
-
-
 }

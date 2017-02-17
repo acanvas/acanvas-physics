@@ -15,27 +15,25 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
- part of rockdot_physics;
+part of rockdot_physics;
 
-
-	
 /**
 * @
 */
- class b2Proxy{
-	  bool IsValid() { return overlapCount != b2BroadPhase.b2_invalid; }
+class b2Proxy {
+  bool IsValid() {
+    return overlapCount != b2BroadPhase.b2_invalid;
+  }
 
-	 List<int> lowerBounds = new List<int>(2);
-	 List<int> upperBounds = new List<int>(2);
-	 int overlapCount = 0;
-	 int timeStamp = 0;
-	
-	// Maps from the other b2Proxy to their mutual b2Pair.
-	 Map pairs = new Map();
-	
-	 b2Proxy next;
-	
-	 dynamic userData = null;
+  List<int> lowerBounds = new List<int>(2);
+  List<int> upperBounds = new List<int>(2);
+  int overlapCount = 0;
+  int timeStamp = 0;
+
+  // Maps from the other b2Proxy to their mutual b2Pair.
+  Map pairs = new Map();
+
+  b2Proxy next;
+
+  dynamic userData = null;
 }
-	
-	
