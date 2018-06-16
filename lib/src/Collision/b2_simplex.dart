@@ -15,7 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-part of rockdot_physics;
+part of acanvas_physics;
 
 class b2Simplex {
   b2Simplex() {

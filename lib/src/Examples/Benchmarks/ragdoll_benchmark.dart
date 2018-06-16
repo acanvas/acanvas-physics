@@ -15,7 +15,7 @@
 * 3. This notice may not be removed or altered from any source distribution.
 */
 
-part of rockdot_physics;
+part of acanvas_physics;
 
 class RagdollBenchmark implements IBenchmark {
   double angularVelocity = 1.0;

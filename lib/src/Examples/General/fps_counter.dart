@@ -13,7 +13,7 @@
 //========================================
 // FPS COUNTER CLASS
 //========================================
-part of rockdot_physics;
+part of acanvas_physics;
 
 class FpsCounter extends Sprite {
   //===============

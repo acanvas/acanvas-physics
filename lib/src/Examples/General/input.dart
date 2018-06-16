@@ -13,7 +13,7 @@
 //========================================
 // Input class
 //========================================
-part of rockdot_physics;
+part of acanvas_physics;
 
 class Input {
   //===============

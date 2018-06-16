@@ -19,7 +19,7 @@
 // of overlapping proxies. It is based closely on code provided by Pierre Terdiman.
 // http://www.codercorner.com/IncrementalSAP.txt
 
-part of rockdot_physics;
+part of acanvas_physics;
 
 /**
 * @

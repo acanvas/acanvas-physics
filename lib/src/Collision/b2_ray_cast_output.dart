@@ -18,7 +18,7 @@
 /**
  * Returns data on the collision between a ray and a shape.
  */
-part of rockdot_physics;
+part of acanvas_physics;
 
 class b2RayCastOutput {
   /**

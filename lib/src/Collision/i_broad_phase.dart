@@ -1,4 +1,4 @@
-part of rockdot_physics;
+part of acanvas_physics;
 
 /**
 	 * Interface for objects tracking overlap of many AABBs.

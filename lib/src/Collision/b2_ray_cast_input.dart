@@ -18,7 +18,7 @@
 /**
  * Specifies a segment for use with RayCast functions.
  */
-part of rockdot_physics;
+part of acanvas_physics;
 
 class b2RayCastInput {
   b2RayCastInput([b2Vec2 p1 = null, b2Vec2 p2 = null, double maxFraction = 1.0]) {

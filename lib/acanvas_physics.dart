@@ -1,4 +1,4 @@
-library rockdot_physics;
+library acanvas_physics;
 
 import 'dart:math';
 import 'package:stagexl/stagexl.dart';

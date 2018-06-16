@@ -1,6 +1,6 @@
 import 'dart:html' as html;
 import 'package:stagexl/stagexl.dart';
-import 'package:rockdot_physics/rockdot_physics.dart';
+import 'package:acanvas_physics/acanvas_physics.dart';
 
 void main() {
   html.CanvasElement stageEl = html.querySelector('#stage');
@@ -18,6 +18,6 @@ void main() {
   RenderLoop renderLoop = new RenderLoop();
   renderLoop.addStage(stage);
 
-  //TODO Examples are a direct conversion from ActionScript and don't work. Please use rockdot generator to see examples.
+  //TODO Examples are a direct conversion from ActionScript and don't work. Please use acanvas generator to see examples.
   //stage.addChild( new Main() );
 }

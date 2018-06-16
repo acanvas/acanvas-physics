@@ -14,7 +14,7 @@
 // frame limiter
 //========================================
 
-part of rockdot_physics;
+part of acanvas_physics;
 
 class FRateLimiter {
   //===============

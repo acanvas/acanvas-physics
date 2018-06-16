@@ -1,4 +1,4 @@
-part of rockdot_physics;
+part of acanvas_physics;
 
 /**
  * The broad-phase is used for computing pairs and performing volume queries and ray casts.

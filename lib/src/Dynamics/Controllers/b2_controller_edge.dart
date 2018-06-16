@@ -1,4 +1,4 @@
-part of rockdot_physics;
+part of acanvas_physics;
 
 class b2ControllerEdge {
   /** provides quick access to other end of this edge */

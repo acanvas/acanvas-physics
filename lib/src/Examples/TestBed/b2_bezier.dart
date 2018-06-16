@@ -1,4 +1,4 @@
-part of rockdot_physics;
+part of acanvas_physics;
 
 /** 
   * ...This class accepts an List of four b2vec2s (corresponding to the SVG format of Bezier curves) and outputs an array of b2vec2s
