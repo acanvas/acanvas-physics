@@ -1,5 +1,5 @@
 name: acanvas_physics
-version: 0.9.8
+version: 0.10.0-dev
 description: Port of Box2DFlash v2.1a to StageXL/Dart.
 environment:
   sdk: '>=2.0.0-dev.55.0 <2.0.0'
