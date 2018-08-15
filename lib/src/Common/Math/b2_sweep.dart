@@ -66,7 +66,7 @@ class b2Sweep {
 	* @param t the new initial time.
 	*/
   void Advance(double t) {
-    if (t0 < t && 1.0 - t0 > double.MIN_POSITIVE) {
+    if (t0 < t && 1.0 - t0 > double.minPositive) {
       double alpha = (t - t0) / (1.0 - t0);
       //c0 = (1.0f - alpha) * c0 + alpha * c;
       c0.x = (1.0 - alpha) * c0.x + alpha * c.x;

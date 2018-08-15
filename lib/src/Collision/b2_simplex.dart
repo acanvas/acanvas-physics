@@ -52,7 +52,7 @@ class b2Simplex {
     if (m_count > 1) {
       double metric1 = cache.metric;
       double metric2 = GetMetric();
-      if (metric2 < .5 * metric1 || 2.0 * metric1 < metric2 || metric2 < double.MIN_POSITIVE) {
+      if (metric2 < .5 * metric1 || 2.0 * metric1 < metric2 || metric2 < double.minPositive) {
         // Reset the simplex
         m_count = 0;
       }

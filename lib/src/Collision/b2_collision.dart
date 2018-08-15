@@ -97,7 +97,7 @@ class b2Collision {
 
     // Find support vertex on poly2 for -normal.
     int index = 0;
-    double minDot = double.MAX_FINITE;
+    double minDot = double.maxFinite;
     for (int i = 0; i < count2; ++i) {
       //float32 dot = b2Dot(poly2->m_vertices[i], normal1);
       tVec = vertices2[i];
@@ -154,7 +154,7 @@ class b2Collision {
 
     // Get support vertex as a hint for our search
     int edge = 0;
-    double maxDot = -double.MAX_FINITE;
+    double maxDot = -double.maxFinite;
     for (int i = 0; i < count1; ++i) {
       //double dot = b2Math.b2Dot(normals1[i], dLocal1);
       tVec = normals1[i];
@@ -243,7 +243,7 @@ class b2Collision {
 
     // Find the incident edge on poly2.
     int index = 0;
-    double minDot = double.MAX_FINITE;
+    double minDot = double.maxFinite;
     for (int i = 0; i < count2; ++i) {
       //double dot = b2Dot(normal1, normals2[i]);
       tVec = normals2[i];
@@ -514,7 +514,7 @@ class b2Collision {
 
     // Find the min separating edge.
     int normalIndex = 0;
-    double separation = -double.MAX_FINITE;
+    double separation = -double.maxFinite;
     double radius = polygon.m_radius + circle.m_radius;
     int vertexCount = polygon.m_vertexCount;
     List<b2Vec2> vertices = polygon.m_vertices;
@@ -545,7 +545,7 @@ class b2Collision {
     b2Vec2 v2 = vertices[vertIndex2];
 
     // If the center is inside the polygon ...
-    if (separation < double.MIN_POSITIVE) {
+    if (separation < double.minPositive) {
       manifold.m_pointCount = 1;
       manifold.m_type = b2Manifold.e_faceA;
       manifold.m_localPlaneNormal.SetV(normals[normalIndex]);

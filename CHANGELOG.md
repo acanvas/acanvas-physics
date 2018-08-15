@@ -1,5 +1,9 @@
 # CHANGELOG ACANVAS_PHYSICS
 
+## 0.11.0 2018-08-15
+
+- Raised dependency to Dart 2.0 stable
+
 ## 0.10.0-dev 2018-06-17
 
 - Acanvas rework

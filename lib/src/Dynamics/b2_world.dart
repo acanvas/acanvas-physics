@@ -1089,14 +1089,14 @@ class b2World {
           c.m_flags |= b2Contact.e_toiFlag;
         }
 
-        if (double.MIN_POSITIVE < toi && toi < minTOI) {
+        if (double.minPositive < toi && toi < minTOI) {
           // This is the minimum TOI found so far.
           minContact = c;
           minTOI = toi;
         }
       }
 
-      if (minContact == null || 1.0 - 100.0 * double.MIN_POSITIVE < minTOI) {
+      if (minContact == null || 1.0 - 100.0 * double.minPositive < minTOI) {
         // No more TOI events. Done!
         break;
       }

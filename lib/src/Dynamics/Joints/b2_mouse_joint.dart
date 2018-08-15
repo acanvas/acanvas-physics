@@ -154,7 +154,7 @@ class b2MouseJoint extends b2Joint {
     double mass = b.GetMass();
 
     // Frequency
-    double omega = 2.0 * PI * m_frequencyHz;
+    double omega = 2.0 * pi * m_frequencyHz;
 
     // Damping co-efficient
     double d = 2.0 * mass * m_dampingRatio * omega;

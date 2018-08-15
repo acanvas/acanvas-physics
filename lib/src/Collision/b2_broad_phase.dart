@@ -665,8 +665,8 @@ class b2BroadPhase implements IBroadPhase {
     double dx = (input.p2.x - input.p1.x) * m_quantizationFactor.x;
     double dy = (input.p2.y - input.p1.y) * m_quantizationFactor.y;
 
-    int sx = dx < -double.MIN_POSITIVE ? -1 : (dx > double.MIN_POSITIVE ? 1 : 0);
-    int sy = dy < -double.MIN_POSITIVE ? -1 : (dy > double.MIN_POSITIVE ? 1 : 0);
+    int sx = dx < -double.minPositive ? -1 : (dx > double.minPositive ? 1 : 0);
+    int sy = dy < -double.minPositive ? -1 : (dy > double.minPositive ? 1 : 0);
 
     //b2Settings.b2Assert(sx!=0||sy!=0);
 

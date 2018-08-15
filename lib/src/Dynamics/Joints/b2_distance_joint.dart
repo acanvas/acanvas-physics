@@ -164,7 +164,7 @@ class b2DistanceJoint extends b2Joint {
       double C = length - m_length;
 
       // Frequency
-      double omega = 2.0 * PI * m_frequencyHz;
+      double omega = 2.0 * pi * m_frequencyHz;
 
       // Damping coefficient
       double d = 2.0 * m_mass * m_dampingRatio * omega;

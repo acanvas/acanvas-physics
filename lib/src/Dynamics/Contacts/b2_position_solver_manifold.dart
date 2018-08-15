@@ -56,7 +56,7 @@ class b2PositionSolverManifold {
           double dX = pointBX - pointAX;
           double dY = pointBY - pointAY;
           double d2 = dX * dX + dY * dY;
-          if (d2 > double.MIN_POSITIVE * double.MIN_POSITIVE) {
+          if (d2 > double.minPositive * double.minPositive) {
             double d = sqrt(d2);
             m_normal.x = dX / d;
             m_normal.y = dY / d;

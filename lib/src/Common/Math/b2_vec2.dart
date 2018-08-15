@@ -123,7 +123,7 @@ class b2Vec2 {
 
   double Normalize() {
     double length = sqrt(x * x + y * y);
-    if (length < double.MIN_POSITIVE) {
+    if (length < double.minPositive) {
       return 0.0;
     }
     double invLength = 1.0 / length;

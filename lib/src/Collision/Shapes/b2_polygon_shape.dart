@@ -88,7 +88,7 @@ class b2PolygonShape extends b2Shape {
       int i1 = i;
       int i2 = i + 1 < m_vertexCount ? i + 1 : 0;
       b2Vec2 edge = b2Math.SubtractVV(m_vertices[i2], m_vertices[i1]);
-      b2Settings.b2Assert(edge.LengthSquared() > double.MIN_POSITIVE /* * double.MIN_POSITIVE*/);
+      b2Settings.b2Assert(edge.LengthSquared() > double.minPositive /* * double.minPositive*/);
       m_normals[i].SetV(b2Math.CrossVF(edge, 1.0));
       m_normals[i].Normalize();
     }
@@ -311,7 +311,7 @@ class b2PolygonShape extends b2Shape {
         }
       }
 
-      if (upper < lower - double.MIN_POSITIVE) {
+      if (upper < lower - double.minPositive) {
         return false;
       }
     }
@@ -472,7 +472,7 @@ class b2PolygonShape extends b2Shape {
     massData.mass = density * area;
 
     // Center of mass
-    //b2Settings.b2Assert(area > double.MIN_POSITIVE);
+    //b2Settings.b2Assert(area > double.minPositive);
     //center *= 1.0f / area;
     centerX *= 1.0 / area;
     centerY *= 1.0 / area;
@@ -501,7 +501,7 @@ class b2PolygonShape extends b2Shape {
     int i = 0;
     for (i = 0; i < m_vertexCount; ++i) {
       depths.add(b2Math.Dot(normalL, m_vertices[i]) - offsetL);
-      bool isSubmerged = depths[i] < -double.MIN_POSITIVE;
+      bool isSubmerged = depths[i] < -double.minPositive;
       if (i > 0) {
         if (isSubmerged) {
           if (lastSubmerged == false) {
@@ -754,7 +754,7 @@ class b2PolygonShape extends b2Shape {
     }
 
     // Centroid
-    //beSettings.b2Assert(area > double.MIN_POSITIVE);
+    //beSettings.b2Assert(area > double.minPositive);
     //c *= 1.0 / area;
     c.x *= 1.0 / area;
     c.y *= 1.0 / area;
@@ -773,7 +773,7 @@ class b2PolygonShape extends b2Shape {
     }
     p[count] = p[0];
 
-    double minArea = double.MAX_FINITE;
+    double minArea = double.maxFinite;
 
     for (i = 1; i <= count; ++i) {
       b2Vec2 root = p[(i - 1).toInt()];
@@ -784,16 +784,16 @@ class b2PolygonShape extends b2Shape {
       double length = sqrt(uxX * uxX + uxY * uxY);
       uxX /= length;
       uxY /= length;
-      //b2Settings.b2Assert(length > double.MIN_POSITIVE);
+      //b2Settings.b2Assert(length > double.minPositive);
       //b2Vec2 uy(-ux.y, ux.x);
       double uyX = -uxY;
       double uyY = uxX;
       //b2Vec2 lower(FLT_MAX, FLT_MAX);
-      double lowerX = double.MAX_FINITE;
-      double lowerY = double.MAX_FINITE;
+      double lowerX = double.maxFinite;
+      double lowerY = double.maxFinite;
       //b2Vec2 upper(-FLT_MAX, -FLT_MAX);
-      double upperX = -double.MAX_FINITE;
-      double upperY = -double.MAX_FINITE;
+      double upperX = -double.maxFinite;
+      double upperY = -double.maxFinite;
 
       for (int j = 0; j < count; ++j) {
         //b2Vec2 d = p[j] - root;
@@ -834,6 +834,6 @@ class b2PolygonShape extends b2Shape {
       }
     }
 
-    //b2Settings.b2Assert(minArea < double.MAX_FINITE);
+    //b2Settings.b2Assert(minArea < double.maxFinite);
   }
 }

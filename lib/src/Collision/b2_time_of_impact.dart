@@ -43,7 +43,7 @@ class b2TimeOfImpact {
     b2Sweep sweepB = input.sweepB;
 
     b2Settings.b2Assert(sweepA.t0 == sweepB.t0);
-    b2Settings.b2Assert(1.0 - sweepA.t0 > double.MIN_POSITIVE);
+    b2Settings.b2Assert(1.0 - sweepA.t0 > double.minPositive);
 
     double radius = proxyA.m_radius + proxyB.m_radius;
     double tolerance = input.tolerance;
@@ -187,7 +187,7 @@ class b2TimeOfImpact {
       }
 
       // Ensure significant advancement
-      if (newAlpha < (1.0 + 100.0 * double.MIN_POSITIVE) * alpha) {
+      if (newAlpha < (1.0 + 100.0 * double.minPositive) * alpha) {
         break;
       }
 

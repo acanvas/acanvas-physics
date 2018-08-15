@@ -65,7 +65,7 @@ class b2Segment {
     double nX = dY;
     double nY = -dX;
 
-    double k_slop = 100.0 * double.MIN_POSITIVE;
+    double k_slop = 100.0 * double.minPositive;
     //double denom = -b2Dot(r, n);
     double denom = -(rX * nX + rY * nY);
 
@@ -116,8 +116,8 @@ class b2Segment {
     double dY = p2.y - p1.y;
 
     double lambda = /*Math.*/ min(
-        dX > 0 ? (aabb.upperBound.x - p1.x) / dX : dX < 0 ? (aabb.lowerBound.x - p1.x) / dX : double.INFINITY,
-        dY > 0 ? (aabb.upperBound.y - p1.y) / dY : dY < 0 ? (aabb.lowerBound.y - p1.y) / dY : double.INFINITY);
+        dX > 0 ? (aabb.upperBound.x - p1.x) / dX : dX < 0 ? (aabb.lowerBound.x - p1.x) / dX : double.infinity,
+        dY > 0 ? (aabb.upperBound.y - p1.y) / dY : dY < 0 ? (aabb.lowerBound.y - p1.y) / dY : double.infinity);
 
     p2.x = p1.x + dX * lambda;
     p2.y = p1.y + dY * lambda;
@@ -131,8 +131,8 @@ class b2Segment {
     double dY = -p2.y + p1.y;
 
     double lambda = /*Math.*/ min(
-        dX > 0 ? (aabb.upperBound.x - p2.x) / dX : dX < 0 ? (aabb.lowerBound.x - p2.x) / dX : double.INFINITY,
-        dY > 0 ? (aabb.upperBound.y - p2.y) / dY : dY < 0 ? (aabb.lowerBound.y - p2.y) / dY : double.INFINITY);
+        dX > 0 ? (aabb.upperBound.x - p2.x) / dX : dX < 0 ? (aabb.lowerBound.x - p2.x) / dX : double.infinity,
+        dY > 0 ? (aabb.upperBound.y - p2.y) / dY : dY < 0 ? (aabb.lowerBound.y - p2.y) / dY : double.infinity);
 
     p1.x = p2.x + dX * lambda;
     p1.y = p2.y + dY * lambda;

@@ -55,7 +55,7 @@ class b2GravityController extends b2Controller {
           dx = p2.x - p1.x;
           dy = p2.y - p1.y;
           r2 = dx * dx + dy * dy;
-          if (r2 < double.MIN_POSITIVE) continue;
+          if (r2 < double.minPositive) continue;
           f = new b2Vec2(dx, dy);
           f.Multiply(G / r2 / sqrt(r2) * mass1 * body2.GetMass());
           if (body1.IsAwake()) body1.ApplyForce(f, p1);
@@ -74,7 +74,7 @@ class b2GravityController extends b2Controller {
           dx = p2.x - p1.x;
           dy = p2.y - p1.y;
           r2 = dx * dx + dy * dy;
-          if (r2 < double.MIN_POSITIVE) continue;
+          if (r2 < double.minPositive) continue;
           f = new b2Vec2(dx, dy);
           f.Multiply(G / r2 * mass1 * body2.GetMass());
           if (body1.IsAwake()) body1.ApplyForce(f, p1);

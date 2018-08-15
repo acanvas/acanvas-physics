@@ -57,7 +57,7 @@ class b2TensorDampingController extends b2Controller {
   @override
   void Step(b2TimeStep step) {
     double timestep = step.dt;
-    if (timestep <= double.MIN_POSITIVE) return;
+    if (timestep <= double.minPositive) return;
     if (timestep > maxTimestep && maxTimestep > 0) timestep = maxTimestep;
     for (b2ControllerEdge i = m_bodyList; i != null; i = i.nextBody) {
       b2Body body = i.body;

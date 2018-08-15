@@ -89,7 +89,7 @@ class b2CircleShape extends b2Shape {
     double sigma = c * c - rr * b;
 
     // Check for negative discriminant and short segment.
-    if (sigma < 0.0 || rr < double.MIN_POSITIVE) {
+    if (sigma < 0.0 || rr < double.minPositive) {
       return false;
     }
 
@@ -144,20 +144,20 @@ class b2CircleShape extends b2Shape {
     b2Vec2 p = b2Math.MulX(xf, m_p);
     double l = -(b2Math.Dot(normal, p) - offset);
 
-    if (l < -m_radius + double.MIN_POSITIVE) {
+    if (l < -m_radius + double.minPositive) {
       //Completely dry
       return 0.0;
     }
     if (l > m_radius) {
       //Completely wet
       c.SetV(p);
-      return PI * m_radius * m_radius;
+      return pi * m_radius * m_radius;
     }
 
     //Magic
     double r2 = m_radius * m_radius;
     double l2 = l * l;
-    double area = r2 * (asin(l / m_radius) + PI / 2) + l * sqrt(r2 - l2);
+    double area = r2 * (asin(l / m_radius) + pi / 2) + l * sqrt(r2 - l2);
     double com = -2 / 3 * pow(r2 - l2, 1.5) / area;
 
     c.x = p.x + normal.x * com;

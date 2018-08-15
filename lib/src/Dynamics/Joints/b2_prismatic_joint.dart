@@ -360,7 +360,7 @@ class b2PrismaticJoint extends b2Joint {
       m_a2 = r2X * m_axis.y - r2Y * m_axis.x;
 
       m_motorMass = m_invMassA + m_invMassB + m_invIA * m_a1 * m_a1 + m_invIB * m_a2 * m_a2;
-      if (m_motorMass > double.MIN_POSITIVE) m_motorMass = 1.0 / m_motorMass;
+      if (m_motorMass > double.minPositive) m_motorMass = 1.0 / m_motorMass;
     }
 
     // Prismatic constraint.

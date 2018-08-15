@@ -252,7 +252,7 @@ class b2Island {
     Report(contactSolver.m_constraints);
 
     if (allowSleep) {
-      double minSleepTime = double.MAX_FINITE;
+      double minSleepTime = double.maxFinite;
 
       double linTolSqr = b2Settings.b2_linearSleepTolerance * b2Settings.b2_linearSleepTolerance;
       double angTolSqr = b2Settings.b2_angularSleepTolerance * b2Settings.b2_angularSleepTolerance;

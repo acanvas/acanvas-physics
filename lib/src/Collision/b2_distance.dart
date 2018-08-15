@@ -102,7 +102,7 @@ class b2Distance {
       b2Vec2 d = simplex.GetSearchDirection();
 
       // Ensure the search direction is doubleerically fit.
-      if (d.LengthSquared() < double.MIN_POSITIVE * double.MIN_POSITIVE) {
+      if (d.LengthSquared() < double.minPositive * double.minPositive) {
         // THe origin is probably contained by a line segment or triangle.
         // Thus the shapes are overlapped.
 
@@ -157,7 +157,7 @@ class b2Distance {
       double rA = proxyA.m_radius;
       double rB = proxyB.m_radius;
 
-      if (output.distance > rA + rB && output.distance > double.MIN_POSITIVE) {
+      if (output.distance > rA + rB && output.distance > double.minPositive) {
         // Shapes are still not overlapped.
         // Move the witness points to the outer surface.
         output.distance -= rA + rB;

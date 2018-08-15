@@ -28,7 +28,7 @@ class b2Settings {
 
   static const int USHRT_MAX = 0x0000ffff;
 
-  static const double b2_pi = PI;
+  static const double b2_pi = pi;
 
   // Collision
   /**

@@ -49,7 +49,7 @@ class b2EdgeShape extends b2Shape {
     double nX = transform.position.y + (tMat.col1.y * m_v2.x + tMat.col2.y * m_v2.y) - v1Y;
     double nY = -(transform.position.x + (tMat.col1.x * m_v2.x + tMat.col2.x * m_v2.y) - v1X);
 
-    double k_slop = 100.0 * double.MIN_POSITIVE;
+    double k_slop = 100.0 * double.minPositive;
     double denom = -(rX * nX + rY * nY);
 
     // Cull back facing collision and ignore parallel segments.

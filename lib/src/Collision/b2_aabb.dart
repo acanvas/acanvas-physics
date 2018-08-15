@@ -60,8 +60,8 @@ class b2AABB {
 	 * Perform a precise raycast against the AABB.
 	 */
   bool RayCast(b2RayCastOutput output, b2RayCastInput input) {
-    double tmin = -double.MAX_FINITE;
-    double tmax = double.MAX_FINITE;
+    double tmin = -double.maxFinite;
+    double tmax = double.maxFinite;
 
     double pX = input.p1.x;
     double pY = input.p1.y;
@@ -80,7 +80,7 @@ class b2AABB {
 
     //x
     {
-      if (absDX < double.MIN_POSITIVE) {
+      if (absDX < double.minPositive) {
         // Parallel.
         if (pX < lowerBound.x || upperBound.x < pX) return false;
       } else {
@@ -113,7 +113,7 @@ class b2AABB {
     }
     //y
     {
-      if (absDY < double.MIN_POSITIVE) {
+      if (absDY < double.minPositive) {
         // Parallel.
         if (pY < lowerBound.y || upperBound.y < pY) return false;
       } else {

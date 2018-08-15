@@ -96,7 +96,7 @@ class b2BuoyancyController extends b2Controller {
       areac.y /= area;
       massc.x /= mass;
       massc.y /= mass;
-      if (area < double.MIN_POSITIVE) continue;
+      if (area < double.minPositive) continue;
       //Buoyancy
       b2Vec2 buoyancyForce = gravity.GetNegative();
       buoyancyForce.Multiply(density * area);
